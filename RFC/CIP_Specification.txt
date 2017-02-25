@@ -1,0 +1,840 @@
+
+
+
+
+Network Working Group                                        Stefan Hans
+Internet-Draft                                              January 2017
+Intended status: Experimental
+Expires: July 5, 2017
+
+
+  Contextinformation Paket (CIP) Specification for Contextinformation
+                        Routing Networks (CRNs)
+                       CIP Specification for CRNs
+
+Abstract
+
+   Contextinformation Paket (CIP) is the datastructure to transfer
+   contextinformation plus header and possibly application data through
+   Contextinformation Routing Networks (CRNs).  All information which
+   has to be transfered inside CRNs has to be encapsulated within CIPs.
+   This document is the specification of CIP.  For an overview about
+   CRNs please see Internet-Draft "Concepts of Contextinformation
+   Routing Networks (CRNs)" [CRNs].
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at http://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on July 5, 2017.
+
+Copyright Notice
+
+   Copyright (c) 2017 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (http://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 1]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+   include Simplified BSD License text as described in Section 4.e of
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  Motivation  . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   3.  Binary Representations of Elements  . . . . . . . . . . . . .   3
+   4.  Header Data . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     4.1.  Fix Sized Header Data Elements  . . . . . . . . . . . . .   5
+     4.2.  Enumerations for Fixed Sized Header Data Elements . . . .   6
+       4.2.1.  Services  . . . . . . . . . . . . . . . . . . . . . .   6
+       4.2.2.  Service Groups  . . . . . . . . . . . . . . . . . . .   6
+       4.2.3.  Channels  . . . . . . . . . . . . . . . . . . . . . .   6
+     4.3.  Types of Additional Header Data . . . . . . . . . . . . .   7
+   5.  Contextinformation  . . . . . . . . . . . . . . . . . . . . .   7
+     5.1.  Fixed Sized Contextinformation Elements . . . . . . . . .   7
+     5.2.  Enumerations for Fixed Sized Contextinformation Elements    8
+       5.2.1.  Types . . . . . . . . . . . . . . . . . . . . . . . .   8
+       5.2.2.  Root-CIC  . . . . . . . . . . . . . . . . . . . . . .   8
+     5.3.  Dynamically Sized Contextinformation  . . . . . . . . . .   8
+   6.  Application Data  . . . . . . . . . . . . . . . . . . . . . .   8
+     6.1.  Fixed Sized Application Data Elements . . . . . . . . . .   9
+     6.2.  Enumerations for Fixed Sized Application Data Elements  .   9
+       6.2.1.  Types . . . . . . . . . . . . . . . . . . . . . . . .   9
+     6.3.  Types of Additional Application Data  . . . . . . . . . .   9
+       6.3.1.  For External Applications . . . . . . . . . . . . . .  10
+       6.3.2.  For Internal Use  . . . . . . . . . . . . . . . . . .  10
+   7.  Core Services . . . . . . . . . . . . . . . . . . . . . . . .  10
+   8.  Error Definitions . . . . . . . . . . . . . . . . . . . . . .  13
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  13
+   10. Informative References  . . . . . . . . . . . . . . . . . . .  13
+   Appendix A.  CRN's Glossary . . . . . . . . . . . . . . . . . . .  14
+   Appendix B.  CRN's Abbreviations  . . . . . . . . . . . . . . . .  15
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  15
+
+1.  Introduction
+
+   Contextinformation Packet (CIP) is the datastructure to encapsulate
+   encoded Contextinformation (CI).  A CIP is divided into three parts:
+
+   Header Data
+             The header data contains metadata and specifies, among
+             other things, how the data of the following two parts has
+             to be interpreted.  The header data starts with a part of
+             fixed size and static structure followed by a dynamic part.
+
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 2]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+             The static part defines also the dynamic part's type and
+             its length.
+
+
+
+   Contextinformation
+             The Contextinformation starts with a part of fixed size and
+             static structure followed by a dynamic part.  The static
+             part defines also the dynamic part's type and its length.
+             The dynamic part consists of CIC-Bricks only.
+
+
+
+   Application Data
+             The application data starts with a part of fixed size and
+             static structure followed by a dynamic part.  The static
+             part defines only the dynamic part's type and its length.
+
+
+
+   All information which has to be transfered inside CRNs has to be
+   encapsulated within CIPs.
+
+2.  Motivation
+
+   The motivation for this document is mainly the publication to prevent
+   proprietary rights of third parties hindering the general
+   availability of its described concepts.  Another additional
+   motivation is the exchange with interested experts.  This draft is a
+   first step towards a possible formal recognition as an Internet
+   Standard in the future.
+
+3.  Binary Representations of Elements
+
+   Ordered Numbering
+                  These elements show unsigned integers, e.g. from 0 to
+                  255 (see figure 1).
+
+   Flags
+                  These elements show one flag per bit (see figure 2).
+
+   Combinations
+                  The representations of ordered numbering and bitwise
+                  flags can be combined freely within elements.
+
+   Well Known Representations
+                  These representations are well known as standards like
+                  IP address, port number, UUID etc..
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 3]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+   Reserved Zero Value (RZV)
+                  Nearly all of the not well known representations have
+                  the so called Reserved Zero Value.  That means zero as
+                  value is reserved for developing and testing purposes.
+
+          Figure 1 shows bytes representing an ordered numbering.
+
+   0 1 2 3 4 5 6 7 8
+   +-+-+-+-+-+-+-+-+
+   |0|0|0|0|0|0|0|0| 0 represents "Null" (RZV)
+   |0|0|0|0|0|0|0|1| 1 represents "A"
+   |0|0|0|0|0|0|1|0| 2 represents "B"
+   |0|0|0|0|0|0|1|1| 3 represents "C"
+   |0|0|0|0|0|1|0|0| 4 represents "D"
+   |...............|
+   |1|1|1|1|1|1|1|1| 255
+   +-+-+-+-+-+-+-+-+
+
+             Figure 2 shows bytes representing bitwise flags.
+
+   0 1 2 3 4 5 6 7 8
+   +-+-+-+-+-+-+-+-+
+   |0|0|0|0|0|0|0|0| 0 represents "Null" (RZV)
+   |1|0|0|0|0|0|0|0| 1 represents "A, not B, not C"
+   |1|1|0|0|0|0|0|0| 2 represents "A, B, not C"
+   |1|1|1|0|0|0|0|0| 3 represents "A, B, C"
+   |0|1|0|0|0|0|0|0| 4 represents "not A, B, not C"
+   |...............|
+   +-+-+-+-+-+-+-+-+
+
+4.  Header Data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 4]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+            Figure 3 shows the structure of CIP's header data.
+
+   0                   1                   2                   3
+   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |   request (1) |  profile (1)  |  version (1)  |  channel (1)  | |
+   |                                                               | |
+   |                            UUID (16)                          | |
+   |                                                               | |
+   |                                                               | fix
+   |                          IP address (4)                       | |
+   |            IP port (2)        |                               | |
+   |                            time (8)                           | |
+   |                               |   type (1)   |    size (1)    |---
+   | ............................................................  | |
+   | .............. additional data up to 255 bytes .............  | dyn
+   | ............................................................  | |
+   +---------------------------------------------------------------+
+
+   Field sizes, shown in brackets, are given in bytes.  Dots are used to
+                     show the dynamically sized part.
+
+4.1.  Fix Sized Header Data Elements
+
+   request (RZV)
+                  A number of the enumeration of Services (Ordered
+                  Numbering) shows the service requested by the sender
+                  of the CIP.
+
+   profile (RZV)
+                  A number of the enumeration of Service Groups (Flags)
+                  shows the services available by the sender of the CIP.
+
+   version (RZV)
+                  The version of this specification.  It has a higher
+                  4-bit part which represents the major number and a
+                  lower 4-bit part which represents the minor number.
+
+   channel (RZV)
+                  A number of the enumeration of Channels separating
+                  communication traffic related to different purposes.
+
+   UUID
+                  The unique identifier of the CIP.
+
+   IP address
+                  A 32-bit IP address (Network Byte Order) of the sender
+                  of the CIP.
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 5]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+   IP port
+                  A 16-bit port number (Network Byte Order) of the
+                  sender of the CIP.
+
+   time
+                  Unix time of CIP's introduction, i.e. the number of
+                  seconds between 00:00:00 UTC on 1 January 1970 and the
+                  moment the CIP arrived in the CRN for the first time.
+
+   type (RZV)
+                  A number of the enumeration of Additional Header Type
+                  of the additional data of the CIP.
+
+   size
+                  The size of the following additional data of the CIP,
+                  i.e. its number of bytes.
+
+4.2.  Enumerations for Fixed Sized Header Data Elements
+
+4.2.1.  Services
+
+   'Service Groups' describes the role(s) in CRNs.
+
+4.2.2.  Service Groups
+
+   'Service Groups' describes the role(s) in CRNs.
+
+     Figure 4 shows the service groups and its defined first two bits.
+
+   0         1         2         3  ------------------------------  8
+   +---------+---------+---------|----------------------------------+
+   | gateway | router  | storage |         not yet defined          |
+   +--------------------------------------------------------------- +
+
+   Thus the integer 1 means 'gateway', 2 means 'router' and 3 means both
+                               and so forth.
+
+4.2.3.  Channels
+
+   'channel' describes the separated channels in CRNs.
+
+
+
+
+
+
+
+
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 6]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+     Figure 4 shows the service groups and its defined first two bits.
+
+   0         1         2  ---------------------------------------   8
+   +---------+---------+--------------------------------------------+
+   | heartbeat  | routing | application           not yet defined   |
+   +--------------------------------------------------------------- +
+
+     Thus the integer 1 means 'client', 2 means 'gateway' and 3 means
+                                   both.
+
+4.3.  Types of Additional Header Data
+
+   The types of additional header data are not yet specified.
+
+5.  Contextinformation
+
+   Figure 2.2.1 shows the context (brick) section of the context CIP.  A
+          context brick consists of two bytes: content und mask.
+
+   0                   1                   2                   3
+   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |   type (1)    |         root-CIC (2)          |   size (1)    | fix
+   | ............................................................  | |
+   | .............. additional data up to 510 bytes .............  | dyn
+   | .............. i.e. up to 255 CIC-Bricks  ..................  | |
+   | ............................................................  | |
+   +---------------------------------------------------------------+
+
+   Field sizes, shown in brackets, are given in bytes.  Dots are used to
+                     show the dynamically sized part.
+
+5.1.  Fixed Sized Contextinformation Elements
+
+   type (RZV)
+                  The type can be used to specify different context
+                  designs in the future.  The value for the core
+                  functionality is 1 which has to be used at the moment.
+                  The value 0 is reserved for testing and all other
+                  values has no meaning so far.
+
+   root-CIC (RZV)
+                  The mask is the second part of a Context Brick (see
+                  section 2.4).  It is not used in the core
+                  functionality so far.
+
+   size
+
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 7]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+                  The number of Context Bricks as additional data (up to
+                  255).
+
+   additional data
+                  The additional data contains the number of Context
+                  Bricks (see section 2.4) as specified in size.
+
+5.2.  Enumerations for Fixed Sized Contextinformation Elements
+
+5.2.1.  Types
+
+   'type' describes the very main types of contextinformation in CRNs.
+
+5.2.2.  Root-CIC
+
+   The usage of Root-CIC, i.e. CIC-Content and CIC-Mask, depends on
+   'type' and is not yet finally decided.
+
+5.3.  Dynamically Sized Contextinformation
+
+   A Context Brick is a pair of bytes in particular content and mask.
+   It describes a piece of information and the relevance of its
+   exactness.  The meaning of the Context Bricks is not known by the
+   Context Network.
+
+   content
+                  The content represents an exact information encoded in
+                  a byte.
+
+   mask
+                  The mask represents the relevance of the exactness of
+                  the content in a byte.  For that a 1 makes the
+                  corresponding bit of the content irrelevant.  Two bits
+                  are corresponding, if they are at the same place in
+                  the byte.
+
+6.  Application Data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 8]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+   The following figure shows the data section of the context CIP.  This
+    section has no meaning for the Context Routing itself.  The meaning
+      of this section is only relevant to the clients.  Therefore the
+    following structure has to be seen as a default and can be changed,
+     if another specification is agreed between the concerned clients.
+     The 'size' has to be as if the default structure would be actual,
+                i.e. available is then 'size + 141' bytes.
+
+   0                   1                   2                   3
+   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |   type (1)    |   size (1)    | ............................  | fix
+   | ............................................................  | |
+   | .......... additional data up to 255 bytes (size) ..........  | dyn
+   | ............................................................  | |
+   +---------------------------------------------------------------+
+
+   Field sizes, shown in brackets, are given in bytes.  Dots are used to
+                     show the dynamically sized part.
+
+6.1.  Fixed Sized Application Data Elements
+
+   type (RZV)
+                  The meaning or format of the following text, e.g.
+                  plain text, URL.
+
+   size
+                  The size of additional data in bytes.
+
+6.2.  Enumerations for Fixed Sized Application Data Elements
+
+6.2.1.  Types
+
+   In combination with certain values of fixed sized header elements,
+   'type' may describe application data related to CRN's functionality
+   internally.  The relevant specifications are not determined yet.
+
+6.3.  Types of Additional Application Data
+
+   The application data contains as many bytes as specified by 'size'.
+   According to the 'type' the application data has to be interpreted
+   appropriately.  This data is meant normally for applications outside
+   the CRN.  By internal routing procedures the applications are the
+   nodes of the CRN itself and therefore this data is used, in this
+   case, not by applications outside the CRN.  Depending on the header
+   data additional application data can be used for external
+   applications or for the CRNs internally.
+
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 9]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+6.3.1.  For External Applications
+
+   If additional application data are related to external applications,
+   the type of the data and the data itself are the responsibility of
+   the external applications exclusively.
+
+6.3.2.  For Internal Use
+
+   The types of additional application data for internal use are not yet
+   specified.
+
+7.  Core Services
+
+   The application data contains as many bytes as specified by 'size'.
+   According to the 'type' the application data has to be interpreted
+   appropriately.  This data is meant normally for applications outside
+   the CRN.  By internal routing procedures the applications are the
+   nodes of the CRN itself and therefore this data is used, in this
+   case, not by applications outside the CRN.  Depending on the header
+   data additional application data can be used for external
+   applications or for the CRNs internally.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Stefan Hans               Expires July 5, 2017                 [Page 10]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+                           UDP Services are ...:
+
+   +-----------------------+---------------------+---------------------+
+   | Service Enum          | Channel Enum        | Service             |
+   | (request)             | (channel)           |                     |
+   +-----------------------+---------------------+---------------------+
+   | SERVICE_RZV (0)       | CHANNEL_RZV (0)     | RZVService          |
+   |                       |                     |                     |
+   | "not yet defined"     | CHANNEL_RZV (0)     | DefaultService      |
+   | (1-255)               |                     |                     |
+   |                       |                     |                     |
+   | SERVICE_RZV (0)       | CHANNEL_CI_MATCHING | RZVService          |
+   |                       | (1)                 |                     |
+   |                       |                     |                     |
+   | SERVICE_HEARTBEAT (1) | CHANNEL_CI_MATCHING | HeartbeatService    |
+   |                       | (1)                 |                     |
+   |                       |                     |                     |
+   | SERVICE_OFFER_REQUEST | CHANNEL_CI_MATCHING | OfferRequestService |
+   | (2)                   | (1)                 |                     |
+   |                       |                     |                     |
+   | SERVICE_REPLY (3)     | CHANNEL_CI_MATCHING | ReplyService        |
+   |                       | (1)                 |                     |
+   |                       |                     |                     |
+   | "not yet defined"     | CHANNEL_CI_MATCHING | DefaultService      |
+   | (4-255)               | (1)                 |                     |
+   +-----------------------+---------------------+---------------------+
+
+                           Table 1: UDP Services
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Stefan Hans               Expires July 5, 2017                 [Page 11]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+                           TCP Services are ...:
+
+   +-----------------------+---------------------+---------------------+
+   | Service Enum          | Channel Enum        | Service             |
+   | (request)             | (channel)           |                     |
+   +-----------------------+---------------------+---------------------+
+   | SERVICE_RZV (0)       | CHANNEL_RZV (0)     | RZVService          |
+   |                       |                     |                     |
+   | "not yet defined"     | CHANNEL_RZV (0)     | DefaultService      |
+   | (1-255)               |                     |                     |
+   |                       |                     |                     |
+   | SERVICE_RZV (0)       | CHANNEL_CI_MATCHING | RZVService          |
+   |                       | (1)                 |                     |
+   |                       |                     |                     |
+   | SERVICE_OFFER_REQUEST | CHANNEL_CI_MATCHING | OfferRequestService |
+   | (2)                   | (1)                 |                     |
+   |                       |                     |                     |
+   | SERVICE_REPLY (3)     | CHANNEL_CI_MATCHING | ReplyService        |
+   |                       | (1)                 |                     |
+   |                       |                     |                     |
+   | "not yet defined"     | CHANNEL_CI_MATCHING | DefaultService      |
+   | (4-255)               | (1)                 |                     |
+   +-----------------------+---------------------+---------------------+
+
+                           Table 2: TCP Services
+
+   RZVService
+                  The type can be used to specify different context
+                  designs in the future.  The value for the core
+                  functionality is 1 which has to be used at the moment.
+                  The value 0 is reserved for testing and all other
+                  values has no meaning so far.
+
+   HeartbeatService
+                  The mask is the second part of a Context Brick (see
+                  section 2.4).  It is not used in the core
+                  functionality so far.
+
+   OfferRequestService
+                  The number of Context Bricks as additional data (up to
+                  255).
+
+   ReplyService
+                  The additional data contains the number of Context
+                  Bricks (see section 2.4) as specified in size.
+
+   DefaultService
+
+
+
+
+Stefan Hans               Expires July 5, 2017                 [Page 12]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+                  The additional data contains the number of Context
+                  Bricks (see section 2.4) as specified in size.
+
+8.  Error Definitions
+
+                          General Errors are ...:
+
+    +------------------+----------+-----------------------------------+
+    | Category         | Priority | Error Enumeration (Error Number)  |
+    +------------------+----------+-----------------------------------+
+    | CIP_FORMAT_ERROR | NOTICE   | CIP_FORMAT_ERROR_OUT_OF_RANGE (1) |
+    |                  |          |                                   |
+    | CIP_FORMAT_ERROR | NOTICE   | CIP_FORMAT_ERROR_INCONSISTENT (2) |
+    +------------------+----------+-----------------------------------+
+
+                          Table 3: General Errors
+
+                           UDP Errors are ... :
+
+        +----------+----------+----------------------------------+
+        | Category | Priority | Error Enumeration (Error Number) |
+        +----------+----------+----------------------------------+
+        |          |          |                                  |
+        +----------+----------+----------------------------------+
+
+                            Table 4: UDP Errors
+
+                           TCP Errors are ... :
+
+   +------------------+----------+-------------------------------------+
+   | Category         | Priority | Error Enumeration (Error Number)    |
+   +------------------+----------+-------------------------------------+
+   | CIP_FORMAT_ERROR | NOTICE   | CIP_FORMAT_ERROR_WRONG_PROTOCOL (3) |
+   +------------------+----------+-------------------------------------+
+
+                            Table 5: TCP Errors
+
+9.  Security Considerations
+
+   The use of packets described in this memo has no direct impact on the
+   security of the Internet.
+
+10.  Informative References
+
+   [CRNs]     Hans, S., "Concepts of Contextinformation Routing Networks
+              (CRNs)", Januar 2016,
+              <https://github.com/stefanhans/ContextRouting/raw/master/
+              RFC/DraftRFC_ContextRouting.txt>.
+
+
+
+Stefan Hans               Expires July 5, 2017                 [Page 13]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+Appendix A.  CRN's Glossary
+
+   CIC-Brick
+                  One byte of encoded CI consisting of CIC-Content and
+                  CIC-Mask as a pair of bit strings.
+
+   CIC-Content
+                  The definite part of encoded CI.
+
+   CIC-Mask
+                  The undefining part of encoded CI.
+
+   CIC-Module
+
+
+   CIC-Number
+
+
+   CIC-Padding
+
+
+   CIC-Ruleset
+
+
+   CIC-Spam
+
+
+   CIR-Client
+
+
+   CIR-Node
+
+
+   CIR-Server
+
+
+   CIR-Tree
+
+
+   Contextinformation (CI)
+
+
+   Contextinformation Coding (CIC)
+
+
+   CIP (Contextinformation Packet)
+
+
+
+
+
+Stefan Hans               Expires July 5, 2017                 [Page 14]
+
+Internet-Draft         CIP Specification for CRNs           January 2017
+
+
+   CIR (Contextinformation Routing)
+
+
+   Reserved Zero Value (RZV)
+
+
+   Root-CIC
+
+
+Appendix B.  CRN's Abbreviations
+
+   +--------------+------------------------------------+
+   | Abbreviation | Meaning                            |
+   +--------------+------------------------------------+
+   | CI           | Contextinformation                 |
+   | CIC          | Contextinformation Coding          |
+   | CIP          | Contextinformation Packet          |
+   | CIR          | Contextinformation Routing         |
+   | CRN          | Contextinformation Routing Network |
+   | RZV          | Reserved Zero Value                |
+   +--------------+------------------------------------+
+
+Author's Address
+
+   Stefan Hans
+   Rotwandstr.
+   Baldham  85598
+   Germany
+
+   Email: uni@stefan-hans.de
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Stefan Hans               Expires July 5, 2017                 [Page 15]

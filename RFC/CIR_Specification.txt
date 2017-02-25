@@ -1,0 +1,336 @@
+
+
+
+
+Network Working Group                                        Stefan Hans
+Internet-Draft                                              January 2017
+Intended status: Experimental
+Expires: July 5, 2017
+
+
+ Contextinformation Routing (CIR) Specification for Contextinformation
+                        Routing Networks (CRNs)
+                       CIR Specification for CRNs
+
+Abstract
+
+   Contextinformation Routing (CIR) is routing through
+   Contextinformation Routing Networks (CRNs).  For an overview about
+   CRNs please see Internet-Draft "Concepts of Contextinformation
+   Routing Networks (CRNs)" [CRNs].
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at http://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on July 5, 2017.
+
+Copyright Notice
+
+   Copyright (c) 2017 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (http://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 1]
+
+Internet-Draft         CIR Specification for CRNs           January 2017
+
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  Motivation  . . . . . . . . . . . . . . . . . . . . . . . . .   2
+   3.  Encoded CI Routing  . . . . . . . . . . . . . . . . . . . . .   2
+     3.1.  Structural Conception . . . . . . . . . . . . . . . . . .   4
+   4.  Encoded CI Routing  . . . . . . . . . . . . . . . . . . . . .   5
+   5.  Application's Network Address Updates . . . . . . . . . . . .   5
+   6.  CIC-Ruleset Request Routing . . . . . . . . . . . . . . . . .   5
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   5
+   8.  Informative References  . . . . . . . . . . . . . . . . . . .   5
+   Appendix A.  CRN's Glossary . . . . . . . . . . . . . . . . . . .   6
+   Appendix B.  CRN's Abbreviations  . . . . . . . . . . . . . . . .   6
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   6
+
+1.  Introduction
+
+   The concepts and the implementations should be aware of the following
+   patterns as described in the "The Reactive Manifesto"
+   [ReactiveManifesto], i.e. they should be:
+
+   o  Responsive
+
+   o  Resilient
+
+   o  Elastic
+
+   o  Message Driven
+
+   These aspects will be referred to in the follwing sections.
+
+2.  Motivation
+
+   The motivation for this document is mainly the publication to prevent
+   proprietary rights of third parties hindering the general
+   availability of its described concepts.  Another additional
+   motivation is the exchange with interested experts.  This draft is a
+   first step towards a possible formal recognition as an Internet
+   Standard in the future.
+
+3.  Encoded CI Routing
+
+   introduction
+
+
+
+                                               .......................
+            ______          ______            .      +-------+      .
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 2]
+
+Internet-Draft         CIR Specification for CRNs           January 2017
+
+
+           / ENRP \        / ENRP \           .      |       |      .
+           |Server| <----> |Server|<----------.----->|  PE 1 |      .
+           \______/  ENRP  \______/  ASAP(1)  .      |       |      .
+                              ^               .      +-------+      .
+                              |               .                     .
+                              | ASAP(2)       .     Server Pool     .
+                              V               .                     .
+                         +-------+            .      +-------+      .
+                         |       |            .      |       |      .
+                         |  PU   |<---------->.      |  PE 2 |      .
+                         |       |  PU to PE  .      |       |      .
+                         +-------+            .      +-------+      .
+                                              .                     .
+                                              .      +-------+      .
+                                              .      |       |      .
+                                              .      |  PE 3 |      .
+                                              .      |       |      .
+                                              .      +-------+      .
+                                              .......................
+
+
+                          Device
+        ...........................................
+       .                                           .
+       .    +----------+          +-------------+  .
+       .   +----------+|          |             |  .
+       .  +----------+||     1    |             |  .
+       . +----------+||| <------- |             |  .
+       . |          |||+     1    | CIR-Gateway |  .
+       . | CIR-Root ||+  -------> |             |  .
+       . |          |+            |             |  .
+       . +----------+             |             |  .
+       .                          |             |  .
+       . .........................|.............|...
+                                  |             |
+                          CRN     |             |
+        ..........................|             |..
+       .                          |             |  .
+       .                          |             |  .
+       .                          |             |  .
+       .                          |             |  .
+       .                          +-------------+  .
+       .                                 A         .
+       .                                 |         .
+        .................................|.........
+                                         |
+                                         |
+                                         V
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 3]
+
+Internet-Draft         CIR Specification for CRNs           January 2017
+
+
+                            Device
+        ...............................................
+       .                                               .
+       .    +--------------+          +-------------+  .
+       .   +--------------+|          |             |  .
+       .  +--------------+|| <------> |             |  .
+       . +--------------+||| <------> |             |  .
+       . |              |||+ <------> | CIR-Gateway |  .
+       . | Applications ||+  <------> |             |  .
+       . |              |+            |             |  .
+       . +--------------+             |             |  .
+       .                              |             |  .
+        ..............................|             |..
+                                      |             |
+                                      |             |
+                             CRN      |             |
+        ..............................|             |..
+       .                              |             |  .
+       .    +--------------+          |             |  .
+       .   +--------------+|          |             |  .
+       .  +--------------+|| <------> |             |  .
+       . +--------------+||| <------> |  CRN-Node   |  .
+       . |              |||+ <------> |             |  .
+       . |  CRN-Nodes   ||+  <------> |             |  .
+       . |              |+            |             |  .
+       . +--------------+             +-------------+  .
+       .                                               .
+        ...............................................
+
+
+
+                                 Figure 1
+
+3.1.  Structural Conception
+
+   We distinguish between the two main roles Participant and User with
+   regard to CIR.  A Participant (CRN-Node) offers CI or provides
+   explicitly an active role in CIR.  An User only uses CIR requesting
+   CI or metadata.  The following concepts refer to how CRNs are built
+   up with CRN-Nodes dynamically.
+
+   CIR-Registration
+             At first an active CRN-Node has to be known as entry point
+             or to be established to create a new CRN.  This CRN-Node is
+             called CRN-Root.  A CRN-Root knows all major subnets
+             concerning the CIC-Content used as index (CI-Index).  New
+             Participants can be registered by requesting the CRN-Root
+             or any known CRN-Node being on the relevant path, i.e. on
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 4]
+
+Internet-Draft         CIR Specification for CRNs           January 2017
+
+
+             the CI-Index of the new participant.  If not explicitly
+             requested differently a new participant will be registered
+             or mounted above the first ambigous CIC-Brick, i.e. before
+             the first byte of CI-Mask not equal 0.
+
+
+
+   Subnetting
+             x
+
+
+
+   Redundancy
+             x
+
+
+
+4.  Encoded CI Routing
+
+   introduction
+
+5.  Application's Network Address Updates
+
+   introduction
+
+6.  CIC-Ruleset Request Routing
+
+   introduction
+
+7.  Security Considerations
+
+   The use of contextinformation routing described in this memo has no
+   direct impact on the security of the Internet.
+
+8.  Informative References
+
+   [CRNs]     Hans, S., "Concepts of Contextinformation Routing Networks
+              (CRNs)", Januar 2016,
+              <https://github.com/stefanhans/ContextRouting/raw/master/
+              RFC/DraftRFC_ContextRouting.txt>.
+
+   [ReactiveManifesto]
+              Boner, J., Farley, D., Kuhn, R., and M. Thompson, "The
+              Reactive Manifesto", September 2014,
+              <http://www.reactivemanifesto.org>.
+
+
+
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 5]
+
+Internet-Draft         CIR Specification for CRNs           January 2017
+
+
+Appendix A.  CRN's Glossary
+
+   content
+                  The content represents an exact information encoded in
+                  a byte.
+
+   mask
+                  The mask represents the relevance of the exactness of
+                  the content in a byte.  For that a 1 makes the
+                  corresponding bit of the content irrelevant.  Two bits
+                  are corresponding, if they are at the same place in
+                  the byte.
+
+Appendix B.  CRN's Abbreviations
+
+   +--------------+------------------------------------+
+   | Abbreviation | Meaning                            |
+   +--------------+------------------------------------+
+   | CI           | Contextinformation                 |
+   | CIC          | Contextinformation Coding          |
+   | CIP          | Contextinformation Packet          |
+   | CIR          | Contextinformation Routing         |
+   | CRN          | Contextinformation Routing Network |
+   | RZV          | Reserved Zero Value                |
+   +--------------+------------------------------------+
+
+Author's Address
+
+   Stefan Hans
+   Rotwandstr.
+   Baldham  85598
+   Germany
+
+   Email: uni@stefan-hans.de
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Stefan Hans               Expires July 5, 2017                  [Page 6]

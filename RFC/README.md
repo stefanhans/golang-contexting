@@ -1,1 +1,1 @@
-The RFC documents are not yet finalized.
+The RFC documents are neither finalized nor published.
