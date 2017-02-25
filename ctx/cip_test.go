@@ -1,0 +1,43 @@
+package ctx
+
+import (
+	"testing"
+	_ "fmt"
+)
+
+func TestSetCi(t *testing.T) {
+
+	cip := CreateCip().
+		SetHeadData(HEADER_TYPE_RZV).
+		SetCi(CI_TYPE_RZV, CI_BRICK_RZV).
+		SetAppData(APP_DATA_TYPE_RZV)
+
+	_ = cip
+
+
+
+	_ = PORT_TCP_META
+	_ = PORT_UDP_META
+	_ = PORT_TCP_CONTENT
+	_ = PORT_UDP_CONTENT
+
+
+	_ = SERVICE_RZV
+	_ = SERVICE_HEARTBEAT
+	_ = SERVICE_OFFER
+	_ = SERVICE_REQUEST
+	_ = SERVICE_TCP_REPLY
+	_ = SERVICE_UDP_REPLY
+	_ = SERVICE_UNDEFINED
+	_ = PROFILE_RZV
+	_ = PROFILE_UNDEFINED
+	_ = CHANNEL_RZV
+	_ = CHANNEL_META
+	_ = CHANNEL_CONTENT
+	_ = CHANNEL_UNDEFINED
+	_ = HEADER_TYPE_ERROR
+	_ = HEADER_TYPE_UNDEFINED
+	_ = CI_TYPE_SIMPLE_MATCH
+	_ = CI_TYPE_UNDEFINED
+	_ = APP_DATA_TYPE_UNDEFINED
+}

@@ -68,7 +68,7 @@ All information which has to be transfered inside CRNs has to be encapsulated wi
 
 External Packages
 
-Code copied and customized to avoid dependencies
+Code copied to and customized in uuid.go to avoid dependencies
 
 	"UUID package for Go"
 
