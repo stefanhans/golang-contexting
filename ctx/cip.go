@@ -1,6 +1,9 @@
 package ctx
 
-import "net"
+import (
+	"fmt"
+	"net"
+)
 
 // Reserved Zero Value (RZV)
 //
@@ -15,7 +18,6 @@ const (
 	MASK_RZV    = RZV
 )
 
-
 // Ports Constants
 const (
 	PORT_TCP_META    = 22365
@@ -23,7 +25,6 @@ const (
 	PORT_TCP_CONTENT = 22367
 	PORT_UDP_CONTENT = 22368
 )
-
 
 // REQUEST REFACTOR?
 // enum Request { RequestRZV=0, RequestHeartbeat=1, RequestOffer=2, RequestRequest=2, RequestReply=3, RequestUndefined };
@@ -66,7 +67,6 @@ enum ErrorPriority { ErrorPriorityNone=0, ErrorPriorityDebug=1, ErrorPriorityInf
 enum CipFormatErrorEnum { CipFormatErrorNone=0, CipFormatErrorOutOfRange=1, CipFormatErrorInconsistent=2, CipFormatErrorWrongProtocol=3, CipFormatErrorUndefined };
 */
 
-
 // CiType Constants
 const (
 	CI_TYPE_RZV = byte(iota)
@@ -74,26 +74,31 @@ const (
 	CI_TYPE_UNDEFINED
 )
 
-
 // AppDataType Constants
 const (
 	APP_DATA_TYPE_RZV = byte(iota)
 	APP_DATA_TYPE_UNDEFINED
 )
 
-
-
+// Brick for Contextinformation
 type CiBrick struct {
 	content byte
 	mask    byte
 }
 
-type CipArray [256]byte
+// The encoded Contextinformation, i.e. 0 - 255 CiBricks
+type CiBricks [256]CiBrick
 
+// Datastructure to fill the dynamic CIP parts of header and application
+//
+// The first byte is the number of the next used bytes (0-255)
+type CipArray [256]byte
 
 // Reserved Zero Value Contextinformation Brick
 var (
-	CI_BRICK_RZV = CiBrick{CONTENT_RZV, MASK_RZV}
+	CI_BRICK_RZV  = CiBrick{CONTENT_RZV, MASK_RZV}
+	CIP_CI_RZV    = CiBricks{CI_BRICK_RZV}
+	CIP_ARRAY_RZV = CipArray{0}
 )
 
 // True, if both contents are equal or unequal bits are disabled by set bits in both masks
@@ -118,108 +123,41 @@ func (offer CiBrick) ContextMatch(request CiBrick) bool {
 	return true
 }
 
-// The encoded Contextinformation, i.e. 0 - 255 CiBricks
-type CiBricks []CiBrick
-
 // Initial creation of CIP with UUID and null values
-func CreateCip() Cip {
-	return Cip{
+func CreateCip() *Cip {
+	return &Cip{
 		uuid: newV1(),
 	}
 }
 
-
 // Sets the Header Data part of CIP
-func (cip Cip) SetHeadData(headDataType byte, headData ...byte) Cip {
+func (cip *Cip) SetHeadData(headDataType byte, headData CipArray) *Cip {
 
-	//if len(headData) > 255 {
-	//	return errors.New("Length of []byte > 255"), Cip{}
-	//}
+	cip.headDataType = headDataType
+	cip.headDataSize = headData[0]
+	cip.headDataArray = headData[1 : cip.headDataSize+1]
 
-	return Cip{
-		cip.request,
-		cip.profile,
-		cip.version,
-		cip.channel,
-		cip.uuid,
-		cip.ipAddress,
-		cip.time,
-		headDataType,
-		byte(len(headData)),
-		headData,
-		cip.ciType,
-		cip.rootCic,
-		cip.ciSize,
-		cip.ciBrickArray,
-		cip.appDataType,
-		cip.appDataSize,
-		cip.appDataArray,
-	}
+	return cip
 }
-
 
 // Sets the Contextinformation part of CIP
-func (cip Cip) SetCi(ciType byte, rootCic CiBrick, ciBricks ...CiBrick) Cip {
+func (cip *Cip) SetCi(ciType byte, rootCic CiBrick, ciBricks CiBricks) *Cip {
 
-	//if len(ciBricks) > 255 {
-	//	return errors.New("Length of []CiBricks > 255"), Cip{}
-	//}
+	cip.ciType = ciType
+	cip.rootCic = rootCic
+	cip.ciSize = ciBricks[0].content
+	cip.ciBrickArray = ciBricks[1 : cip.ciSize+1]
 
-	return Cip{
-		cip.request,
-		cip.profile,
-		cip.version,
-		cip.channel,
-		cip.uuid,
-		cip.ipAddress,
-		cip.time,
-		cip.headDataType,
-		cip.headDataSize,
-		cip.headDataArray,
-		ciType,
-		rootCic,
-		byte(len(ciBricks)),
-		ciBricks,
-		cip.appDataType,
-		cip.appDataSize,
-		cip.appDataArray,
-	}
+	return cip
 }
 
-func (cip Cip) SetAppData(appDataType byte, appData ...byte) Cip {
+func (cip *Cip) SetAppData(appDataType byte, appData CipArray) *Cip {
 
-	//if len(appData) > 255 {
-	//	return errors.New("Length of []byte > 255"), Cip{}
-	//}
+	cip.appDataType = appDataType
+	cip.appDataSize = appData[0]
+	cip.appDataArray = appData[1 : cip.appDataSize+1]
 
-	return Cip{
-		cip.request,
-		cip.profile,
-		cip.version,
-		cip.channel,
-		cip.uuid,
-		cip.ipAddress,
-		cip.time,
-		cip.headDataType,
-		cip.headDataSize,
-		cip.headDataArray,
-		cip.ciType,
-		cip.rootCic,
-		cip.ciSize,
-		cip.ciBrickArray,
-		appDataType,
-		byte(len(appData)),
-		appData,
-	}
-}
-
-
-func (c Cip) isValid() bool {
-	return true
-}
-
-func (cb CiBricks) isValid() bool {
-	return true
+	return cip
 }
 
 // cip is the struct of CIP i.e. Contextinformation Paket
@@ -247,4 +185,43 @@ type Cip struct {
 	appDataType  byte
 	appDataSize  byte
 	appDataArray []byte
+}
+
+func (cip Cip) String() string {
+
+	return fmt.Sprintf("%-16s: %08b\n", "request", cip.request) +
+		fmt.Sprintf("%-16s: %08b\n", "profile", cip.profile) +
+		fmt.Sprintf("%-16s: %08b\n", "version", cip.version) +
+		fmt.Sprintf("%-16s: %08b\n", "channel", cip.channel) +
+		fmt.Sprintf("%-16s: %v\n", "uuid", cip.uuid) +
+		fmt.Sprintf("%-16s: %v\n", "ipAddress", cip.ipAddress) +
+		fmt.Sprintf("%-16s: %v\n", "time", cip.time) +
+		fmt.Sprintf("%-16s: %08b\n", "headDataType", cip.headDataType) +
+		fmt.Sprintf("%-16s: %08b\n", "headDataSize", cip.headDataSize) +
+		fmt.Sprintf("%-16s: %v\n", "headDataArray", cip.headDataArray) +
+		fmt.Sprintf("%-16s: %08b\n", "ciType", cip.ciType) +
+		fmt.Sprintf("%-16s: %08b\n", "rootCic Content", cip.rootCic.content) +
+		fmt.Sprintf("%-16s: %08b\n", "rootCic Mask", cip.rootCic.mask) +
+		fmt.Sprintf("%-16s: %d\n", "ciSize", cip.ciSize) +
+		fmt.Sprintf("%-16s: %v\n", "ciBrickArray", cip.ciBrickArray) +
+		fmt.Sprintf("%-16s: %08b\n", "appDataType", cip.appDataType) +
+		fmt.Sprintf("%-16s: %d\n", "appDataSize", cip.appDataSize) +
+		fmt.Sprintf("%-16s: %v\n", "appDataArray", cip.appDataArray)
+}
+
+func (ciBrick CiBrick) String() string {
+
+	return fmt.Sprintf("%-16s: %08b\n", "Content", ciBrick.content) +
+		fmt.Sprintf("%-16s: %08b\n", "Mask", ciBrick.mask)
+}
+
+// TODO Debug func (ciBricks CiBricks) String() string (related to "Cip String()")
+func (ciBricks CiBricks) String() string {
+
+	out := ""
+	for i:=1; i<=len(ciBricks); i++ {
+		out += fmt.Sprintf("%-3d: %-16s: %08b\n", i, "Content", ciBricks[i].content)
+		out += fmt.Sprintf("%-3d: %-16s: %08b\n", i, "Mask", ciBricks[i].mask)
+	}
+	return out
 }

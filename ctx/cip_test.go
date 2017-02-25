@@ -2,17 +2,31 @@ package ctx
 
 import (
 	"testing"
-	_ "fmt"
+	 "fmt"
 )
 
 func TestSetCi(t *testing.T) {
 
 	cip := CreateCip().
-		SetHeadData(HEADER_TYPE_RZV).
-		SetCi(CI_TYPE_RZV, CI_BRICK_RZV).
-		SetAppData(APP_DATA_TYPE_RZV)
+		SetHeadData(HEADER_TYPE_RZV, CIP_ARRAY_RZV).
+		SetCi(CI_TYPE_RZV, CI_BRICK_RZV, CIP_CI_RZV).
+		SetAppData(APP_DATA_TYPE_RZV, CIP_ARRAY_RZV)
 
-	_ = cip
+	fmt.Println(cip)
+
+
+
+	cip = CreateCip().
+		SetHeadData(HEADER_TYPE_RZV, CIP_ARRAY_RZV).
+		SetCi(CI_TYPE_RZV, CI_BRICK_RZV, CiBricks{CiBrick{1, 2}}).
+		SetAppData(APP_DATA_TYPE_RZV, CIP_ARRAY_RZV)
+
+
+	fmt.Println(cip)
+
+	fmt.Println(cip.rootCic)
+
+	fmt.Println(cip.ciBrickArray)
 
 
 
