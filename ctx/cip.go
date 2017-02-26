@@ -46,6 +46,13 @@ const (
 	PROFILE_UNDEFINED
 )
 
+// Version, i.e. <major number>.<minor numbeer> as byte in <4bit><4bit>.
+const (
+	MAJOR_NUMBER = 1
+	MINOR_NUMBER = 2
+	VERSION = CiVersion(MAJOR_NUMBER<<4 + MINOR_NUMBER)
+)
+
 // Channel Constants
 const (
 	CHANNEL_RZV = byte(iota)
@@ -126,6 +133,7 @@ func (offer CiBrick) ContextMatch(request CiBrick) bool {
 // Initial creation of CIP with UUID and null values
 func CreateCip() *Cip {
 	return &Cip{
+		version: VERSION,
 		uuid: newV1(),
 	}
 }
@@ -166,7 +174,7 @@ type Cip struct {
 	// ci_head
 	request       byte
 	profile       byte
-	version       byte
+	version       CiVersion
 	channel       byte
 	uuid          _UUID
 	ipAddress     net.Addr
@@ -179,7 +187,7 @@ type Cip struct {
 	ciType       byte
 	rootCic      CiBrick
 	ciSize       byte
-	ciBrickArray []CiBrick
+	ciBrickArray CiBrickSlice
 
 	// ci_data
 	appDataType  byte
@@ -191,7 +199,7 @@ func (cip Cip) String() string {
 
 	return fmt.Sprintf("%-16s: %08b\n", "request", cip.request) +
 		fmt.Sprintf("%-16s: %08b\n", "profile", cip.profile) +
-		fmt.Sprintf("%-16s: %08b\n", "version", cip.version) +
+		fmt.Sprintf("%-16s: %s\n", "version", cip.version) +
 		fmt.Sprintf("%-16s: %08b\n", "channel", cip.channel) +
 		fmt.Sprintf("%-16s: %v\n", "uuid", cip.uuid) +
 		fmt.Sprintf("%-16s: %v\n", "ipAddress", cip.ipAddress) +
@@ -203,7 +211,10 @@ func (cip Cip) String() string {
 		fmt.Sprintf("%-16s: %08b\n", "rootCic Content", cip.rootCic.content) +
 		fmt.Sprintf("%-16s: %08b\n", "rootCic Mask", cip.rootCic.mask) +
 		fmt.Sprintf("%-16s: %d\n", "ciSize", cip.ciSize) +
+
 		fmt.Sprintf("%-16s: %v\n", "ciBrickArray", cip.ciBrickArray) +
+
+
 		fmt.Sprintf("%-16s: %08b\n", "appDataType", cip.appDataType) +
 		fmt.Sprintf("%-16s: %d\n", "appDataSize", cip.appDataSize) +
 		fmt.Sprintf("%-16s: %v\n", "appDataArray", cip.appDataArray)
@@ -215,13 +226,22 @@ func (ciBrick CiBrick) String() string {
 		fmt.Sprintf("%-16s: %08b\n", "Mask", ciBrick.mask)
 }
 
+type CiBrickSlice []CiBrick
+
 // TODO Debug func (ciBricks CiBricks) String() string (related to "Cip String()")
-func (ciBricks CiBricks) String() string {
+func (ciBricks CiBrickSlice) String() string {
 
 	out := ""
-	for i:=1; i<=len(ciBricks); i++ {
+	for i:=0; i<len(ciBricks); i++ {
 		out += fmt.Sprintf("%-3d: %-16s: %08b\n", i, "Content", ciBricks[i].content)
 		out += fmt.Sprintf("%-3d: %-16s: %08b\n", i, "Mask", ciBricks[i].mask)
 	}
 	return out
+}
+
+type CiVersion byte
+
+func (version CiVersion) String() string {
+
+	return fmt.Sprintf("%d.%d", (version &^ 0x0F)>>4, version &^ 0xF0)
 }
