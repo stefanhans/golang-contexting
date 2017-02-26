@@ -3,13 +3,13 @@
 
 
 Network Working Group                                        Stefan Hans
-Internet-Draft                                              January 2017
+Internet-Draft                                                March 2017
 Intended status: Experimental
-Expires: July 5, 2017
+Expires: September 2, 2017
 
 
          Concepts of Contextinformation Routing Networks (CRNs)
-                        DraftRFC_ContextRouting
+                              CRN_Concepts
 
 Abstract
 
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on July 5, 2017.
+   This Internet-Draft will expire on September 2, 2017.
 
 
 
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 1]
+Stefan Hans             Expires September 2, 2017               [Page 1]
 
-Internet-Draft     Contextinformation Routing Networks      January 2017
+Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 2]
+Stefan Hans             Expires September 2, 2017               [Page 2]
 
-Internet-Draft     Contextinformation Routing Networks      January 2017
+Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  12
@@ -165,9 +165,9 @@ Internet-Draft     Contextinformation Routing Networks      January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 3]
+Stefan Hans             Expires September 2, 2017               [Page 3]
 
-Internet-Draft     Contextinformation Routing Networks      January 2017
+Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
              encoded CI are linked by this CIC-Number.  Encoded CI has
@@ -221,9 +221,9 @@ Internet-Draft     Contextinformation Routing Networks      January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 4]
+Stefan Hans             Expires September 2, 2017               [Page 4]
 
-Internet-Draft     Contextinformation Routing Networks      January 2017
+Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 2.  Motivation
@@ -277,9 +277,9 @@ Internet-Draft     Contextinformation Routing Networks      January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 5]
+Stefan Hans             Expires September 2, 2017               [Page 5]
 
-Internet-Draft     Contextinformation Routing Networks      January 2017
+Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
                Figure 1 shows the structure of a CIC-Brick.
@@ -333,9 +333,9 @@ Internet-Draft     Contextinformation Routing Networks      January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 6]
+Stefan Hans             Expires September 2, 2017               [Page 6]
 
-Internet-Draft     Contextinformation Routing Networks      January 2017
+Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 3.3.  Types of CIC-Rulesets
@@ -389,9 +389,9 @@ Internet-Draft     Contextinformation Routing Networks      January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 7]
+Stefan Hans             Expires September 2, 2017               [Page 7]
 
-Internet-Draft     Contextinformation Routing Networks      January 2017
+Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 5.1.  Universal Aspects
@@ -445,9 +445,9 @@ Internet-Draft     Contextinformation Routing Networks      January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 8]
+Stefan Hans             Expires September 2, 2017               [Page 8]
 
-Internet-Draft     Contextinformation Routing Networks      January 2017
+Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
    Message Driven
@@ -501,9 +501,9 @@ Internet-Draft     Contextinformation Routing Networks      January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 9]
+Stefan Hans             Expires September 2, 2017               [Page 9]
 
-Internet-Draft     Contextinformation Routing Networks      January 2017
+Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
    from another perspective, every CIP lives in its own
@@ -557,9 +557,9 @@ Appendix A.  CRN's Glossary
 
 
 
-Stefan Hans               Expires July 5, 2017                 [Page 10]
+Stefan Hans             Expires September 2, 2017              [Page 10]
 
-Internet-Draft     Contextinformation Routing Networks      January 2017
+Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
    CIC-Mask
@@ -613,9 +613,9 @@ Internet-Draft     Contextinformation Routing Networks      January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                 [Page 11]
+Stefan Hans             Expires September 2, 2017              [Page 11]
 
-Internet-Draft     Contextinformation Routing Networks      January 2017
+Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 Appendix B.  CRN's Abbreviations
@@ -669,4 +669,4 @@ Author's Address
 
 
 
-Stefan Hans               Expires July 5, 2017                 [Page 12]
+Stefan Hans             Expires September 2, 2017              [Page 12]

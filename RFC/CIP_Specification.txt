@@ -175,7 +175,7 @@ Internet-Draft         CIP Specification for CRNs           January 2017
                   the so called Reserved Zero Value.  That means zero as
                   value is reserved for developing and testing purposes.
 
-          Figure 1 shows bytes representing an ordered numbering.
+      Figure 1 shows bytes representing an ordered numbering example.
 
    0 1 2 3 4 5 6 7 8
    +-+-+-+-+-+-+-+-+
@@ -188,7 +188,7 @@ Internet-Draft         CIP Specification for CRNs           January 2017
    |1|1|1|1|1|1|1|1| 255
    +-+-+-+-+-+-+-+-+
 
-             Figure 2 shows bytes representing bitwise flags.
+         Figure 2 shows bytes representing bitwise flags example.
 
    0 1 2 3 4 5 6 7 8
    +-+-+-+-+-+-+-+-+
