@@ -25,7 +25,6 @@ func TestSetCi(t *testing.T) {
 	_ = PORT_TCP_CONTENT
 	_ = PORT_UDP_CONTENT
 
-
 	_ = PURPOSE_RZV
 	_ = PURPOSE_HEARTBEAT
 	_ = PURPOSE_REQUEST
