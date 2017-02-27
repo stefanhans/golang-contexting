@@ -26,31 +26,26 @@ const (
 	PORT_UDP_CONTENT = 22368
 )
 
-// REQUEST REFACTOR?
-// enum Request { RequestRZV=0, RequestHeartbeat=1, RequestOffer=2, RequestRequest=2, RequestReply=3, RequestUndefined };
 
-// Service Constants
+// Purpose Constants
 const (
-	SERVICE_RZV = byte(iota)
-	SERVICE_HEARTBEAT
-	SERVICE_OFFER
-	SERVICE_REQUEST
-	SERVICE_TCP_REPLY
-	SERVICE_UDP_REPLY
-	SERVICE_UNDEFINED
+	PURPOSE_RZV = byte(iota)
+	PURPOSE_HEARTBEAT
+	PURPOSE_OFFER
+	PURPOSE_REQUEST
+	PURPOSE_REPLY
 )
 
 // Profile Constants
 const (
 	PROFILE_RZV = byte(iota)
-	PROFILE_UNDEFINED
 )
 
 // Version, i.e. <major number>.<minor numbeer> as byte in <4bit><4bit>.
 const (
 	MAJOR_NUMBER = 1
 	MINOR_NUMBER = 2
-	VERSION = CiVersion(MAJOR_NUMBER<<4 + MINOR_NUMBER)
+	VERSION      = CipVersion(MAJOR_NUMBER<<4 + MINOR_NUMBER)
 )
 
 // Channel Constants
@@ -58,14 +53,12 @@ const (
 	CHANNEL_RZV = byte(iota)
 	CHANNEL_META
 	CHANNEL_CONTENT
-	CHANNEL_UNDEFINED
 )
 
 // HeaderType Constants
 const (
 	HEADER_TYPE_RZV = byte(iota)
 	HEADER_TYPE_ERROR
-	HEADER_TYPE_UNDEFINED
 )
 
 /*
@@ -78,13 +71,11 @@ enum CipFormatErrorEnum { CipFormatErrorNone=0, CipFormatErrorOutOfRange=1, CipF
 const (
 	CI_TYPE_RZV = byte(iota)
 	CI_TYPE_SIMPLE_MATCH
-	CI_TYPE_UNDEFINED
 )
 
 // AppDataType Constants
 const (
 	APP_DATA_TYPE_RZV = byte(iota)
-	APP_DATA_TYPE_UNDEFINED
 )
 
 // Brick for Contextinformation
@@ -134,7 +125,7 @@ func (offer CiBrick) ContextMatch(request CiBrick) bool {
 func CreateCip() *Cip {
 	return &Cip{
 		version: VERSION,
-		uuid: newV1(),
+		uuid:    newV1(),
 	}
 }
 
@@ -172,10 +163,10 @@ func (cip *Cip) SetAppData(appDataType byte, appData CipArray) *Cip {
 type Cip struct {
 
 	// ci_head
-	request       byte
-	profile       byte
-	version       CiVersion
-	channel       byte
+	purpose       CipPurpose
+	profile       CipProfile
+	version       CipVersion
+	channel       CiChannel
 	uuid          _UUID
 	ipAddress     net.Addr
 	time          int64
@@ -195,12 +186,43 @@ type Cip struct {
 	appDataArray []byte
 }
 
+
+//PURPOSE_RZV
+//PURPOSE_HEARTBEAT
+//PURPOSE_OFFER
+//PURPOSE_REQUEST
+//PURPOSE_REPLY
+
+type CipPurpose byte
+
+func (purpose CipPurpose) String() string {
+
+	if purpose == 0 {
+		return "PURPOSE_RZV"
+	}
+	if purpose == 1 {
+		return "PURPOSE_HEARTBEAT"
+	}
+	if purpose == 2 {
+		return "PURPOSE_OFFER"
+	}
+	if purpose == 3 {
+		return "PURPOSE_REQUEST"
+	}
+	if purpose == 4 {
+		return "PURPOSE_REPLY"
+	}
+	return "PURPOSE_UNDEFINED"
+}
+
+type CipProfile byte
+
 func (cip Cip) String() string {
 
-	return fmt.Sprintf("%-16s: %08b\n", "request", cip.request) +
+	return fmt.Sprintf("%-16s: %08b\n", "purpose", cip.purpose) +
 		fmt.Sprintf("%-16s: %08b\n", "profile", cip.profile) +
 		fmt.Sprintf("%-16s: %s\n", "version", cip.version) +
-		fmt.Sprintf("%-16s: %08b\n", "channel", cip.channel) +
+		fmt.Sprintf("%-16s: %s\n", "channel", cip.channel) +
 		fmt.Sprintf("%-16s: %v\n", "uuid", cip.uuid) +
 		fmt.Sprintf("%-16s: %v\n", "ipAddress", cip.ipAddress) +
 		fmt.Sprintf("%-16s: %v\n", "time", cip.time) +
@@ -213,7 +235,6 @@ func (cip Cip) String() string {
 		fmt.Sprintf("%-16s: %d\n", "ciSize", cip.ciSize) +
 
 		fmt.Sprintf("%-16s: %v\n", "ciBrickArray", cip.ciBrickArray) +
-
 
 		fmt.Sprintf("%-16s: %08b\n", "appDataType", cip.appDataType) +
 		fmt.Sprintf("%-16s: %d\n", "appDataSize", cip.appDataSize) +
@@ -232,16 +253,51 @@ type CiBrickSlice []CiBrick
 func (ciBricks CiBrickSlice) String() string {
 
 	out := ""
-	for i:=0; i<len(ciBricks); i++ {
+	for i := 0; i < len(ciBricks); i++ {
 		out += fmt.Sprintf("%-3d: %-16s: %08b\n", i, "Content", ciBricks[i].content)
 		out += fmt.Sprintf("%-3d: %-16s: %08b\n", i, "Mask", ciBricks[i].mask)
 	}
 	return out
 }
 
-type CiVersion byte
+type CipVersion byte
 
-func (version CiVersion) String() string {
+func (version CipVersion) String() string {
 
-	return fmt.Sprintf("%d.%d", (version &^ 0x0F)>>4, version &^ 0xF0)
+	return fmt.Sprintf("%d.%d", (version&^0x0F)>>4, version&^0xF0)
 }
+
+//CHANNEL_RZV = byte(iota)
+//CHANNEL_META
+//CHANNEL_CONTENT
+//CHANNEL_UNDEFINED
+
+type CiChannel byte
+
+func (channel CiChannel) String() string {
+
+	if channel == 0 {
+		return "CHANNEL_RZV"
+	}
+	if channel == 1 {
+		return "CHANNEL_META"
+	}
+	if channel == 2 {
+		return "CHANNEL_CONTENT"
+	}
+	return "CHANNEL_UNDEFINED"
+}
+
+
+	//SERVICE_RZV = byte(iota)
+	//SERVICE_HEARTBEAT
+	//SERVICE_OFFER
+	//SERVICE_REQUEST
+	//SERVICE_TCP_REPLY
+	//SERVICE_UDP_REPLY
+	//SERVICE_UNDEFINED
+
+
+	//PROFILE_RZV = byte(iota)
+	//PROFILE_UNDEFINED
+

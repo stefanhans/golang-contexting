@@ -18,10 +18,13 @@ func TestSetCi(t *testing.T) {
 
 	cip := CreateCip().
 		SetHeadData(HEADER_TYPE_RZV, CIP_ARRAY_RZV).
-		SetCi(CI_TYPE_RZV, CI_BRICK_RZV, ciB)
+		SetCi(CI_TYPE_RZV, CI_BRICK_RZV, ciB).
+		SetAppData(APP_DATA_TYPE_RZV, CIP_ARRAY_RZV)
 
-	cip.SetAppData(APP_DATA_TYPE_RZV, CIP_ARRAY_RZV).
-	SetHeadData(HEADER_TYPE_RZV, CIP_ARRAY_RZV)
+	//
+	//fmt.Println()
+	//fmt.Println("type CiChannel byte: ")
+	//fmt.Println(cip.channel)
 
 
 	fmt.Println()
@@ -50,22 +53,19 @@ func TestSetCi(t *testing.T) {
 	_ = CIP_CI_RZV
 
 
-	_ = SERVICE_RZV
-	_ = SERVICE_HEARTBEAT
-	_ = SERVICE_OFFER
-	_ = SERVICE_REQUEST
-	_ = SERVICE_TCP_REPLY
-	_ = SERVICE_UDP_REPLY
-	_ = SERVICE_UNDEFINED
+	_ = PURPOSE_RZV
+	_ = PURPOSE_HEARTBEAT
+	_ = PURPOSE_REQUEST
+	_ = PURPOSE_OFFER
+	_ = PURPOSE_REPLY
+
 	_ = PROFILE_RZV
-	_ = PROFILE_UNDEFINED
+
 	_ = CHANNEL_RZV
 	_ = CHANNEL_META
 	_ = CHANNEL_CONTENT
-	_ = CHANNEL_UNDEFINED
+
 	_ = HEADER_TYPE_ERROR
-	_ = HEADER_TYPE_UNDEFINED
+
 	_ = CI_TYPE_SIMPLE_MATCH
-	_ = CI_TYPE_UNDEFINED
-	_ = APP_DATA_TYPE_UNDEFINED
 }
