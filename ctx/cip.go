@@ -5,18 +5,6 @@ import (
 	"net"
 )
 
-// Reserved Zero Value (RZV)
-//
-// Nearly all of the not well known representations have the so called Reserved Zero Value. That means zero as value is reserved for developing and testing purposes.
-const (
-	RZV = byte(0)
-)
-
-// Reserved Zero Value Contextinformation Content and Mask
-const (
-	CONTENT_RZV = RZV
-	MASK_RZV    = RZV
-)
 
 // Ports Constants
 const (
@@ -27,7 +15,19 @@ const (
 )
 
 
-// Purpose Constants
+// Reserved Zero Value (RZV) is reserved for developing and testing purposes.
+const (
+	RZV = byte(0)
+)
+
+// Reserved Zero Value Contextinformation Content and Mask
+const (
+	CONTENT_RZV = RZV
+	MASK_RZV    = RZV
+)
+
+
+// Constants name purpose of CIP
 const (
 	PURPOSE_RZV = byte(iota)
 	PURPOSE_HEARTBEAT
@@ -36,30 +36,112 @@ const (
 	PURPOSE_REPLY
 )
 
-// Profile Constants
+// Type to link field with constants
+type CipPurpose byte
+
+// Implements Stringer() to show purpose of CIP
+func (purpose CipPurpose) String() string {
+
+	if purpose == 0 {
+		return "PURPOSE_RZV"
+	}
+	if purpose == 1 {
+		return "PURPOSE_HEARTBEAT"
+	}
+	if purpose == 2 {
+		return "PURPOSE_OFFER"
+	}
+	if purpose == 3 {
+		return "PURPOSE_REQUEST"
+	}
+	if purpose == 4 {
+		return "PURPOSE_REPLY"
+	}
+	return "PURPOSE_UNDEFINED"
+}
+
+
+// Profile constants
 const (
 	PROFILE_RZV = byte(iota)
 )
 
-// Version, i.e. <major number>.<minor numbeer> as byte in <4bit><4bit>.
+// Type to link field with constants
+type CipProfile byte
+
+// Implements Stringer() to show profile of CIP
+func (profile CipProfile) String() string {
+
+	if profile == 0 {
+		return "PROFILE_RZV"
+	}
+	return "PROFILE_UNDEFINED"
+}
+
+
+// Version, i.e. <major number>.<minor numbeer> as byte in <4bit>.<4bit>.
 const (
 	MAJOR_NUMBER = 1
 	MINOR_NUMBER = 2
 	VERSION      = CipVersion(MAJOR_NUMBER<<4 + MINOR_NUMBER)
 )
 
-// Channel Constants
+// Type to recognize field
+type CipVersion byte
+
+// Implements Stringer() to show version of CIP
+func (version CipVersion) String() string {
+
+	return fmt.Sprintf("%d.%d", (version & 0xF0)>>4, version & 0x0F)
+}
+
+
+// Channel constants
 const (
 	CHANNEL_RZV = byte(iota)
 	CHANNEL_META
 	CHANNEL_CONTENT
 )
 
-// HeaderType Constants
+// Type to link field with constants
+type CipChannel byte
+
+// Implements Stringer() to show channel of CIP
+func (channel CipChannel) String() string {
+
+	if channel == 0 {
+		return "CHANNEL_RZV"
+	}
+	if channel == 1 {
+		return "CHANNEL_META"
+	}
+	if channel == 2 {
+		return "CHANNEL_CONTENT"
+	}
+	return "CHANNEL_UNDEFINED"
+}
+
+
+// HeaderType constants
 const (
 	HEADER_TYPE_RZV = byte(iota)
 	HEADER_TYPE_ERROR
 )
+
+// Type to link field with constants
+type CipHeaderType byte
+
+// Implements Stringer() to show header type of CIP
+func (headerType CipHeaderType) String() string {
+
+	if headerType == 0 {
+		return "HEADER_TYPE_RZV"
+	}
+	if headerType == 1 {
+		return "HEADER_TYPE_ERROR"
+	}
+	return "HEADER_TYPE_UNDEFINED"
+}
 
 /*
 enum ErrorCategory { ErrorCategoryNone=0, CipFormatError=1, ErrorCategoryUndefined };
@@ -67,16 +149,59 @@ enum ErrorPriority { ErrorPriorityNone=0, ErrorPriorityDebug=1, ErrorPriorityInf
 enum CipFormatErrorEnum { CipFormatErrorNone=0, CipFormatErrorOutOfRange=1, CipFormatErrorInconsistent=2, CipFormatErrorWrongProtocol=3, CipFormatErrorUndefined };
 */
 
-// CiType Constants
+// CiType constants
 const (
 	CI_TYPE_RZV = byte(iota)
 	CI_TYPE_SIMPLE_MATCH
 )
 
-// AppDataType Constants
+// Type to link field with constants
+type CiType byte
+
+// Implements Stringer() to show ci type of CIP
+func (ciType CiType) String() string {
+
+	if ciType == 0 {
+		return "CI_TYPE_RZV"
+	}
+	if ciType == 1 {
+		return "CI_TYPE_SIMPLE_MATCH"
+	}
+	return "CI_TYPE_UNDEFINED"
+}
+
+// AppDataType constants
 const (
 	APP_DATA_TYPE_RZV = byte(iota)
 )
+
+// Type to link field with constants
+type AppDataType byte
+
+// Implements Stringer() to show application data type of CIP
+func (appDataType AppDataType) String() string {
+
+	if appDataType == 0 {
+		return "APP_DATA_TYPE_RZV"
+	}
+	return "APP_DATA_TYPE_UNDEFINED"
+}
+
+
+
+// Datastructure to fill the dynamic CIP parts of header and application
+//
+// The first byte is the number of the next used bytes (0-255)
+type CipArray [256]byte
+
+
+// Reserved Zero Value (RZV) variables
+var (
+	CI_BRICK_RZV  = CiBrick{CONTENT_RZV, MASK_RZV}
+	CIP_CI_RZV    = CiBricks{CI_BRICK_RZV}
+	CIP_ARRAY_RZV = CipArray{0}
+)
+
 
 // Brick for Contextinformation
 type CiBrick struct {
@@ -87,17 +212,6 @@ type CiBrick struct {
 // The encoded Contextinformation, i.e. 0 - 255 CiBricks
 type CiBricks [256]CiBrick
 
-// Datastructure to fill the dynamic CIP parts of header and application
-//
-// The first byte is the number of the next used bytes (0-255)
-type CipArray [256]byte
-
-// Reserved Zero Value Contextinformation Brick
-var (
-	CI_BRICK_RZV  = CiBrick{CONTENT_RZV, MASK_RZV}
-	CIP_CI_RZV    = CiBricks{CI_BRICK_RZV}
-	CIP_ARRAY_RZV = CipArray{0}
-)
 
 // True, if both contents are equal or unequal bits are disabled by set bits in both masks
 func (offer CiBrick) ContextMatch(request CiBrick) bool {
@@ -130,7 +244,7 @@ func CreateCip() *Cip {
 }
 
 // Sets the Header Data part of CIP
-func (cip *Cip) SetHeadData(headDataType byte, headData CipArray) *Cip {
+func (cip *Cip) SetHeadData(headDataType CipHeaderType, headData CipArray) *Cip {
 
 	cip.headDataType = headDataType
 	cip.headDataSize = headData[0]
@@ -140,7 +254,7 @@ func (cip *Cip) SetHeadData(headDataType byte, headData CipArray) *Cip {
 }
 
 // Sets the Contextinformation part of CIP
-func (cip *Cip) SetCi(ciType byte, rootCic CiBrick, ciBricks CiBricks) *Cip {
+func (cip *Cip) SetCi(ciType CiType, rootCic CiBrick, ciBricks CiBricks) *Cip {
 
 	cip.ciType = ciType
 	cip.rootCic = rootCic
@@ -150,7 +264,7 @@ func (cip *Cip) SetCi(ciType byte, rootCic CiBrick, ciBricks CiBricks) *Cip {
 	return cip
 }
 
-func (cip *Cip) SetAppData(appDataType byte, appData CipArray) *Cip {
+func (cip *Cip) SetAppData(appDataType AppDataType, appData CipArray) *Cip {
 
 	cip.appDataType = appDataType
 	cip.appDataSize = appData[0]
@@ -159,84 +273,51 @@ func (cip *Cip) SetAppData(appDataType byte, appData CipArray) *Cip {
 	return cip
 }
 
-// cip is the struct of CIP i.e. Contextinformation Paket
+// Cip is the struct for the Contextinformation Pakets (CIP)
 type Cip struct {
 
 	// ci_head
 	purpose       CipPurpose
 	profile       CipProfile
 	version       CipVersion
-	channel       CiChannel
+	channel       CipChannel
 	uuid          _UUID
 	ipAddress     net.Addr
 	time          int64
-	headDataType  byte
+	headDataType  CipHeaderType
 	headDataSize  byte
 	headDataArray []byte
 
 	// ci
-	ciType       byte
+	ciType       CiType
 	rootCic      CiBrick
 	ciSize       byte
 	ciBrickArray CiBrickSlice
 
 	// ci_data
-	appDataType  byte
+	appDataType  AppDataType
 	appDataSize  byte
 	appDataArray []byte
 }
 
-
-//PURPOSE_RZV
-//PURPOSE_HEARTBEAT
-//PURPOSE_OFFER
-//PURPOSE_REQUEST
-//PURPOSE_REPLY
-
-type CipPurpose byte
-
-func (purpose CipPurpose) String() string {
-
-	if purpose == 0 {
-		return "PURPOSE_RZV"
-	}
-	if purpose == 1 {
-		return "PURPOSE_HEARTBEAT"
-	}
-	if purpose == 2 {
-		return "PURPOSE_OFFER"
-	}
-	if purpose == 3 {
-		return "PURPOSE_REQUEST"
-	}
-	if purpose == 4 {
-		return "PURPOSE_REPLY"
-	}
-	return "PURPOSE_UNDEFINED"
-}
-
-type CipProfile byte
-
 func (cip Cip) String() string {
 
-	return fmt.Sprintf("%-16s: %08b\n", "purpose", cip.purpose) +
-		fmt.Sprintf("%-16s: %08b\n", "profile", cip.profile) +
+	return fmt.Sprintf("%-16s: %s\n", "purpose", cip.purpose) +
+		fmt.Sprintf("%-16s: %s\n", "profile", cip.profile) +
 		fmt.Sprintf("%-16s: %s\n", "version", cip.version) +
 		fmt.Sprintf("%-16s: %s\n", "channel", cip.channel) +
 		fmt.Sprintf("%-16s: %v\n", "uuid", cip.uuid) +
 		fmt.Sprintf("%-16s: %v\n", "ipAddress", cip.ipAddress) +
 		fmt.Sprintf("%-16s: %v\n", "time", cip.time) +
-		fmt.Sprintf("%-16s: %08b\n", "headDataType", cip.headDataType) +
-		fmt.Sprintf("%-16s: %08b\n", "headDataSize", cip.headDataSize) +
+		fmt.Sprintf("%-16s: %s\n", "headDataType", cip.headDataType) +
+		fmt.Sprintf("%-16s: %d\n", "headDataSize", cip.headDataSize) +
 		fmt.Sprintf("%-16s: %v\n", "headDataArray", cip.headDataArray) +
-		fmt.Sprintf("%-16s: %08b\n", "ciType", cip.ciType) +
+		fmt.Sprintf("%-16s: %s\n", "ciType", cip.ciType) +
 		fmt.Sprintf("%-16s: %08b\n", "rootCic Content", cip.rootCic.content) +
 		fmt.Sprintf("%-16s: %08b\n", "rootCic Mask", cip.rootCic.mask) +
 		fmt.Sprintf("%-16s: %d\n", "ciSize", cip.ciSize) +
-
-		fmt.Sprintf("%-16s: %v\n", "ciBrickArray", cip.ciBrickArray) +
-
-		fmt.Sprintf("%-16s: %08b\n", "appDataType", cip.appDataType) +
+		fmt.Sprintf("%s", cip.ciBrickArray) +
+		fmt.Sprintf("%-16s: %s\n", "appDataType", cip.appDataType) +
 		fmt.Sprintf("%-16s: %d\n", "appDataSize", cip.appDataSize) +
 		fmt.Sprintf("%-16s: %v\n", "appDataArray", cip.appDataArray)
 }
@@ -249,55 +330,16 @@ func (ciBrick CiBrick) String() string {
 
 type CiBrickSlice []CiBrick
 
-// TODO Debug func (ciBricks CiBricks) String() string (related to "Cip String()")
+
 func (ciBricks CiBrickSlice) String() string {
 
 	out := ""
 	for i := 0; i < len(ciBricks); i++ {
-		out += fmt.Sprintf("%-3d: %-16s: %08b\n", i, "Content", ciBricks[i].content)
-		out += fmt.Sprintf("%-3d: %-16s: %08b\n", i, "Mask", ciBricks[i].mask)
+		out += fmt.Sprintf("%-16s: %-3d: %-16s: %08b\n", "CiBrickSlice", i, "Content", ciBricks[i].content)
+		out += fmt.Sprintf("%-16s: %-3d: %-16s: %08b\n", "CiBrickSlice", i, "Mask", ciBricks[i].mask)
 	}
 	return out
 }
 
-type CipVersion byte
 
-func (version CipVersion) String() string {
-
-	return fmt.Sprintf("%d.%d", (version&^0x0F)>>4, version&^0xF0)
-}
-
-//CHANNEL_RZV = byte(iota)
-//CHANNEL_META
-//CHANNEL_CONTENT
-//CHANNEL_UNDEFINED
-
-type CiChannel byte
-
-func (channel CiChannel) String() string {
-
-	if channel == 0 {
-		return "CHANNEL_RZV"
-	}
-	if channel == 1 {
-		return "CHANNEL_META"
-	}
-	if channel == 2 {
-		return "CHANNEL_CONTENT"
-	}
-	return "CHANNEL_UNDEFINED"
-}
-
-
-	//SERVICE_RZV = byte(iota)
-	//SERVICE_HEARTBEAT
-	//SERVICE_OFFER
-	//SERVICE_REQUEST
-	//SERVICE_TCP_REPLY
-	//SERVICE_UDP_REPLY
-	//SERVICE_UNDEFINED
-
-
-	//PROFILE_RZV = byte(iota)
-	//PROFILE_UNDEFINED
 

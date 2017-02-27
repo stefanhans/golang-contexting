@@ -17,13 +17,13 @@ func TestSetCi(t *testing.T) {
 	ciB := CiBricks{CiBrick{2, 0}, CiBrick{1, 2}, CiBrick{2, 3}}
 
 	cip := CreateCip().
-		SetHeadData(HEADER_TYPE_RZV, CIP_ARRAY_RZV).
-		SetCi(CI_TYPE_RZV, CI_BRICK_RZV, ciB).
-		SetAppData(APP_DATA_TYPE_RZV, CIP_ARRAY_RZV)
+		SetHeadData(CipHeaderType(HEADER_TYPE_RZV), CIP_ARRAY_RZV).
+		SetCi(CiType(CI_TYPE_RZV), CI_BRICK_RZV, ciB).
+		SetAppData(AppDataType(APP_DATA_TYPE_RZV), CIP_ARRAY_RZV)
 
 	//
 	//fmt.Println()
-	//fmt.Println("type CiChannel byte: ")
+	//fmt.Println("type CipChannel byte: ")
 	//fmt.Println(cip.channel)
 
 
