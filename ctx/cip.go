@@ -5,7 +5,6 @@ import (
 	"net"
 )
 
-
 // Ports Constants
 const (
 	PORT_TCP_META    = 22365
@@ -14,22 +13,16 @@ const (
 	PORT_UDP_CONTENT = 22368
 )
 
-
-// Reserved Zero Value (RZV) is reserved for developing and testing purposes.
+// Reserved Zero Values (RZV) are reserved for developing and testing purposes.
 const (
-	RZV = byte(0)
-)
-
-// Reserved Zero Value Contextinformation Content and Mask
-const (
+	RZV         = byte(0)
 	CONTENT_RZV = RZV
 	MASK_RZV    = RZV
 )
 
-
 // Constants name purpose of CIP
 const (
-	PURPOSE_RZV = byte(iota)
+	PURPOSE_RZV CipPurpose = iota
 	PURPOSE_HEARTBEAT
 	PURPOSE_OFFER
 	PURPOSE_REQUEST
@@ -60,13 +53,16 @@ func (purpose CipPurpose) String() string {
 	return "PURPOSE_UNDEFINED"
 }
 
-
 // Profile constants
 const (
-	PROFILE_RZV = byte(iota)
+	PROFILE_GATEWAY = 1<<iota
+	PROFILE_ROUTER
+	PROFILE_STORAGE
+	PROFILE_REPORTER
+	PROFILE_RZV CipProfile = 0
 )
 
-// Type to link field with constants
+// Type to link CIP's field profile with constants
 type CipProfile byte
 
 // Implements Stringer() to show profile of CIP
@@ -75,30 +71,58 @@ func (profile CipProfile) String() string {
 	if profile == 0 {
 		return "PROFILE_RZV"
 	}
-	return "PROFILE_UNDEFINED"
-}
 
+	out := ""
+	if profile & 1 > 0 {
+		out += "PROFILE_GATEWAY"
+	}
+	if profile & 2 > 0 {
+		if out == "" {
+			out += "PROFILE_ROUTER"
+		} else {
+			out += " | PROFILE_ROUTER"
+		}
+	}
+	if profile & 4 > 0 {
+		if out == "" {
+			out += "PROFILE_STORAGE"
+		} else {
+			out += " | PROFILE_STORAGE"
+		}
+	}
+	if profile & 8 > 0 {
+		if out == "" {
+			out += "PROFILE_REPORTER"
+		} else {
+			out += " | PROFILE_REPORTER"
+		}
+	}
+
+	if out == "" {
+		return "PROFILE_UNDEFINED"
+	}
+	return out
+}
 
 // Version, i.e. <major number>.<minor numbeer> as byte in <4bit>.<4bit>.
 const (
 	MAJOR_NUMBER = 1
 	MINOR_NUMBER = 2
-	VERSION      = CipVersion(MAJOR_NUMBER<<4 + MINOR_NUMBER)
+	VERSION CipVersion = MAJOR_NUMBER<<4 + MINOR_NUMBER
 )
 
-// Type to recognize field
+// Type to link CIP's field version with constants
 type CipVersion byte
 
 // Implements Stringer() to show version of CIP
 func (version CipVersion) String() string {
 
-	return fmt.Sprintf("%d.%d", (version & 0xF0)>>4, version & 0x0F)
+	return fmt.Sprintf("%d.%d", (version&0xF0)>>4, version&0x0F)
 }
-
 
 // Channel constants
 const (
-	CHANNEL_RZV = byte(iota)
+	CHANNEL_RZV CipChannel = iota
 	CHANNEL_META
 	CHANNEL_CONTENT
 )
@@ -121,10 +145,9 @@ func (channel CipChannel) String() string {
 	return "CHANNEL_UNDEFINED"
 }
 
-
 // HeaderType constants
 const (
-	HEADER_TYPE_RZV = byte(iota)
+	HEADER_TYPE_RZV CipHeaderType = iota
 	HEADER_TYPE_ERROR
 )
 
@@ -151,7 +174,7 @@ enum CipFormatErrorEnum { CipFormatErrorNone=0, CipFormatErrorOutOfRange=1, CipF
 
 // CiType constants
 const (
-	CI_TYPE_RZV = byte(iota)
+	CI_TYPE_RZV CiType = iota
 	CI_TYPE_SIMPLE_MATCH
 )
 
@@ -172,7 +195,7 @@ func (ciType CiType) String() string {
 
 // AppDataType constants
 const (
-	APP_DATA_TYPE_RZV = byte(iota)
+	APP_DATA_TYPE_RZV AppDataType = iota
 )
 
 // Type to link field with constants
@@ -187,13 +210,10 @@ func (appDataType AppDataType) String() string {
 	return "APP_DATA_TYPE_UNDEFINED"
 }
 
-
-
 // Datastructure to fill the dynamic CIP parts of header and application
 //
 // The first byte is the number of the next used bytes (0-255)
 type CipArray [256]byte
-
 
 // Reserved Zero Value (RZV) variables
 var (
@@ -201,7 +221,6 @@ var (
 	CIP_CI_RZV    = CiBricks{CI_BRICK_RZV}
 	CIP_ARRAY_RZV = CipArray{0}
 )
-
 
 // Brick for Contextinformation
 type CiBrick struct {
@@ -211,7 +230,6 @@ type CiBrick struct {
 
 // The encoded Contextinformation, i.e. 0 - 255 CiBricks
 type CiBricks [256]CiBrick
-
 
 // True, if both contents are equal or unequal bits are disabled by set bits in both masks
 func (offer CiBrick) ContextMatch(request CiBrick) bool {
@@ -330,7 +348,6 @@ func (ciBrick CiBrick) String() string {
 
 type CiBrickSlice []CiBrick
 
-
 func (ciBricks CiBrickSlice) String() string {
 
 	out := ""
@@ -340,6 +357,3 @@ func (ciBricks CiBrickSlice) String() string {
 	}
 	return out
 }
-
-
-
