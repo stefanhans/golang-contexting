@@ -71,7 +71,6 @@ func (profile CipProfile) String() string {
 	if profile == 0 {
 		return "PROFILE_RZV"
 	}
-
 	out := ""
 	if profile&1 > 0 {
 		out += "PROFILE_GATEWAY"
@@ -97,7 +96,6 @@ func (profile CipProfile) String() string {
 			out += " | PROFILE_REPORTER"
 		}
 	}
-
 	if out == "" {
 		return "PROFILE_UNDEFINED"
 	}
@@ -133,16 +131,16 @@ type CipChannel byte
 // Implements Stringer() to show channel of CIP
 func (channel CipChannel) String() string {
 
-	if channel == 0 {
+	switch channel {
+	case 0:
 		return "CHANNEL_RZV"
-	}
-	if channel == 1 {
+	case 1:
 		return "CHANNEL_META"
-	}
-	if channel == 2 {
+	case 2:
 		return "CHANNEL_CONTENT"
+	default:
+		return "CHANNEL_UNDEFINED"
 	}
-	return "CHANNEL_UNDEFINED"
 }
 
 // HeaderType constants
