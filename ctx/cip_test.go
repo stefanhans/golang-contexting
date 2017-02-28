@@ -23,6 +23,10 @@ func TestSetCi(t *testing.T) {
 	fmt.Printf("cip.profile: %08b\n", cip.profile)
 	fmt.Printf("cip.profile: %d\n", cip.profile)
 
+	fmt.Printf("PROFILE_GATEWAY is of type %T\n", PROFILE_GATEWAY)
+	fmt.Printf("CI_TYPE_SIMPLE_MATCH is of type %T\n", CI_TYPE_SIMPLE_MATCH)
+	fmt.Printf("PROFILE_RZV is of type %T\n", PROFILE_RZV)
+
 
 	_ = PORT_TCP_META
 	_ = PORT_UDP_META

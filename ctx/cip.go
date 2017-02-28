@@ -5,7 +5,14 @@ import (
 	"net"
 )
 
-// Ports Constants
+// This software version resp. of the CIP's sender
+const (
+	MAJOR_RELEASE = 1
+	MINOR_RELEASE = 0
+
+)
+
+// PORT constants determine the port number for listening for certain CIPs
 const (
 	PORT_TCP_META    = 22365
 	PORT_UDP_META    = 22366
@@ -13,14 +20,24 @@ const (
 	PORT_UDP_CONTENT = 22368
 )
 
-// Reserved Zero Values (RZV) are reserved for developing and testing purposes.
+// RZV (Reserved Zero Values) are reserved for developing and testing purposes.
 const (
-	RZV         = byte(0)
-	CONTENT_RZV = RZV
-	MASK_RZV    = RZV
+	RZV         byte = 0
+	CONTENT_RZV      = RZV
+	MASK_RZV         = RZV
 )
 
-// Constants name purpose of CIP
+// RZV (Reserved Zero Value) variables
+var (
+	CI_BRICK_RZV  = CiBrick{CONTENT_RZV, MASK_RZV}
+	CIP_CI_RZV    = CiBricks{CI_BRICK_RZV}
+	CIP_ARRAY_RZV = CipArray{0}
+)
+
+// CipPurpose as type resp. "purpose"'as field, in combination with CipChannel resp. "channel", determine what to do with a CIP
+type CipPurpose byte
+
+//
 const (
 	PURPOSE_RZV CipPurpose = iota
 	PURPOSE_HEARTBEAT
@@ -28,9 +45,6 @@ const (
 	PURPOSE_REQUEST
 	PURPOSE_REPLY
 )
-
-// Type to link field with constants
-type CipPurpose byte
 
 // Implements Stringer() to show purpose of CIP
 func (purpose CipPurpose) String() string {
@@ -53,13 +67,13 @@ func (purpose CipPurpose) String() string {
 	return "PURPOSE_UNDEFINED"
 }
 
-// Profile constants
+// PROFILE constants determine the possible roles of the sender of a CIP as flags
 const (
-	PROFILE_GATEWAY = 1 << iota
+	PROFILE_RZV     CipProfile = 0
+	PROFILE_GATEWAY            = 1 << iota
 	PROFILE_ROUTER
 	PROFILE_STORAGE
 	PROFILE_REPORTER
-	PROFILE_RZV CipProfile = 0
 )
 
 // Type to link CIP's field profile with constants
@@ -102,11 +116,9 @@ func (profile CipProfile) String() string {
 	return out
 }
 
-// Version, i.e. <major number>.<minor numbeer> as byte in <4bit>.<4bit>.
+// VERSION, i.e. <major number>.<minor number> as byte in <4bit>.<4bit> is the software version of the sender
 const (
-	MAJOR_NUMBER            = 1
-	MINOR_NUMBER            = 2
-	VERSION      CipVersion = MAJOR_NUMBER<<4 + MINOR_NUMBER
+	VERSION CipVersion = MAJOR_RELEASE<<4 + MINOR_RELEASE
 )
 
 // Type to link CIP's field version with constants
@@ -118,7 +130,7 @@ func (version CipVersion) String() string {
 	return fmt.Sprintf("%d.%d", (version&0xF0)>>4, version&0x0F)
 }
 
-// Channel constants
+// CHANNEL constants determine the main topic of the CIP
 const (
 	CHANNEL_RZV CipChannel = iota
 	CHANNEL_META
@@ -143,7 +155,7 @@ func (channel CipChannel) String() string {
 	}
 }
 
-// HeaderType constants
+// HEADER_TYPE constants determine the type of the dynamic part of the header
 const (
 	HEADER_TYPE_RZV CipHeaderType = iota
 	HEADER_TYPE_ERROR
@@ -171,7 +183,7 @@ enum ErrorPriority { ErrorPriorityNone=0, ErrorPriorityDebug=1, ErrorPriorityInf
 enum CipFormatErrorEnum { CipFormatErrorNone=0, CipFormatErrorOutOfRange=1, CipFormatErrorInconsistent=2, CipFormatErrorWrongProtocol=3, CipFormatErrorUndefined };
 */
 
-// CiType constants
+// CI_TYPE constants determine the type of the Contextinformation (CI)
 const (
 	CI_TYPE_RZV CiType = iota
 	CI_TYPE_SIMPLE_MATCH
@@ -192,7 +204,7 @@ func (ciType CiType) String() string {
 	return "CI_TYPE_UNDEFINED"
 }
 
-// AppDataType constants
+// APP_DATA_TYPE constants determine the type of application data
 const (
 	APP_DATA_TYPE_RZV AppDataType = iota
 )
@@ -213,13 +225,6 @@ func (appDataType AppDataType) String() string {
 //
 // The first byte is the number of the next used bytes (0-255)
 type CipArray [256]byte
-
-// Reserved Zero Value (RZV) variables
-var (
-	CI_BRICK_RZV  = CiBrick{CONTENT_RZV, MASK_RZV}
-	CIP_CI_RZV    = CiBricks{CI_BRICK_RZV}
-	CIP_ARRAY_RZV = CipArray{0}
-)
 
 // Brick for Contextinformation
 type CiBrick struct {

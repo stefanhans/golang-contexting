@@ -5,7 +5,7 @@ be encapsulated within CIPs.
 
 For an overview about CRNs please see Internet-Draft "Concepts of Contextinformation Routing Networks (CRNs)"
 
-	https://raw.githubusercontent.com/stefanhans/ContextRouting/master/RFC/DraftRFC_ContextRouting.txt
+	https://github.com/stefanhans/golang-contexting/blob/master/RFC/CRN_Concepts.txt
 
 A CIP is divided into three parts:
 
