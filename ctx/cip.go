@@ -55,7 +55,7 @@ func (purpose CipPurpose) String() string {
 
 // Profile constants
 const (
-	PROFILE_GATEWAY = 1<<iota
+	PROFILE_GATEWAY = 1 << iota
 	PROFILE_ROUTER
 	PROFILE_STORAGE
 	PROFILE_REPORTER
@@ -73,24 +73,24 @@ func (profile CipProfile) String() string {
 	}
 
 	out := ""
-	if profile & 1 > 0 {
+	if profile&1 > 0 {
 		out += "PROFILE_GATEWAY"
 	}
-	if profile & 2 > 0 {
+	if profile&2 > 0 {
 		if out == "" {
 			out += "PROFILE_ROUTER"
 		} else {
 			out += " | PROFILE_ROUTER"
 		}
 	}
-	if profile & 4 > 0 {
+	if profile&4 > 0 {
 		if out == "" {
 			out += "PROFILE_STORAGE"
 		} else {
 			out += " | PROFILE_STORAGE"
 		}
 	}
-	if profile & 8 > 0 {
+	if profile&8 > 0 {
 		if out == "" {
 			out += "PROFILE_REPORTER"
 		} else {
@@ -106,9 +106,9 @@ func (profile CipProfile) String() string {
 
 // Version, i.e. <major number>.<minor numbeer> as byte in <4bit>.<4bit>.
 const (
-	MAJOR_NUMBER = 1
-	MINOR_NUMBER = 2
-	VERSION CipVersion = MAJOR_NUMBER<<4 + MINOR_NUMBER
+	MAJOR_NUMBER            = 1
+	MINOR_NUMBER            = 2
+	VERSION      CipVersion = MAJOR_NUMBER<<4 + MINOR_NUMBER
 )
 
 // Type to link CIP's field version with constants
@@ -157,13 +157,14 @@ type CipHeaderType byte
 // Implements Stringer() to show header type of CIP
 func (headerType CipHeaderType) String() string {
 
-	if headerType == 0 {
+	switch headerType {
+	case 0:
 		return "HEADER_TYPE_RZV"
-	}
-	if headerType == 1 {
+	case 1:
 		return "HEADER_TYPE_ERROR"
+	default:
+		return "HEADER_TYPE_UNDEFINED"
 	}
-	return "HEADER_TYPE_UNDEFINED"
 }
 
 /*
