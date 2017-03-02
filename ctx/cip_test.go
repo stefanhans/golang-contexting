@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-var purposeTest = []struct {
+var purposeTestTable = []struct {
 	constant     CipPurpose
 	constType string
 	constValue string
@@ -18,7 +18,7 @@ var purposeTest = []struct {
 	{PURPOSE_REPLY, "ctx.CipPurpose", "PURPOSE_REPLY"},
 }
 
-var profileTest = []struct {
+var profileTestTable = []struct {
 	constant     CipProfile
 	constType string
 	constValue string
@@ -30,7 +30,7 @@ var profileTest = []struct {
 	{PROFILE_REPORTER, "ctx.CipProfile", "PROFILE_REPORTER"},
 }
 
-var channelTest = []struct {
+var channelTestTable = []struct {
 	constant     CipChannel
 	constType string
 	constValue string
@@ -40,7 +40,7 @@ var channelTest = []struct {
 	{CHANNEL_META, "ctx.CipChannel", "CHANNEL_META"},
 }
 
-var headerTypeTest = []struct {
+var headerTypeTestTable = []struct {
 	constant     CipHeaderType
 	constType string
 	constValue string
@@ -50,7 +50,7 @@ var headerTypeTest = []struct {
 	{HEADER_TYPE_ERROR, "ctx.CipHeaderType", "HEADER_TYPE_ERROR"},
 }
 
-var ciTypeTest = []struct {
+var ciTypeTestTable = []struct {
 	constant     CiType
 	constType string
 	constValue string
@@ -59,7 +59,7 @@ var ciTypeTest = []struct {
 	{CI_TYPE_SIMPLE_MATCH, "ctx.CiType", "CI_TYPE_SIMPLE_MATCH"},
 }
 
-var appDataTypeTest = []struct {
+var appDataTypeTestTable = []struct {
 	constant     AppDataType
 	constType string
 	constValue string
@@ -69,42 +69,42 @@ var appDataTypeTest = []struct {
 
 func TestConstants(t *testing.T) {
 
-	for _, purpose := range purposeTest {
+	for _, purpose := range purposeTestTable {
 		s := fmt.Sprintf("%T %s", purpose.constant, purpose.constant)
 		if s != purpose.constType + " " + purpose.constValue {
 			t.Errorf("Type Value: %T %s != %s %s\n", purpose.constant, purpose.constant, purpose.constType, purpose.constValue)
 		}
 	}
 
-	for _, profile := range profileTest {
+	for _, profile := range profileTestTable {
 		s := fmt.Sprintf("%T %s", profile.constant, profile.constant)
 		if s != profile.constType + " " + profile.constValue {
 			t.Errorf("Type Value: %T %s != %s %s\n", profile.constant, profile.constant, profile.constType, profile.constValue)
 		}
 	}
 
-	for _, channel := range channelTest {
+	for _, channel := range channelTestTable {
 		s := fmt.Sprintf("%T %s", channel.constant, channel.constant)
 		if s != channel.constType + " " + channel.constValue {
 			t.Errorf("Type Value: %T %s != %s %s\n", channel.constant, channel.constant, channel.constType, channel.constValue)
 		}
 	}
 
-	for _, headerType := range headerTypeTest {
+	for _, headerType := range headerTypeTestTable {
 		s := fmt.Sprintf("%T %s", headerType.constant, headerType.constant)
 		if s != headerType.constType + " " + headerType.constValue {
 			t.Errorf("Type Value: %T %s != %s %s\n", headerType.constant, headerType.constant, headerType.constType, headerType.constValue)
 		}
 	}
 
-	for _, ciType := range ciTypeTest {
+	for _, ciType := range ciTypeTestTable {
 		s := fmt.Sprintf("%T %s", ciType.constant, ciType.constant)
 		if s != ciType.constType + " " + ciType.constValue {
 			t.Errorf("Type Value: %T %s != %s %s\n", ciType.constant, ciType.constant, ciType.constType, ciType.constValue)
 		}
 	}
 
-	for _, appDataType := range appDataTypeTest {
+	for _, appDataType := range appDataTypeTestTable {
 		s := fmt.Sprintf("%T %s", appDataType.constant, appDataType.constant)
 		if s != appDataType.constType + " " + appDataType.constValue {
 			t.Errorf("Type Value: %T %s != %s %s\n", appDataType.constant, appDataType.constant, appDataType.constType, appDataType.constValue)
