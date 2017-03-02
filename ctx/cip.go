@@ -8,23 +8,22 @@ import (
 // CipPurpose as type resp. "purpose"'as field, in combination with CipChannel resp. "channel", determine what to do with a CIP
 type CipPurpose byte
 
-
 // Implements Stringer() to show purpose of CIP
 func (purpose CipPurpose) String() string {
 
-	if purpose == 0 {
+	if purpose == PURPOSE_RZV {
 		return "PURPOSE_RZV"
 	}
-	if purpose == 1 {
+	if purpose == PURPOSE_HEARTBEAT {
 		return "PURPOSE_HEARTBEAT"
 	}
-	if purpose == 2 {
+	if purpose == PURPOSE_OFFER {
 		return "PURPOSE_OFFER"
 	}
-	if purpose == 3 {
+	if purpose == PURPOSE_REQUEST {
 		return "PURPOSE_REQUEST"
 	}
-	if purpose == 4 {
+	if purpose == PURPOSE_REPLY {
 		return "PURPOSE_REPLY"
 	}
 	return "PURPOSE_UNDEFINED"
@@ -37,28 +36,28 @@ type CipProfile byte
 // Implements Stringer() to show profile of CIP
 func (profile CipProfile) String() string {
 
-	if profile == 0 {
+	if profile == PROFILE_RZV {
 		return "PROFILE_RZV"
 	}
 	out := ""
-	if profile&1 > 0 {
+	if profile&PROFILE_GATEWAY > 0 {
 		out += "PROFILE_GATEWAY"
 	}
-	if profile&2 > 0 {
+	if profile&PROFILE_ROUTER > 0 {
 		if out == "" {
 			out += "PROFILE_ROUTER"
 		} else {
 			out += " | PROFILE_ROUTER"
 		}
 	}
-	if profile&4 > 0 {
+	if profile&PROFILE_STORAGE > 0 {
 		if out == "" {
 			out += "PROFILE_STORAGE"
 		} else {
 			out += " | PROFILE_STORAGE"
 		}
 	}
-	if profile&8 > 0 {
+	if profile&PROFILE_REPORTER > 0 {
 		if out == "" {
 			out += "PROFILE_REPORTER"
 		} else {
@@ -92,11 +91,11 @@ type CipChannel byte
 func (channel CipChannel) String() string {
 
 	switch channel {
-	case 0:
+	case CHANNEL_RZV:
 		return "CHANNEL_RZV"
-	case 1:
+	case CHANNEL_META:
 		return "CHANNEL_META"
-	case 2:
+	case CHANNEL_CONTENT:
 		return "CHANNEL_CONTENT"
 	default:
 		return "CHANNEL_UNDEFINED"
@@ -110,15 +109,32 @@ type CipHeaderType byte
 func (headerType CipHeaderType) String() string {
 
 	switch headerType {
-	case 0:
+	case HEADER_TYPE_RZV:
 		return "HEADER_TYPE_RZV"
-	case 1:
+	case HEADER_TYPE_CONTENT:
+		return "HEADER_TYPE_CONTENT"
+	case HEADER_TYPE_ERROR:
 		return "HEADER_TYPE_ERROR"
 	default:
 		return "HEADER_TYPE_UNDEFINED"
 	}
 }
 
+//// Type to link field with constants
+//type CipErrorCategory byte
+//
+//// Implements Stringer() to show header type of CIP
+//func (cipErrorCategory CipErrorCategory) String() string {
+//
+//	switch cipErrorCategory {
+//	case HEADER_TYPE_RZV:
+//		return "HEADER_TYPE_RZV"
+//	case HEADER_TYPE_ERROR:
+//		return "HEADER_TYPE_ERROR"
+//	default:
+//		return "HEADER_TYPE_UNDEFINED"
+//	}
+//}
 
 // Type to link field with constants
 type CiType byte
@@ -126,10 +142,10 @@ type CiType byte
 // Implements Stringer() to show ci type of CIP
 func (ciType CiType) String() string {
 
-	if ciType == 0 {
+	if ciType == CI_TYPE_RZV {
 		return "CI_TYPE_RZV"
 	}
-	if ciType == 1 {
+	if ciType == CI_TYPE_SIMPLE_MATCH {
 		return "CI_TYPE_SIMPLE_MATCH"
 	}
 	return "CI_TYPE_UNDEFINED"
@@ -141,7 +157,7 @@ type AppDataType byte
 // Implements Stringer() to show application data type of CIP
 func (appDataType AppDataType) String() string {
 
-	if appDataType == 0 {
+	if appDataType == APP_DATA_TYPE_RZV {
 		return "APP_DATA_TYPE_RZV"
 	}
 	return "APP_DATA_TYPE_UNDEFINED"

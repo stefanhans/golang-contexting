@@ -24,9 +24,9 @@ const (
 )
 
 
-//
+// PURPOSE constants determine
 const (
-	PURPOSE_RZV CipPurpose = iota
+	PURPOSE_RZV = CipPurpose(iota)
 	PURPOSE_HEARTBEAT
 	PURPOSE_OFFER
 	PURPOSE_REQUEST
@@ -36,8 +36,8 @@ const (
 
 // PROFILE constants determine the possible roles of the sender of a CIP as flags
 const (
-	PROFILE_RZV     CipProfile = 0
-	PROFILE_GATEWAY            = 1 << iota
+	PROFILE_RZV     = CipProfile(0)
+	PROFILE_GATEWAY            = CipProfile(1 << iota)
 	PROFILE_ROUTER
 	PROFILE_STORAGE
 	PROFILE_REPORTER
@@ -45,16 +45,21 @@ const (
 
 // CHANNEL constants determine the main topic of the CIP
 const (
-	CHANNEL_RZV CipChannel = iota
+	CHANNEL_RZV  = CipChannel(iota)
 	CHANNEL_META
 	CHANNEL_CONTENT
 )
 
-// HEADER_TYPE constants determine the type of the dynamic part of the header
+// HEADER_TYPE constants determine the type of the dynamic header data
 const (
-	HEADER_TYPE_RZV CipHeaderType = iota
+	HEADER_TYPE_RZV  = CipHeaderType(iota)
+	HEADER_TYPE_CONTENT
 	HEADER_TYPE_ERROR
 )
+
+//const (
+//	ERROR_CATEGORY_NONE = CipErrorCategory(iota)
+//)
 /*
 enum ErrorCategory { ErrorCategoryNone=0, CipFormatError=1, ErrorCategoryUndefined };
 enum ErrorPriority { ErrorPriorityNone=0, ErrorPriorityDebug=1, ErrorPriorityInfo=2, ErrorPriorityNotice=3, ErrorPriorityCritical=4, ErrorPriorityAlert=5, ErrorPriorityEmergency=6, ErrorPriorityUndefined };
@@ -63,13 +68,13 @@ enum CipFormatErrorEnum { CipFormatErrorNone=0, CipFormatErrorOutOfRange=1, CipF
 
 // CI_TYPE constants determine the type of the Contextinformation (CI)
 const (
-	CI_TYPE_RZV CiType = iota
+	CI_TYPE_RZV  = CiType(iota)
 	CI_TYPE_SIMPLE_MATCH
 )
 
 // APP_DATA_TYPE constants determine the type of application data
 const (
-	APP_DATA_TYPE_RZV AppDataType = iota
+	APP_DATA_TYPE_RZV  = AppDataType(iota)
 )
 
 
@@ -79,8 +84,9 @@ const (
 
 // RZV (Reserved Zero Value) variables
 var (
-	CI_BRICK_RZV  = CiBrick{CONTENT_RZV, MASK_RZV}
 	CIP_CI_RZV    = CiBricks{CI_BRICK_RZV}
 	CIP_ARRAY_RZV = CipArray{0}
 )
 
+// CI_BRICK_RZV represents an empty CIBrick
+var CI_BRICK_RZV  = CiBrick{CONTENT_RZV, MASK_RZV}

@@ -1,4 +1,8 @@
 /*
+Package ctx implements the core functionality of Contextinformation Routing Networks (CRNs).
+
+Contextinformation Paket (CIP)
+
 Contextinformation Paket (CIP) is the datastructure to transfer contextinformation plus header and possibly application
 data through Contextinformation Routing Networks (CRNs). All information which has to be transfered inside CRNs has to
 be encapsulated within CIPs.
