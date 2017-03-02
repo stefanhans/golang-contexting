@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func TestConstantTypes(t *testing.T) {
+func TestConstantType(t *testing.T) {
 
 	fmt.Printf("PURPOSE_REPLY is of type %T\n", PURPOSE_REPLY)
 	fmt.Printf("PROFILE_RZV is of type %T\n", PROFILE_RZV)
