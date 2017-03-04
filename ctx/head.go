@@ -1,5 +1,7 @@
 package ctx
 
+import "fmt"
+
 // SetPurpose sets the purpose of the CIP
 func (cip *Cip) SetPurpose(purpose CipPurpose) *Cip {
 	cip.purpose = purpose
@@ -31,6 +33,11 @@ func (cip *Cip) SetChannel(channel CipChannel) *Cip {
 // Channel returns the channel of the CIP
 func (cip *Cip) Channel() CipChannel {
 	return cip.channel
+}
+
+// Uuid returns a string representation of CIP's UUID
+func (cip *Cip) Uuid() string {
+	return fmt.Sprintf("%v", cip.uuid)
 }
 
 // Datastructure to fill the dynamic CIP parts of header and application
