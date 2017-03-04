@@ -92,7 +92,7 @@ func TestHead(t *testing.T) {
 	}
 
 	for i, head := range headDataTestTable_1 {
-		cip.SetHeadData(head.headDataType, CIP_ARRAY_RZV)
+		cip.SetHeadData(head.headDataType, CIP_HEAD_ARRAY_RZV)
 		headDataType, _ := cip.HeadData()
 		s := fmt.Sprintf("%s", headDataType)
 		if s != head.strHeadDataType {
@@ -102,7 +102,7 @@ func TestHead(t *testing.T) {
 
 	for i, head := range headDataTestTable_2 {
 
-		var hda CipArray = CIP_ARRAY_RZV
+		var hda CipHeadArray = CIP_HEAD_ARRAY_RZV
 		hda[0] = byte(len(head.headDataArray))
 		for i:=1; i<=len(head.headDataArray); i++ {
 			hda[i] = head.headDataArray[i-1]

@@ -64,12 +64,3 @@ func CreateCip() *Cip {
 		uuid:    newV1(),
 	}
 }
-
-func (cip *Cip) SetAppData(appDataType AppDataType, appData CipArray) *Cip {
-
-	cip.appDataType = appDataType
-	cip.appDataSize = appData[0]
-	cip.appDataArray = appData[1 : cip.appDataSize+1]
-
-	return cip
-}

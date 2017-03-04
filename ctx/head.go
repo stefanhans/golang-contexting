@@ -36,17 +36,17 @@ func (cip *Cip) Channel() CipChannel {
 // Datastructure to fill the dynamic CIP parts of header and application
 //
 // The first byte is the number of the next used bytes (0-255)
-type CipArray [256]byte
+type CipHeadArray [256]byte
 
 // CIP_ARRAY_RZV (Reserved Zero Value) with 0 as first byte determine a quasi empty array for header or application data.
-var CIP_ARRAY_RZV = CipArray{RZV}
+var CIP_HEAD_ARRAY_RZV = CipHeadArray{RZV}
 
-
-type CipArraySlice []byte
+// Helper construct
+type CipHeadArraySlice []byte
 
 
 // SetHeadData sets the dynamic data of CIP's header
-func (cip *Cip) SetHeadData(headDataType CipHeaderType, headData CipArray) *Cip {
+func (cip *Cip) SetHeadData(headDataType CipHeaderType, headData CipHeadArray) *Cip {
 	cip.headDataType = headDataType
 	cip.headDataSize = headData[0]
 	cip.headDataArray = headData[1 : cip.headDataSize+1]
@@ -54,6 +54,6 @@ func (cip *Cip) SetHeadData(headDataType CipHeaderType, headData CipArray) *Cip 
 }
 
 // HeadData returns the dynamic data of CIP's header
-func (cip *Cip) HeadData() (CipHeaderType, CipArraySlice) {
+func (cip *Cip) HeadData() (CipHeaderType, CipHeadArraySlice) {
 	return cip.headDataType, cip.headDataArray
 }
