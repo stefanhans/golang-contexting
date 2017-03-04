@@ -2,14 +2,6 @@ package ctx
 
 import "fmt"
 
-// Datastructure to fill the dynamic CIP parts of header and application
-//
-// The first byte is the number of the next used bytes (0-255)
-type CipArray [256]byte
-
-// CIP_ARRAY_RZV (Reserved Zero Value) with 0 as first byte determine a quasi empty array for header or application data.
-var CIP_ARRAY_RZV = CipArray{RZV}
-
 // Brick for Contextinformation
 type CiBrick struct {
 	Content byte
@@ -51,7 +43,7 @@ func (cip *Cip) SetCi(ciType CiType, rootCic CiBrick, ciBricks CiBricks) *Cip {
 }
 
 // Ci returns the Contextinformation
-func (cip *Cip) Ci() (ciType CiType, rootCic CiBrick, ciBricks CiBrickSlice) {
+func (cip *Cip) Ci() (CiType, CiBrick, CiBrickSlice) {
 	return cip.ciType, cip.rootCic, cip.ciBrickArray
 }
 

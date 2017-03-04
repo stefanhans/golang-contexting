@@ -65,16 +65,6 @@ func CreateCip() *Cip {
 	}
 }
 
-// Sets the Header Data part of CIP
-func (cip *Cip) SetHeadData(headDataType CipHeaderType, headData CipArray) *Cip {
-
-	cip.headDataType = headDataType
-	cip.headDataSize = headData[0]
-	cip.headDataArray = headData[1 : cip.headDataSize+1]
-
-	return cip
-}
-
 func (cip *Cip) SetAppData(appDataType AppDataType, appData CipArray) *Cip {
 
 	cip.appDataType = appDataType
