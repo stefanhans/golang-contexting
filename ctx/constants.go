@@ -243,12 +243,3 @@ func (appDataType AppDataType) String() string {
 		return "APP_DATA_TYPE_UNDEFINED"
 	}
 }
-
-// RZV (Reserved Zero Value) variables
-var (
-	CIP_CI_RZV    = CiBricks{CI_BRICK_RZV}
-	CIP_ARRAY_RZV = CipArray{0}
-)
-
-// CI_BRICK_RZV represents an empty CIBrick
-var CI_BRICK_RZV = CiBrick{CONTENT_RZV, MASK_RZV}
