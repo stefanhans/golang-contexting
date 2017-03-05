@@ -8,7 +8,7 @@ import (
 
 
 // Cip is the struct for the Contextinformation Pakets (CIP)
-type Cip struct { // TODO: Make Cip private
+type Cip struct {
 
 	// ci_head
 	purpose       CipPurpose
