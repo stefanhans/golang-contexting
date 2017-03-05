@@ -11,11 +11,11 @@ type CiBrick struct {
 // CI_BRICK_RZV (Reserved Zero Value) represents an empty CIBrick, e.g. for testing of rootCic.
 var CI_BRICK_RZV = CiBrick{CONTENT_RZV, MASK_RZV}
 
-// The encoded Contextinformation, i.e. 0 - 255 CiBricks
-type CiBricks [256]CiBrick
+// The encoded Contextinformation, i.e. 0 - 255 CiBrickArray
+type CiBrickArray [256]CiBrick
 
 // CIP_CI_RZV (Reserved Zero Value) with CiBrick.Content 0 determine a quasi empty array for Ci data
-var CIP_CI_RZV = CiBricks{CI_BRICK_RZV}
+var CIP_CI_RZV = CiBrickArray{CI_BRICK_RZV}
 
 func (ciBrick CiBrick) String() string {
 	return fmt.Sprintf("%-16s: %08b\n", "Content", ciBrick.Content) +
@@ -33,8 +33,33 @@ func (ciBricks CiBrickSlice) String() string {
 	return out
 }
 
+// toCiBrickArray converts from CiBrickSlice (no length data included) to CiBrickArray (length data included)
+func (ciBrickSlice CiBrickSlice) toCiBrickArray() CiBrickArray {
+	var ciBrickArray CiBrickArray = CIP_CI_RZV
+
+	//fmt.Printf("CIP_CI_RZV:\n%s\n", CIP_CI_RZV)
+	ciBrickArray[0] = CiBrick{byte(len(ciBrickSlice)), 0}
+	copy(ciBrickArray[1:byte(len(ciBrickSlice))+1], ciBrickSlice[:])
+
+	//fmt.Printf("ciBrickArray:\n%s\n", ciBrickArray)
+	return ciBrickArray
+}
+
+// toCiBrickSlice converts from CiBrickArray (length data included) to CiBrickSlice (no length data included)
+func (ciBrickArray CiBrickArray) toCiBrickSlice() CiBrickSlice {
+	var ciBrickSlice CiBrickSlice = ciBrickArray[1:ciBrickArray[0].Content+1]
+
+	//fmt.Printf("CIP_CI_RZV:\n%s\n", CIP_CI_RZV)
+	//ciBrickArray[0] = CiBrick{byte(len(ciBrickSlice)), 0}
+	//copy(ciBrickArray[1:byte(len(ciBrickSlice))+1], ciBrickSlice[:])
+
+	//fmt.Printf("ciBrickArray:\n%s\n", ciBrickArray)
+	return ciBrickSlice
+}
+
+
 // SetCi sets the Contextinformation part of CIP
-func (cip *Cip) SetCi(ciType CiType, rootCic CiBrick, ciBricks CiBricks) *Cip {
+func (cip *Cip) SetCi(ciType CiType, rootCic CiBrick, ciBricks CiBrickArray) *Cip {
 	cip.ciType = ciType
 	cip.rootCic = rootCic
 	cip.ciSize = ciBricks[0].Content

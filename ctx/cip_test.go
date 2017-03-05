@@ -7,6 +7,7 @@ import (
 )
 
 var aCip = CreateCip()
+var bCip = CreateCip()
 
 var cipTestTable = []struct {
 	cip    *Cip
@@ -31,12 +32,33 @@ var cipTestTable = []struct {
 		"appDataArray    : []\n"},
 }
 
+var ciMatchTestTable = []struct {
+	ci_1_Type   CiType
+	ci_1_rootBrick   CiBrick
+	ci_1_Bricks CiBrickSlice
+	ci_2_Type   CiType
+	ci_2_rootBrick   CiBrick
+	ci_2_Bricks CiBrickSlice
+	match bool
+}{
+	{CI_TYPE_RZV, CI_BRICK_RZV, CiBrickSlice{},
+		CI_TYPE_RZV, CI_BRICK_RZV, CiBrickSlice{}, true},
+}
+
 func TestCip(t *testing.T) {
 
 	for i, cip := range cipTestTable {
 		s := fmt.Sprintf("%s", cip.cip)
 		if s != cip.strCip {
 			t.Errorf("%d: Value != Expected:\n%s%s\n", i, s, cip.strCip)
+		}
+	}
+
+	for i, cis := range ciMatchTestTable {
+		aCip.SetCi(cis.ci_1_Type, cis.ci_1_rootBrick, CIP_CI_RZV)
+		bCip.SetCi(cis.ci_2_Type, cis.ci_2_rootBrick, CIP_CI_RZV)
+		if aCip.CiMatch(bCip) != cis.match {
+			t.Errorf("%d: ciMatchTestTable", i)
 		}
 	}
 

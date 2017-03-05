@@ -62,7 +62,7 @@ func TestCi(t *testing.T) {
 
 	for i, ci := range ciTestTable_2 {
 
-		var cib CiBricks = CIP_CI_RZV
+		var cib CiBrickArray = CIP_CI_RZV
 		cib[0] = CiBrick{byte(len(ci.ciBricks)), 0}
 		for i := 1; i <= len(ci.ciBricks); i++ {
 			cib[i] = ci.ciBricks[i-1]

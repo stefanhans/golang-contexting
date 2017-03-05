@@ -8,7 +8,7 @@ import (
 
 
 // Cip is the struct for the Contextinformation Pakets (CIP)
-type Cip struct {
+type Cip struct { // TODO: Make Cip private
 
 	// ci_head
 	purpose       CipPurpose
@@ -63,4 +63,10 @@ func CreateCip() *Cip {
 		version: VERSION,
 		uuid:    newV1(),
 	}
+}
+
+// CiMatch returns the match of two Contextinformation (CI), i.e. true or false
+func (cip *Cip) CiMatch(anotherCip *Cip) bool {
+
+	return true
 }
