@@ -1,5 +1,13 @@
 package ctx
 
+/****************************************** FILE COMMENT ******************************************
+
+Implementing the CIP API finally.
+
+ToDo: Design services, API and source files structure
+
+****************************************** FILE COMMENT ******************************************/
+
 import (
 	"fmt"
 	"net"

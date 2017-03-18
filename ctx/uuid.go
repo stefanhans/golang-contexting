@@ -21,6 +21,14 @@
 
 package ctx
 
+/****************************************** FILE COMMENT ******************************************
+
+Customized from imported package (see https://github.com/satori/go.uuid)
+
+ToDo: Finalize
+
+****************************************** FILE COMMENT ******************************************/
+
 import (
 	"bytes"
 	"crypto/rand"

@@ -1,26 +1,30 @@
 package ctx
 
+/****************************************** FILE COMMENT ******************************************
+
+Implementing the contextinformation part of CIP except the primitives.
+
+	0                   1                   2                   3
+	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2
+	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	|   type (1)    |         root-CIC (2)          |   size (1)    | fix
+	| ............................................................  | |
+	| .............. additional data up to 510 bytes .............  | dyn
+	| .............. i.e. up to 255 CIC-Bricks  ..................  | |
+	| ............................................................  | |
+	+---------------------------------------------------------------+
+
+ToDo: Functions for routing etc.
+
+****************************************** FILE COMMENT ******************************************/
+
 import "fmt"
-
-// Brick for Contextinformation
-type CiBrick struct {
-	Content byte
-	Mask    byte
-}
-
-// CI_BRICK_RZV (Reserved Zero Value) represents an empty CIBrick, e.g. for testing of rootCic.
-var CI_BRICK_RZV = CiBrick{CONTENT_RZV, MASK_RZV}
 
 // The encoded Contextinformation, i.e. 0 - 255 CiBrickArray
 type CiBrickArray [256]CiBrick
 
 // CIP_CI_RZV (Reserved Zero Value) with CiBrick.Content 0 determine a quasi empty array for Ci data
 var CIP_CI_RZV = CiBrickArray{CI_BRICK_RZV}
-
-func (ciBrick CiBrick) String() string {
-	return fmt.Sprintf("%-16s: %08b\n", "Content", ciBrick.Content) +
-		fmt.Sprintf("%-16s: %08b\n", "Mask", ciBrick.Mask)
-}
 
 type CiBrickSlice []CiBrick
 
@@ -70,23 +74,4 @@ func (cip *Cip) SetCi(ciType CiType, rootCic CiBrick, ciBricks CiBrickArray) *Ci
 // Ci returns the Contextinformation
 func (cip *Cip) Ci() (CiType, CiBrick, CiBrickSlice) {
 	return cip.ciType, cip.rootCic, cip.ciBrickArray
-}
-
-// True, if both contents are equal or unequal bits are disabled by set bits in both masks
-func (offer CiBrick) ContextMatch(request CiBrick) bool {
-	notEqual := offer.Content ^ request.Content
-	if notEqual == 0 {
-		return true
-	}
-	offerRelevant := ^notEqual | offer.Mask
-	notOfferRelevant := ^offerRelevant
-	if notOfferRelevant != 0 {
-		return false
-	}
-	requestRelevant := ^notEqual | request.Mask
-	notRequestRelevant := ^requestRelevant
-	if notRequestRelevant != 0 {
-		return false
-	}
-	return true
 }

@@ -1,14 +1,13 @@
 package ctx
 
-/*
-Put all primitives, mainly of CIP, into this file.
+/****************************************** FILE COMMENT ******************************************
 
-Most of them are byte types with constants implementing Stringer interface.
-
+Put all primitives, mainly of CIP, into this file. Most of them are byte types with constants
+implementing Stringer interface.
 
 ToDo: Define some constants as default value and outsource them as configuration values
 
-*/
+****************************************** FILE COMMENT ******************************************/
 
 import "fmt"
 

@@ -2,7 +2,6 @@ package ctx_test
 
 import (
 	"fmt"
-	_ "fmt"
 	. "github.com/stefanhans/golang-contexting/ctx"
 	"testing"
 )
