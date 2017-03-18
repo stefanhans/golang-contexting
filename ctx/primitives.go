@@ -1,5 +1,15 @@
 package ctx
 
+/*
+Put all primitives, mainly of CIP, into this file.
+
+Most of them are byte types with constants implementing Stringer interface.
+
+
+ToDo: Define some constants as default value and outsource them as configuration values
+
+*/
+
 import "fmt"
 
 // This software version resp. of the CIP's sender
@@ -107,7 +117,6 @@ func (profile CipProfile) String() string {
 	return out
 }
 
-
 // -----------------------------------------------------------------------------------------------------------------
 
 // VERSION, i.e. <major number>.<minor number> as byte in <4bit>.<4bit> is the software version of the sender
@@ -122,7 +131,6 @@ type CipVersion byte
 func (version CipVersion) String() string {
 	return fmt.Sprintf("%d.%d", (version&0xF0)>>4, version&0x0F)
 }
-
 
 // -----------------------------------------------------------------------------------------------------------------
 
