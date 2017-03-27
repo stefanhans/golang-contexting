@@ -3,9 +3,9 @@
 
 
 Network Working Group                                        Stefan Hans
-Internet-Draft                                                March 2017
+Internet-Draft                                            March 27, 2017
 Intended status: Experimental
-Expires: September 2, 2017
+Expires: September 28, 2017
 
 
          Concepts of Contextinformation Routing Networks (CRNs)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 2, 2017.
+   This Internet-Draft will expire on September 28, 2017.
 
 
 
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Stefan Hans             Expires September 2, 2017               [Page 1]
+Stefan Hans            Expires September 28, 2017               [Page 1]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Stefan Hans             Expires September 2, 2017               [Page 2]
+Stefan Hans            Expires September 28, 2017               [Page 2]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -165,7 +165,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans             Expires September 2, 2017               [Page 3]
+Stefan Hans            Expires September 28, 2017               [Page 3]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -221,7 +221,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans             Expires September 2, 2017               [Page 4]
+Stefan Hans            Expires September 28, 2017               [Page 4]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -277,7 +277,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans             Expires September 2, 2017               [Page 5]
+Stefan Hans            Expires September 28, 2017               [Page 5]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -299,11 +299,10 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 3.1.2.  CIC-Number
 
-   Every CIC-Ruleset and all its encoded CI have an individual CIC-
-   Number in common.  In general a CIC-Number can be well-known or
-   temporary.  The CIC-Numbers of the Root-CICs must be well-known and
-   they are part of the Contextinformation Packet specification (CIP-
-   Specification).
+   Each CIC-Ruleset and all its encoded CI have an individual CIC-Number
+   in common.  In general a CIC-Number can be well-known or temporary.
+   The CIC-Numbers of the Root-CICs must be well-known and they are part
+   of the Contextinformation Packet specification (CIP-Specification).
 
 3.1.3.  CIC-Spam and CIC-Padding
 
@@ -316,7 +315,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 3.2.  Boolean Operations
 
    Boolean operations are not applicable to CICs directly, but to their
-   results sets.  I.e. instead to use boolean operations on encoded CI,
+   result sets.  I.e. instead to use boolean operations on encoded CI,
    set operations have to be used on result sets.
 
       Boolean conjuntion (AND) equates to set intersection (INTERSECT)
@@ -333,7 +332,8 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans             Expires September 2, 2017               [Page 6]
+
+Stefan Hans            Expires September 28, 2017               [Page 6]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -389,7 +389,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans             Expires September 2, 2017               [Page 7]
+Stefan Hans            Expires September 28, 2017               [Page 7]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -445,7 +445,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans             Expires September 2, 2017               [Page 8]
+Stefan Hans            Expires September 28, 2017               [Page 8]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -501,7 +501,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans             Expires September 2, 2017               [Page 9]
+Stefan Hans            Expires September 28, 2017               [Page 9]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -557,7 +557,7 @@ Appendix A.  CRN's Glossary
 
 
 
-Stefan Hans             Expires September 2, 2017              [Page 10]
+Stefan Hans            Expires September 28, 2017              [Page 10]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -598,13 +598,10 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
    Contextinformation Coding (CIC)
 
 
-   CIP (Contextinformation Packet)
+   Contextinformation Packet (CIP)
 
 
-   CIR (Contextinformation Routing)
-
-
-   Reserved Zero Value (RZV)
+   Contextinformation Routing (CIR)
 
 
    Root-CIC
@@ -613,7 +610,10 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans             Expires September 2, 2017              [Page 11]
+
+
+
+Stefan Hans            Expires September 28, 2017              [Page 11]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -628,7 +628,6 @@ Appendix B.  CRN's Abbreviations
    | CIP          | Contextinformation Packet          |
    | CIR          | Contextinformation Routing         |
    | CRN          | Contextinformation Routing Network |
-   | RZV          | Reserved Zero Value                |
    +--------------+------------------------------------+
 
 Author's Address
@@ -669,4 +668,5 @@ Author's Address
 
 
 
-Stefan Hans             Expires September 2, 2017              [Page 12]
+
+Stefan Hans            Expires September 28, 2017              [Page 12]
