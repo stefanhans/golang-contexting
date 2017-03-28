@@ -3,9 +3,9 @@
 
 
 Network Working Group                                        Stefan Hans
-Internet-Draft                                            March 27, 2017
+Internet-Draft                                            March 28, 2017
 Intended status: Experimental
-Expires: September 28, 2017
+Expires: September 29, 2017
 
 
          Concepts of Contextinformation Routing Networks (CRNs)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 28, 2017.
+   This Internet-Draft will expire on September 29, 2017.
 
 
 
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Stefan Hans            Expires September 28, 2017               [Page 1]
+Stefan Hans            Expires September 29, 2017               [Page 1]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Stefan Hans            Expires September 28, 2017               [Page 2]
+Stefan Hans            Expires September 29, 2017               [Page 2]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -118,13 +118,13 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 1.  Introduction
 
-   It all began thinking about context-aware services.  Here, context-
-   awareness shouldn't be limited to location-based aspects, but it
-   should cover any kind of context.  Concepts for an open, unrestricted
-   and flexible structure to support context-aware services had to be
-   developed.  It should not only be applicable for established
-   services, but also ready for the emergence of new ones.  For this
-   purpose the following questions had to be answered:
+   It started with thinking about context-aware services.  Here,
+   context-awareness shouldn't be limited to location-based aspects, but
+   it should cover any kind of context.  Concepts for an open,
+   unrestricted and flexible structure to support context-aware services
+   had to be developed.  It should not only be applicable for
+   established services, but also ready for the emergence of new ones.
+   For this purpose the following questions had to be answered:
 
       How can a framework connect communication partners with matching
       communication interests and context?
@@ -165,7 +165,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 28, 2017               [Page 3]
+Stefan Hans            Expires September 29, 2017               [Page 3]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -221,7 +221,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 28, 2017               [Page 4]
+Stefan Hans            Expires September 29, 2017               [Page 4]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -277,7 +277,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 28, 2017               [Page 5]
+Stefan Hans            Expires September 29, 2017               [Page 5]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -333,7 +333,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 28, 2017               [Page 6]
+Stefan Hans            Expires September 29, 2017               [Page 6]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -389,7 +389,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 28, 2017               [Page 7]
+Stefan Hans            Expires September 29, 2017               [Page 7]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -445,7 +445,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 28, 2017               [Page 8]
+Stefan Hans            Expires September 29, 2017               [Page 8]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -501,7 +501,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 28, 2017               [Page 9]
+Stefan Hans            Expires September 29, 2017               [Page 9]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -557,7 +557,7 @@ Appendix A.  CRN's Glossary
 
 
 
-Stefan Hans            Expires September 28, 2017              [Page 10]
+Stefan Hans            Expires September 29, 2017              [Page 10]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -613,7 +613,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 28, 2017              [Page 11]
+Stefan Hans            Expires September 29, 2017              [Page 11]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -669,4 +669,4 @@ Author's Address
 
 
 
-Stefan Hans            Expires September 28, 2017              [Page 12]
+Stefan Hans            Expires September 29, 2017              [Page 12]
