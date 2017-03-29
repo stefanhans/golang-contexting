@@ -88,7 +88,7 @@ in the [Reactive Manifesto](http://www.reactivemanifesto.org/):
 
 
 ---
-### Reference Implementation in Go ![Gopher](/images/gopher_1.png)
+### Reference Implementation in Go ![Gopher](/images/gopher_small.png)
 
 
 The goal of the reference implementation in Go is an open, unlimited and reactive
