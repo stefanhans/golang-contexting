@@ -1,28 +1,29 @@
 # Reference Implementation for Contextinformation Routing Network (CRN)
 
-
 Contextinformation Routing Network (CRN) is a communication framework enabling
 an universal service to join matching contextinformation respectively its
 communication partners.
 
-An open, unlimited reactive peer-to-peer overlay network infrastructure for all binary
-encodable kind of context to connect its participants accordingly.
+The concept and the specifications are described in RFC documents:
 
+ * [CRN Concepts](https://raw.githubusercontent.com/stefanhans/golang-contexting/master/RFC/CRN_Concepts.txt)
+ * [CIP Specification](https://raw.githubusercontent.com/stefanhans/golang-contexting/master/RFC/CIP_Specification.txt)
+ * [CIR Specification](https://raw.githubusercontent.com/stefanhans/golang-contexting/master/RFC/CIR_Concepts.txt)
 
-The main components of CRNs are:
+The documents are still drafts and will be finalized, if the reference implementation will be.
 
- * Contextinformation (CI)
+The reference implementation in Go implements an open, unlimited and reactive
+peer-to-peer overlay network design for all binary encodable kind of context
+to connect its participants accordingly.
 
- * Contextinformation Coding (CIC)
-
- * Contextinformation Packet (CIP)
-
- * Contextinformation Routing (CIR)
+---
+The main components of CRNs are the following:
 
 ### Contextinformation (CI)
-refers mainly to the known terms information and context.  Due to the lack of
-an useful clear distinction between the two, CI is defined here as information
-within its described context, i.e. context becomes part of CI by describing it.
+Contextinformation (CI) refers mainly to the known terms information and context.
+Due to the lack of an useful clear distinction between the two, CI is defined
+here as information within its described context, i.e. context becomes part of
+CI by describing it.
 Another aspect of CI is the accuracy with regard to possible matches with other
 CI. All of these has to be converted into a general format, in which the actual
 meaning is not relevant to find matching CI.
