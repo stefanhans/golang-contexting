@@ -1,9 +1,13 @@
-# Contextinformation Routing Network (CRN) with Reference Implementation in Go
+# Reference Implementation for Contextinformation Routing Network (CRN)
 
 
 Contextinformation Routing Network (CRN) is a communication framework enabling
 an universal service to join matching contextinformation respectively its
 communication partners.
+
+An open, unlimited reactive peer-to-peer overlay network infrastructure for all binary
+encodable kind of context to connect its participants accordingly.
+
 
 The main components of CRNs are:
 
