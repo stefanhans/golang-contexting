@@ -23,6 +23,7 @@ These documents are still drafts and will be finalized, if the reference impleme
 The main components of CRNs are the following:
 
 ### Contextinformation (CI)
+![Info](images/info_small.jpg)
 Contextinformation (CI) refers mainly to the known terms information and context.
 Due to the lack of an useful clear distinction between the two, CI is defined
 here as information within its described context, i.e. context becomes part of
@@ -32,6 +33,7 @@ CI. All of these has to be converted into a general format, in which the actual
 meaning is not relevant to find matching CI.
 
 ### Contextinformation Coding (CIC)
+![Coding](images/binary.png)
 Contextinformation Coding (CIC)is the conversion of CI into a binary format,
 and vice versa.  CIC means both, the conversion rules (CIC-Ruleset) for a
 particular type of CI and a concrete piece of encoded CI.
@@ -60,7 +62,8 @@ surrounding area by marking bits of CIC-Content as true in any case concerning
 the match.  Here the CI of Offer and Request are matching, if the location of
 one is in the surrounding area of the other and vice versa.
 
-### Contextinformation Packet (CIP) ![Packet](images/packet.png)
+### Contextinformation Packet (CIP)
+![Packet](images/packet.png)
 Encoded CI is encapsulated in a datastructure named Contextinformation Packet (CIP).
 A CIP is divided into three parts:
 
@@ -77,6 +80,7 @@ All information which has to be transferred inside CRNs has to be encapsulated
 within CIPs.
 
 ### Contextinformation Routing (CIR)
+![Routing](images/network.png)
 Contextinformation Routing (CIR) takes place in an overlay network built
 normally on top of the TCP/IP layer. It is organized basically by using
 CIC-Content as index. It is oriented towards known concepts of network routing,
@@ -131,4 +135,4 @@ The following frontends are planned:
  * Android ([golang/mobile](https://github.com/golang/mobile))
  * iOS ([golang/mobile](https://github.com/golang/mobile))
 
-![CMD](/images/cmd_small.png) ![Browser](/images/browser_small.png) ![Android](/images/android_small.png) ![iOS](/images/ios_small.png)
+![CMD](images/cmd_small.png) ![Browser](images/browser_small.png) ![Android](images/android_small.png) ![iOS](images/ios_small.png)
