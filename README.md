@@ -107,6 +107,7 @@ as [SOLID Go Design](https://dave.cheney.net/2016/08/20/solid-go-design):
  * **D**ependency Inversion Principle
 
 ### Backend Packages and API
+![pkg](images/pkg.png)
 
 The infrastructure, namely Contextinformation Packet (CIP) and Contextinformation Routing (CIR),
 will be implemented in Go packages. The API for the Contextinformation Coding (CIC) and the applications
