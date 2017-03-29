@@ -17,9 +17,6 @@ The concept and the specifications are described in RFC documents:
 
 These documents are still drafts and will be finalized, if the reference implementation will be.
 
-The reference implementation in Go implements an open, unlimited and reactive
-peer-to-peer overlay network design for all binary encodable kind of context
-to connect its participants accordingly.
 
 ---
 The main components of CRNs are the following:
@@ -89,3 +86,33 @@ in the [Reactive Manifesto](http://www.reactivemanifesto.org/):
 
 ![Reactive Manifesto](http://www.reactivemanifesto.org/images/reactive-traits.svg)
 
+
+---
+### Reference Implementation in Go
+
+The goal of the reference implementation in Go is an open, unlimited and reactive
+peer-to-peer overlay network design for all binary encodable kind of contextinformation
+to connect its participants accordingly.
+
+The implementation guidelines, additionally to the idiomatic Go ones, are
+the so-called SOLID principles - originally for object-oriented design, but adapted for Go
+as [SOLID Go Design](https://dave.cheney.net/2016/08/20/solid-go-design):
+
+ * **S**ingle responsibility principle
+ * **O**pen / Closed Principle
+ * **L**iskov Substitution Principle
+ * **I**nterface Segregation Principle
+ * **D**ependency Inversion Principle
+
+
+### Application Prototypes
+
+The prototypes for application testing and demonstration will be a kind of the standard distributed applications - chats.
+These chats will have an isomorphic code model and will be flexible concerning their Contextinformation Codings.
+
+There will be a backend package in Go and the following frontends:
+
+ * Command-Line (mainly for backend testing)
+ * Browser ([GopherJS](https://github.com/gopherjs/gopherjs))
+ * Android ([golang/mobile](https://github.com/golang/mobile))
+ * iOS ([golang/mobile](https://github.com/golang/mobile))
