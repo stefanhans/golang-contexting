@@ -89,7 +89,7 @@ in the [Reactive Manifesto](http://www.reactivemanifesto.org/):
 
 
 ---
-### Reference Implementation in Go ![Gopher](/images/gopher_small.png)
+### Reference Implementation in Go
 
 
 The goal of the reference implementation in Go is an open, unlimited and reactive
@@ -115,7 +115,6 @@ shall be oriented towards the standard library of Go.
 
 
 ### Application Prototypes
-![CMD](/images/cmd_small.png) ![Browser](/images/browser_small.png) ![Android](/images/android_small.png) ![iOS](/images/ios_small.png)
 
 The prototypes for application testing and demonstration will be a kind of the standard distributed applications - chats.
 These chats will have an isomorphic code model and will be flexible concerning their Contextinformation Codings.
@@ -126,3 +125,5 @@ The following frontends are planned:
  * Browser ([GopherJS](https://github.com/gopherjs/gopherjs))
  * Android ([golang/mobile](https://github.com/golang/mobile))
  * iOS ([golang/mobile](https://github.com/golang/mobile))
+
+![CMD](/images/cmd_small.png) ![Browser](/images/browser_small.png) ![Android](/images/android_small.png) ![iOS](/images/ios_small.png)
