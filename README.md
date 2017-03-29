@@ -64,10 +64,13 @@ Encoded CI is encapsulated in a datastructure named Contextinformation Packet (C
 A CIP is divided into three parts:
 
  * Header Data
+ (static and dynamic)
 
  * Contextinformation
+ (mainly dynamic)
 
  * Application Data
+ (mainly dynamic)
 
 All information which has to be transferred inside CRNs has to be encapsulated
 within CIPs.
@@ -77,3 +80,6 @@ Contextinformation Routing (CIR) takes place in an overlay network built
 normally on top of the TCP/IP layer. It is organized basically by using
 CIC-Content as index. It is oriented towards known concepts of network routing,
 peer-to-peer and others network principles and B-tree like datastructures.
+
+![Reactive Manifesto](/images/reactive.png)
+
