@@ -119,6 +119,8 @@ shall be oriented towards the standard library of Go.
 The prototypes for application testing and demonstration will be a kind of the standard distributed applications - chats.
 These chats will have an isomorphic code model and will be flexible concerning their Contextinformation Codings.
 
+![Chat](images/chat_small.png)
+
 The following frontends are planned:
 
  * Command-Line (mainly for backend testing)
