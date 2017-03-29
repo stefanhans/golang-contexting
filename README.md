@@ -96,6 +96,8 @@ The goal of the reference implementation in Go is an open, unlimited and reactiv
 peer-to-peer overlay network design for all binary encodable kind of contextinformation
 to connect its participants accordingly.
 
+![doc](images/doc.png)
+
 The implementation guidelines, additionally to the idiomatic Go ones, are
 the so-called SOLID principles - originally for object-oriented design, but adapted for Go
 as [SOLID Go Design](https://dave.cheney.net/2016/08/20/solid-go-design):
