@@ -60,7 +60,7 @@ surrounding area by marking bits of CIC-Content as true in any case concerning
 the match.  Here the CI of Offer and Request are matching, if the location of
 one is in the surrounding area of the other and vice versa.
 
-### Contextinformation Packet (CIP)
+### Contextinformation Packet (CIP) ![Packet](images/packet.png)
 Encoded CI is encapsulated in a datastructure named Contextinformation Packet (CIP).
 A CIP is divided into three parts:
 
