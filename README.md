@@ -1,5 +1,5 @@
-# Reference Implementation for Contextinformation Routing Network (CRN)
-![Gopher](/images/gopher_small.png)
+# Reference Implementation for Contextinformation Routing Network (CRN) in Go
+![Gopher](/images/gopher_small.png)![Under Construction](/images/under_construction.jpg)
 
 Contextinformation Routing Network (CRN) is a communication framework enabling
 an universal service to join matching contextinformation respectively its
