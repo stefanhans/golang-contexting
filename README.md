@@ -81,5 +81,8 @@ normally on top of the TCP/IP layer. It is organized basically by using
 CIC-Content as index. It is oriented towards known concepts of network routing,
 peer-to-peer and others network principles and B-tree like datastructures.
 
+Additionally it is committing to the four propperties of reactive systems as described
+at the [Reactive Manifesto](http://www.reactivemanifesto.org/):
+
 ![Reactive Manifesto](http://www.reactivemanifesto.org/images/reactive-traits.svg)
 
