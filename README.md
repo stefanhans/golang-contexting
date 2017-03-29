@@ -115,7 +115,7 @@ shall be oriented towards the standard library of Go.
 
 
 ### Application Prototypes
-![CMD](/images/cmd_small.png) ![Android](/images/android_small.png) ![iOS](/images/ios_small.png)
+![CMD](/images/cmd_small.png) ![Browser](/images/browser_small.png) ![Android](/images/android_small.png) ![iOS](/images/ios_small.png)
 
 The prototypes for application testing and demonstration will be a kind of the standard distributed applications - chats.
 These chats will have an isomorphic code model and will be flexible concerning their Contextinformation Codings.
