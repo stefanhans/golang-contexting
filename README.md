@@ -135,4 +135,4 @@ The following frontends are planned:
  * Android ([golang/mobile](https://github.com/golang/mobile))
  * iOS ([golang/mobile](https://github.com/golang/mobile))
 
-![CMD](images/cmd_small.png) ![Browser](images/browser_small.png) ![Android](images/android_small.png) ![iOS](images/ios_small.png)
+![CMD](images/cmd_small.png) ![Browser](images/js_small.png) ![Android](images/android_small.png) ![iOS](images/ios_small.png)
