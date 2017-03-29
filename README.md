@@ -104,13 +104,20 @@ as [SOLID Go Design](https://dave.cheney.net/2016/08/20/solid-go-design):
  * **I**nterface Segregation Principle
  * **D**ependency Inversion Principle
 
+### Backend Packages and API
+
+The infrastructure, namely Contextinformation Packet (CIP) and Contextinformation Routing (CIR),
+will be implemented in Go packages. The API for the Contextinformation Coding (CIC) and the applications
+will be follow afterwards. Concerning simplicity and conciseness of the API the complete backend
+shall be oriented towards the standard library of Go.
+
 
 ### Application Prototypes
 
 The prototypes for application testing and demonstration will be a kind of the standard distributed applications - chats.
 These chats will have an isomorphic code model and will be flexible concerning their Contextinformation Codings.
 
-There will be a backend package in Go and the following frontends:
+The following frontends are planned:
 
  * Command-Line (mainly for backend testing)
  * Browser ([GopherJS](https://github.com/gopherjs/gopherjs))
