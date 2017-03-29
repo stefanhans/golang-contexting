@@ -52,7 +52,7 @@ resp. bitwise expression
 
 
 Let me illustrate this with an example.
-Offer and Request are two communication roles, and location is a type of CI.
+Offer and Request are two communication roles, and location is the type of CI.
 Offer says "I'm available for any Request with matching location (CI) to contact me" and
 Request says "I'm searching for any Offer with matching location (CI)".
 Both have an exact information about their location and can define a
