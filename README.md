@@ -35,7 +35,7 @@ meaning is not relevant to find matching CI.
 
 The calculation of a match between two CIs uses the following function resp. bitwise expression
 
-    match(Offer, Request) = ( NOT ( Offer-Content XOR Request-Content ) ) OR ( Offer-Mask AND Request-Mask )
+    match(Offer, Request) = (NOT (Offer-Content XOR Request-Content)) OR (Offer-Mask AND Request-Mask)
 
 ### Contextinformation Coding (CIC)
 Contextinformation Coding (CIC)is the conversion of CI into a binary format,
