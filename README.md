@@ -33,10 +33,6 @@ Another aspect of CI is the accuracy with regard to possible matches with other
 CI. All of these has to be converted into a general format, in which the actual
 meaning is not relevant to find matching CI.
 
-The calculation of a match between two CIs uses the following function resp. bitwise expression
-
-    match(Offer, Request) = (NOT (Offer-Content XOR Request-Content)) OR (Offer-Mask AND Request-Mask)
-
 ### Contextinformation Coding (CIC)
 Contextinformation Coding (CIC)is the conversion of CI into a binary format,
 and vice versa.  CIC means both, the conversion rules (CIC-Ruleset) for a
@@ -57,6 +53,11 @@ CIC-Content, as the encoded location, together with CI-Mask defines the
 surrounding area by marking bits of CIC-Content as true in any case concerning
 the match.  Here the CI of Offer and Request are matching, if the location of
 one is in the surrounding area of the other and vice versa.
+
+The calculation of a match between two CIs uses the following function resp. bitwise expression
+
+    match(Offer, Request) = (NOT (Offer-Content XOR Request-Content)) OR (Offer-Mask AND Request-Mask)
+
 
 ### Contextinformation Packet (CIP)
 Encoded CI is encapsulated in a datastructure named Contextinformation Packet (CIP).
