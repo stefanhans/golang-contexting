@@ -7,8 +7,13 @@ communication partners.
 The concept and the specifications are described in RFC documents:
 
  * [CRN Concepts](https://raw.githubusercontent.com/stefanhans/golang-contexting/master/RFC/CRN_Concepts.txt)
+ (in large parts completed)
+
  * [CIP Specification](https://raw.githubusercontent.com/stefanhans/golang-contexting/master/RFC/CIP_Specification.txt)
+ (in large parts completed)
+
  * [CIR Specification](https://raw.githubusercontent.com/stefanhans/golang-contexting/master/RFC/CIR_Specification.txt)
+ (not yet mature)
 
 The documents are still drafts and will be finalized, if the reference implementation will be.
 
@@ -27,6 +32,10 @@ CI by describing it.
 Another aspect of CI is the accuracy with regard to possible matches with other
 CI. All of these has to be converted into a general format, in which the actual
 meaning is not relevant to find matching CI.
+
+The calculation of a match between two CIs uses the following function resp. bitwise expression
+
+    match(Offer, Request) = ( NOT ( Offer-Content XOR Request-Content ) ) OR ( Offer-Mask AND Request-Mask )
 
 ### Contextinformation Coding (CIC)
 Contextinformation Coding (CIC)is the conversion of CI into a binary format,
