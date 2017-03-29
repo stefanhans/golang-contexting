@@ -84,5 +84,5 @@ peer-to-peer and others network principles and B-tree like datastructures.
 Additionally it is committing to the four properties of reactive systems as described
 in the [Reactive Manifesto](http://www.reactivemanifesto.org/):
 
-![Reactive Manifesto](images/reactive-traits.svg)
+![Reactive Manifesto](https://raw.githubusercontent.com/stefanhans/golang-contexting/master/images/reactive-traits.svg)
 
