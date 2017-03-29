@@ -45,6 +45,12 @@ used to define the accuracy of the searched match.  Then it is sufficient for
 a bitwise match of two pieces of CI, if both CIC-Contents are equal or both
 CI-Masks mark them as non-relevant.
 
+The calculation of such a match between two CIs uses the following function
+resp. bitwise expression
+
+    match(Offer, Request) = (NOT (Offer-Content XOR Request-Content)) OR (Offer-Mask AND Request-Mask)
+
+
 Let me illustrate this with an example.
 Offer and Request are two communication roles, and location is a type of CI.
 Offer says "I'm available for any Request with matching CI to contact me" and
@@ -55,11 +61,6 @@ CIC-Content, as the encoded location, together with CI-Mask defines the
 surrounding area by marking bits of CIC-Content as true in any case concerning
 the match.  Here the CI of Offer and Request are matching, if the location of
 one is in the surrounding area of the other and vice versa.
-
-The calculation of a match between two CIs uses the following function resp. bitwise expression
-
-    match(Offer, Request) = (NOT (Offer-Content XOR Request-Content)) OR (Offer-Mask AND Request-Mask)
-
 
 ### Contextinformation Packet (CIP)
 Encoded CI is encapsulated in a datastructure named Contextinformation Packet (CIP).
