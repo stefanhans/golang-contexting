@@ -17,7 +17,7 @@ The concept and the specifications are described in RFC documents:
 
 These documents are still drafts and will be finalized, if the reference implementation will be.
 
-
+:sparkles:
 ---
 The main components of CRNs are the following:
 
