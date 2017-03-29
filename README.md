@@ -53,8 +53,8 @@ resp. bitwise expression
 
 Let me illustrate this with an example.
 Offer and Request are two communication roles, and location is a type of CI.
-Offer says "I'm available for any Request with matching CI to contact me" and
-Request says "I'm searching for any Offer with matching CI".
+Offer says "I'm available for any Request with matching location (CI) to contact me" and
+Request says "I'm searching for any Offer with matching location (CI)".
 Both have an exact information about their location and can define a
 surrounding area where Offer is available respectively Request is searching.
 CIC-Content, as the encoded location, together with CI-Mask defines the
