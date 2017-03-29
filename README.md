@@ -45,8 +45,8 @@ the match.  Here the CI of Offer and Request are matching, if the location of
 one is in the surrounding area of the other and vice versa.
 
 ### Contextinformation Packet (CIP)
-Encoded CI is encapsulated in a datastructure named Contextinformation Packet (CIP).  A CIP is divided into
-                 three parts:
+Encoded CI is encapsulated in a datastructure named Contextinformation Packet (CIP).
+A CIP is divided into three parts:
 
  * Header Data
 
