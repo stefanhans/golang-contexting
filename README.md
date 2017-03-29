@@ -123,5 +123,5 @@ The following frontends are planned:
 
  * Command-Line (mainly for backend testing)
  * Browser ([GopherJS](https://github.com/gopherjs/gopherjs))
- * Android ([golang/mobile](https://github.com/golang/mobile))
+ * Android ([golang/mobile](https://github.com/golang/mobile)) ![Android](/images/android_small.png)
  * iOS ([golang/mobile](https://github.com/golang/mobile))
