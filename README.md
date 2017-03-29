@@ -15,7 +15,7 @@ The concept and the specifications are described in RFC documents:
  * [CIR Specification](https://raw.githubusercontent.com/stefanhans/golang-contexting/master/RFC/CIR_Specification.txt)
  (not yet mature)
 
-The documents are still drafts and will be finalized, if the reference implementation will be.
+These documents are still drafts and will be finalized, if the reference implementation will be.
 
 The reference implementation in Go implements an open, unlimited and reactive
 peer-to-peer overlay network design for all binary encodable kind of context
@@ -43,7 +43,9 @@ has the form of two parallel bit strings of equal length.  This pair
 consists of CIC-Content, an instance of the CIC-Ruleset, and CI-Mask, which is
 used to define the accuracy of the searched match.  Then it is sufficient for
 a bitwise match of two pieces of CI, if both CIC-Contents are equal or both
-CI-Masks mark them as non-relevant. Let me illustrate this with an example.
+CI-Masks mark them as non-relevant.
+
+Let me illustrate this with an example.
 Offer and Request are two communication roles, and location is a type of CI.
 Offer says "I'm available for any Request with matching CI to contact me" and
 Request says "I'm searching for any Offer with matching CI".
