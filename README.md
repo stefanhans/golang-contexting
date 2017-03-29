@@ -17,7 +17,7 @@ The concept and the specifications are described in RFC documents:
 
 These documents are still drafts and will be finalized, if the reference implementation will be.
 
-:sparkles:
+
 ---
 The main components of CRNs are the following:
 
@@ -89,6 +89,8 @@ in the [Reactive Manifesto](http://www.reactivemanifesto.org/):
 
 ---
 ### Reference Implementation in Go
+![Gopher](/images/gopher_1.png)
+
 
 The goal of the reference implementation in Go is an open, unlimited and reactive
 peer-to-peer overlay network design for all binary encodable kind of contextinformation
