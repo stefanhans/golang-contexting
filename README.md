@@ -142,6 +142,7 @@ The following frontends are planned:
 ---
 
 ### Current Status
+![Gopher](images/gopher_fan.png)
 
 At the moment I'm
 
@@ -150,5 +151,3 @@ At the moment I'm
  [backend packages](https://godoc.org/github.com/stefanhans/golang-contexting/ctx) and the API
 
 ---
-
-**_"Don't take the first solution you've found, it's quite surely not the best."_** ![Gopher](images/gopher_fan.png)
