@@ -134,5 +134,6 @@ The following frontends are planned:
  * Browser ([GopherJS](https://github.com/gopherjs/gopherjs))
  * Android ([golang/mobile](https://github.com/golang/mobile))
  * iOS ([golang/mobile](https://github.com/golang/mobile))
+ * Desktop ([GUI library](https://github.com/avelino/awesome-go#gui) still under investigation)
 
-![CMD](images/cmd_small.png) ![Browser](images/js_small.png) ![Android](images/android_small.png) ![iOS](images/ios_small.png)
+![CMD](images/cmd_small.png) ![Browser](images/js_small.png) ![Android](images/android_small.png) ![iOS](images/ios_small.png) ![Desktop](images/desktop_small.jpg)
