@@ -149,4 +149,6 @@ At the moment I'm
  * trying to become a native Go speaker and to find a good design for the
  [backend packages](https://godoc.org/github.com/stefanhans/golang-contexting/ctx) and the API
 
-:speech_balloon:....._"Don't take the first solution you've found, it's quite surely not the best."_.....:sparkles:
+---
+
+**_"Don't take the first solution you've found, it's quite surely not the best."_** ![Gopher](images/gopher_fan.png)
