@@ -138,3 +138,13 @@ The following frontends are planned:
 
 ![CMD](images/cmd_small.png) ![Browser](images/js_small.png) ![Android](images/android_small.png)
 ![iOS](images/ios_small.png) ![Desktop](images/desktop_small.jpg)
+
+---
+
+### Current Status
+
+At the moment I'm
+
+ * hoping to get CIR as topic for my thesis at the FernUniversität Hagen
+ * trying to become a native Go speaker and to find a good design for the
+ [backend packages](https://godoc.org/github.com/stefanhans/golang-contexting/ctx) and the API
