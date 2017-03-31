@@ -3,9 +3,9 @@
 
 
 Network Working Group                                        Stefan Hans
-Internet-Draft                                            March 28, 2017
+Internet-Draft                                            March 31, 2017
 Intended status: Experimental
-Expires: September 29, 2017
+Expires: October 2, 2017
 
 
          Concepts of Contextinformation Routing Networks (CRNs)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 29, 2017.
+   This Internet-Draft will expire on October 2, 2017.
 
 
 
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Stefan Hans            Expires September 29, 2017               [Page 1]
+Stefan Hans              Expires October 2, 2017                [Page 1]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Stefan Hans            Expires September 29, 2017               [Page 2]
+Stefan Hans              Expires October 2, 2017                [Page 2]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -165,7 +165,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 29, 2017               [Page 3]
+Stefan Hans              Expires October 2, 2017                [Page 3]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -221,7 +221,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 29, 2017               [Page 4]
+Stefan Hans              Expires October 2, 2017                [Page 4]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -277,7 +277,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 29, 2017               [Page 5]
+Stefan Hans              Expires October 2, 2017                [Page 5]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -333,7 +333,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 29, 2017               [Page 6]
+Stefan Hans              Expires October 2, 2017                [Page 6]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -389,7 +389,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 29, 2017               [Page 7]
+Stefan Hans              Expires October 2, 2017                [Page 7]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -445,7 +445,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 29, 2017               [Page 8]
+Stefan Hans              Expires October 2, 2017                [Page 8]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -501,7 +501,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 
 
-Stefan Hans            Expires September 29, 2017               [Page 9]
+Stefan Hans              Expires October 2, 2017                [Page 9]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
@@ -548,6 +548,27 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
 
 Appendix A.  CRN's Glossary
 
+   Contextinformation (CI)
+                  Information within its described context.
+
+   Contextinformation Coding (CIC)
+                  The CIC-Ruleset for a particular type of CI and a
+                  concrete piece of encoded CI.
+
+
+
+Stefan Hans              Expires October 2, 2017               [Page 10]
+
+Internet-Draft     Contextinformation Routing Networks        March 2017
+
+
+   Contextinformation Packet (CIP)
+                  Datastructure encapsulating encoded CI.
+
+   Contextinformation Routing (CIR)
+                  Overlay network routing using CIC-Content as CRN-
+                  Index.
+
    CIC-Brick
                   One byte of encoded CI consisting of CIC-Content and
                   CIC-Mask as a pair of bit strings.
@@ -555,68 +576,53 @@ Appendix A.  CRN's Glossary
    CIC-Content
                   The definite part of encoded CI.
 
-
-
-Stefan Hans            Expires September 29, 2017              [Page 10]
-
-Internet-Draft     Contextinformation Routing Networks        March 2017
-
-
    CIC-Mask
                   The undefining part of encoded CI.
 
    CIC-Module
-
+                  A CIC, not containing other CICs.
 
    CIC-Number
-
+                  Linking CIC-Ruleset and all its encoded CI.
 
    CIC-Padding
-
+                  Filling a shorter as required encoded CI with CIC-
+                  Spam.
 
    CIC-Ruleset
-
+                  Set of CIC-Modules.
 
    CIC-Spam
-
+                  Bits of a CIC which have no meaning.
 
    CIR-Client
-
+                  Client aspects of CIR.
 
    CIR-Node
-
+                  Routing responsibility of the lowest byte of the CRN-
+                  Address.
 
    CIR-Server
-
+                  Server aspects of CIR.
 
    CIR-Tree
+                  B-tree describing the CIR data structure .
 
-
-   Contextinformation (CI)
-
-
-   Contextinformation Coding (CIC)
-
-
-   Contextinformation Packet (CIP)
-
-
-   Contextinformation Routing (CIR)
-
-
-   Root-CIC
+   CRN-Address
+                  CIC-Content as overlay network address.
 
 
 
-
-
-
-
-
-Stefan Hans            Expires September 29, 2017              [Page 11]
+Stefan Hans              Expires October 2, 2017               [Page 11]
 
 Internet-Draft     Contextinformation Routing Networks        March 2017
 
+
+   CIR-Index
+                  CIC-Content as index of the CIR-Tree.
+
+   Root-CIC
+                  The outermost CIC and the CIC-Brick identifying it.
 
 Appendix B.  CRN's Abbreviations
 
@@ -663,10 +669,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-Stefan Hans            Expires September 29, 2017              [Page 12]
+Stefan Hans              Expires October 2, 2017               [Page 12]
