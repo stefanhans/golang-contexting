@@ -566,8 +566,8 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
                   Datastructure encapsulating encoded CI.
 
    Contextinformation Routing (CIR)
-                  Overlay network routing using CIC-Content as CRN-
-                  Index.
+                  Overlay network routing using CIC-Content as
+                  addresses.
 
    CIC-Brick
                   One byte of encoded CI consisting of CIC-Content and
@@ -606,7 +606,7 @@ Internet-Draft     Contextinformation Routing Networks        March 2017
                   Server aspects of CIR.
 
    CIR-Tree
-                  B-tree describing the CIR data structure .
+                  B-tree describing the CIR data structure.
 
    CRN-Address
                   CIC-Content as overlay network address.
