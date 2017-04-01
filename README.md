@@ -2,7 +2,7 @@
 ![Gopher](images/gopher_small.png)![Under Construction](images/under_construction.jpg)![Experimental](images/experimental_small.png)
 
 Contextinformation Routing Network (CRN) is a communication framework enabling
-an universal service to join matching contextinformation respectively its
+a universal service to join matching contextinformation respectively its
 communication partners.
 
 The concept and the specifications are described in RFC documents:
@@ -16,7 +16,7 @@ The concept and the specifications are described in RFC documents:
  * [CIR Specification](https://raw.githubusercontent.com/stefanhans/golang-contexting/master/RFC/CIR_Specification.txt)
  (not yet mature)
 
-These documents are still drafts and will be finalized, if the reference implementation will be.
+These documents are still drafts and will be finalized if the reference implementation will be.
 
 
 ---
@@ -25,7 +25,7 @@ The main components of CRNs are the following:
 ### Contextinformation (CI)
 ![Info](images/info_small.jpg)
 Contextinformation (CI) refers mainly to the known terms information and context.
-Due to the lack of an useful clear distinction between the two, CI is defined
+Due to the lack of a useful clear distinction between the two, CI is defined
 here as information within its described context, i.e. context becomes part of
 CI by describing it.
 Another aspect of CI is the accuracy with regard to possible matches with other
@@ -34,7 +34,7 @@ meaning is not relevant to find matching CI.
 
 ### Contextinformation Coding (CIC)
 ![Coding](images/binary.png)
-Contextinformation Coding (CIC)is the conversion of CI into a binary format,
+Contextinformation Coding (CIC)is the conversion of CI into a binary format
 and vice versa.  CIC means both, the conversion rules (CIC-Ruleset) for a
 particular type of CI and a concrete piece of encoded CI.
 Every CIC has an identifier, called CIC-Number.
@@ -42,29 +42,29 @@ A CIC-Ruleset and all its encoded CI are linked by this CIC-Number. Encoded CI
 has the form of two parallel bit strings of equal length.  This pair
 consists of CIC-Content, an instance of the CIC-Ruleset, and CI-Mask, which is
 used to define the accuracy of the searched match.  Then it is sufficient for
-a bitwise match of two pieces of CI, if both CIC-Contents are equal or both
+a bitwise match of two pieces of CI if both CIC-Contents are equal or both
 CI-Masks mark them as non-relevant.
 
 The calculation of such a match between two CIs uses the following function
-resp. bitwise expression
+or bitwise expression, respectively
 
     match(Offer, Request) = (NOT (Offer-Content XOR Request-Content)) OR (Offer-Mask AND Request-Mask)
 
 
 Let me illustrate this with an example.
-Offer and Request are two communication roles, and location is the type of CI.
+Offer and Request are two communication roles, and Location is the type of CI.
 Offer says "I'm available for any Request with matching location (CI) to contact me" and
 Request says "I'm searching for any Offer with matching location (CI)".
 Both have an exact information about their location and can define a
 surrounding area where Offer is available respectively Request is searching.
 CIC-Content, as the encoded location, together with CI-Mask defines the
 surrounding area by marking bits of CIC-Content as true in any case concerning
-the match.  Here the CI of Offer and Request are matching, if the location of
+the match.  Here the CI of Offer and Request are matching if the location of
 one is in the surrounding area of the other and vice versa.
 
 ### Contextinformation Packet (CIP)
 ![Packet](images/packet.png)
-Encoded CI is encapsulated in a datastructure named Contextinformation Packet (CIP).
+Encoded CI is encapsulated in a data structure named Contextinformation Packet (CIP).
 A CIP is divided into three parts:
 
  * Header Data
@@ -83,10 +83,10 @@ within CIPs.
 ![Routing](images/network.png)
 Contextinformation Routing (CIR) takes place in an overlay network built
 normally on top of the TCP/IP layer. It is organized basically by using
-CIC-Content as index. It is oriented towards known concepts of network routing,
-peer-to-peer and others network principles and B-tree like datastructures.
+CIC-Content as an index. It is oriented towards known concepts of network routing,
+peer-to-peer and others network principles and B-tree like data structures.
 
-Additionally it is committing to the four properties of reactive systems as described
+Additionally, it is committing to the four properties of reactive systems as described
 in the [Reactive Manifesto](http://www.reactivemanifesto.org/):
 
 ![Reactive Manifesto](http://www.reactivemanifesto.org/images/reactive-traits.svg)
@@ -117,7 +117,7 @@ as [SOLID Go Design](https://dave.cheney.net/2016/08/20/solid-go-design):
 
 The infrastructure, namely Contextinformation Packet (CIP) and Contextinformation Routing (CIR),
 will be implemented in Go packages. The API for the Contextinformation Coding (CIC) and the applications
-will be follow afterwards. Concerning simplicity and conciseness of the API the complete backend
+will follow afterwards. Concerning simplicity and conciseness of the API, the complete backend
 shall be oriented towards the standard library of Go.
 
 
@@ -149,5 +149,4 @@ At the moment I'm
  * hoping to get CIR as topic for my thesis at the FernUniversität Hagen
  * trying to become a native Go speaker and to find a good design for the
  [backend packages](https://godoc.org/github.com/stefanhans/golang-contexting/ctx) and the API
-
 
