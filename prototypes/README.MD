@@ -7,21 +7,29 @@ The prototypes for application testing and demonstration will be a kind of the s
 These chats will have an isomorphic code model and will be flexible concerning their Contextinformation Codings.
 
 
-### Command-Line (mainly for backend testing)
+### Command-Line
 ![CMD](../images/cmd_small.png)
 
+Mainly for backend testing - [predecessor in Qt](https://github.com/stefanhans/ContextRouting/tree/master/PrototypeWorkshop)
 
-### Browser ([GopherJS](https://github.com/gopherjs/gopherjs))
+
+### Browser
 ![Browser](../images/js_small.png)
+[GopherJS](https://github.com/gopherjs/gopherjs)
 
-### Android ([golang/mobile](https://github.com/golang/mobile))
+### Android
 ![Android](../images/android_small.png)
+[golang/mobile](https://github.com/golang/mobile)
 
-### iOS ([golang/mobile](https://github.com/golang/mobile))
+### iOS
 ![iOS](../images/ios_small.png)
 
-### Desktop ([GUI library](https://github.com/avelino/awesome-go#gui) still under investigation)
+[golang/mobile](https://github.com/golang/mobile)
+
+### Desktop
 ![Desktop](../images/desktop_small.jpg)
+
+[GUI library](https://github.com/avelino/awesome-go#gui) still under investigation
 
 
 
