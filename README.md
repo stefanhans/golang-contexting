@@ -1,4 +1,5 @@
 # Reference Implementation of Contextinformation Routing Networks in Go
+[![GoDoc](https://godoc.org/github.com/stefanhans/golang-contexting/ctx?status.svg)](https://godoc.org/github.com/stefanhans/golang-contexting/ctx)
 ![Under Construction](images/under_construction.jpg)![Experimental](images/experimental_small.png)
 
 Contextinformation Routing Network (CRN) is a communication framework enabling
