@@ -10,6 +10,7 @@ Mature draft
 
 Related to the Qt implementation [Contexting Library](https://github.com/stefanhans/Contexting).
 According to the reference implementation in Go, the rewriting has not started yet.
+For the impatient ones -> [GoDoc](https://godoc.org/github.com/stefanhans/golang-contexting/ctx)
 
 
 ### CIR Specification
