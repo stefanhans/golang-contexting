@@ -10,7 +10,8 @@ These chats will have an isomorphic code model and will be flexible concerning t
 ### Command-Line
 ![CMD](../images/cmd_small.png)
 
-Mainly for backend testing - [predecessor in Qt](https://github.com/stefanhans/ContextRouting/tree/master/PrototypeWorkshop)
+Mainly for backend testing -
+[predecessor in Qt](https://github.com/stefanhans/ContextRouting/tree/master/PrototypeWorkshop/Qt/WorkshopForModuls)
 
 
 ### Browser
