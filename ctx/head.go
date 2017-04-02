@@ -7,7 +7,7 @@ Implementing the header data part of CIP except the primitives' core definitions
 	0                   1                   2                   3
 	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2
 	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-	|   request (1) |  profile (1)  |  version (1)  |  channel (1)  | |
+	|   purpose (1) |  profile (1)  |  version (1)  |  channel (1)  | |
 	|                                                               | |
 	|                            UUID (16)                          | |
 	|                                                               | |
