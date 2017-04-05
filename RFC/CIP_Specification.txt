@@ -719,7 +719,7 @@ Internet-Draft         CIP Specification for CRNs             April 2017
 10.  Informative References
 
    [CRNs]     Hans, S., "Concepts of Contextinformation Routing Networks
-              (CRNs)", Januar 2016,
+              (CRNs)", April 2017,
               <https://raw.githubusercontent.com/stefanhans/golang-
               contexting/master/RFC/CRN_Concepts.txt>.
 
