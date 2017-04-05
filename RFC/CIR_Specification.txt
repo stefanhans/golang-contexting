@@ -269,7 +269,7 @@ Internet-Draft         CIR Specification for CRNs             April 2017
 
    [ReactiveManifesto]
               Boner, J., Farley, D., Kuhn, R., and M. Thompson, "The
-              Reactive Manifesto", September 2014,
+              Reactive Manifesto", September 2016,
               <http://www.reactivemanifesto.org>.
 
 
