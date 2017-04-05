@@ -3,9 +3,9 @@
 
 
 Network Working Group                                        Stefan Hans
-Internet-Draft                                              January 2017
+Internet-Draft                                             April 5, 2017
 Intended status: Experimental
-Expires: July 5, 2017
+Expires: October 7, 2017
 
 
  Contextinformation Routing (CIR) Specification for Contextinformation
@@ -34,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on July 5, 2017.
+   This Internet-Draft will expire on October 7, 2017.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 1]
+Stefan Hans              Expires October 7, 2017                [Page 1]
 
-Internet-Draft         CIR Specification for CRNs           January 2017
+Internet-Draft         CIR Specification for CRNs             April 2017
 
 
 Table of Contents
@@ -70,8 +70,8 @@ Table of Contents
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .   5
    8.  Informative References  . . . . . . . . . . . . . . . . . . .   5
    Appendix A.  CRN's Glossary . . . . . . . . . . . . . . . . . . .   6
-   Appendix B.  CRN's Abbreviations  . . . . . . . . . . . . . . . .   6
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   6
+   Appendix B.  CRN's Abbreviations  . . . . . . . . . . . . . . . .   7
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   7
 
 1.  Introduction
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 2]
+Stefan Hans              Expires October 7, 2017                [Page 2]
 
-Internet-Draft         CIR Specification for CRNs           January 2017
+Internet-Draft         CIR Specification for CRNs             April 2017
 
 
            / ENRP \        / ENRP \           .      |       |      .
@@ -165,9 +165,9 @@ Internet-Draft         CIR Specification for CRNs           January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 3]
+Stefan Hans              Expires October 7, 2017                [Page 3]
 
-Internet-Draft         CIR Specification for CRNs           January 2017
+Internet-Draft         CIR Specification for CRNs             April 2017
 
 
                             Device
@@ -207,29 +207,29 @@ Internet-Draft         CIR Specification for CRNs           January 2017
 
    We distinguish between the two main roles Participant and User with
    regard to CIR.  A Participant (CRN-Node) offers CI or provides
-   explicitly an active role in CIR.  An User only uses CIR requesting
-   CI or metadata.  The following concepts refer to how CRNs are built
-   up with CRN-Nodes dynamically.
+   explicitly an active role in CIR.  A User only uses CIR requesting CI
+   or metadata.  The following concepts refer to how CRNs are built up
+   with CRN-Nodes dynamically.
 
    CIR-Registration
-             At first an active CRN-Node has to be known as entry point
+             At first, an active CRN-Node has to be known as entry point
              or to be established to create a new CRN.  This CRN-Node is
              called CRN-Root.  A CRN-Root knows all major subnets
-             concerning the CIC-Content used as index (CI-Index).  New
-             Participants can be registered by requesting the CRN-Root
-             or any known CRN-Node being on the relevant path, i.e. on
+             concerning the CIC-Content used as an index (CI-Index).
+             New Participants can be registered by requesting the CRN-
+             Root or any known CRN-Node being on the relevant path, i.e.
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 4]
+Stefan Hans              Expires October 7, 2017                [Page 4]
 
-Internet-Draft         CIR Specification for CRNs           January 2017
+Internet-Draft         CIR Specification for CRNs             April 2017
 
 
-             the CI-Index of the new participant.  If not explicitly
+             on the CI-Index of the new participant.  If not explicitly
              requested differently a new participant will be registered
-             or mounted above the first ambigous CIC-Brick, i.e. before
-             the first byte of CI-Mask not equal 0.
+             or mounted above the first ambiguous CIC-Brick, i.e. before
+             the first byte of CI-Mask is not equal '0'.
 
 
 
@@ -277,23 +277,82 @@ Internet-Draft         CIR Specification for CRNs           January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 5]
+Stefan Hans              Expires October 7, 2017                [Page 5]
 
-Internet-Draft         CIR Specification for CRNs           January 2017
+Internet-Draft         CIR Specification for CRNs             April 2017
 
 
 Appendix A.  CRN's Glossary
 
-   content
-                  The content represents an exact information encoded in
-                  a byte.
+   Contextinformation (CI)
+                  Information within its described context.
 
-   mask
-                  The mask represents the relevance of the exactness of
-                  the content in a byte.  For that a 1 makes the
-                  corresponding bit of the content irrelevant.  Two bits
-                  are corresponding, if they are at the same place in
-                  the byte.
+   Contextinformation Coding (CIC)
+                  The CIC-Ruleset for a particular type of CI and a
+                  concrete piece of encoded CI.
+
+   Contextinformation Packet (CIP)
+                  Data structure encapsulating encoded CI.
+
+   Contextinformation Routing (CIR)
+                  Overlay network routing using CIC-Content as an
+                  address.
+
+   CIC-Brick
+                  One byte of encoded CI consisting of CIC-Content and
+                  CIC-Mask as a pair of bit strings.
+
+   CIC-Content
+                  The definite part of encoded CI.
+
+   CIC-Mask
+                  The undefining part of encoded CI.
+
+   CIC-Module
+                  A CIC, not containing other CICs.
+
+   CIC-Number
+                  Linking CIC-Ruleset and all its encoded CI.
+
+   CIC-Padding
+                  Filling a shorter as required encoded CI with CIC-
+                  Spam.
+
+   CIC-Ruleset
+                  Set of CIC-Modules.
+
+   CIC-Spam
+                  Bits of a CIC which have no meaning.
+
+   CIR-Client
+                  Client aspects of CIR.
+
+   CIR-Index
+                  CIC-Content as an index of the CIR-Tree.
+
+
+
+
+Stefan Hans              Expires October 7, 2017                [Page 6]
+
+Internet-Draft         CIR Specification for CRNs             April 2017
+
+
+   CIR-Node
+                  Routing responsibility of the lowest byte of the CRN-
+                  Address.
+
+   CIR-Server
+                  Server aspects of CIR.
+
+   CIR-Tree
+                  B-tree describing the CIR data structure.
+
+   CRN-Address
+                  CIC-Content as overlay network address.
+
+   Root-CIC
+                  The outermost CIC and the CIC-Brick identifying it.
 
 Appendix B.  CRN's Abbreviations
 
@@ -330,7 +389,4 @@ Author's Address
 
 
 
-
-
-
-Stefan Hans               Expires July 5, 2017                  [Page 6]
+Stefan Hans              Expires October 7, 2017                [Page 7]

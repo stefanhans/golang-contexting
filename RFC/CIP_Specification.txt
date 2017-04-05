@@ -3,9 +3,9 @@
 
 
 Network Working Group                                        Stefan Hans
-Internet-Draft                                              January 2017
+Internet-Draft                                             April 5, 2017
 Intended status: Experimental
-Expires: July 5, 2017
+Expires: October 7, 2017
 
 
   Contextinformation Paket (CIP) Specification for Contextinformation
@@ -14,10 +14,10 @@ Expires: July 5, 2017
 
 Abstract
 
-   Contextinformation Paket (CIP) is the datastructure to transfer
+   Contextinformation Paket (CIP) is the data structure to transfer
    contextinformation plus header and possibly application data through
    Contextinformation Routing Networks (CRNs).  All information which
-   has to be transfered inside CRNs has to be encapsulated within CIPs.
+   has to be transferred inside CRNs has to be encapsulated within CIPs.
    This document is the specification of CIP.  For an overview about
    CRNs please see Internet-Draft "Concepts of Contextinformation
    Routing Networks (CRNs)" [CRNs].
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on July 5, 2017.
+   This Internet-Draft will expire on October 7, 2017.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 1]
+Stefan Hans              Expires October 7, 2017                [Page 1]
 
-Internet-Draft         CIP Specification for CRNs           January 2017
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
    include Simplified BSD License text as described in Section 4.e of
@@ -97,7 +97,7 @@ Table of Contents
 
 1.  Introduction
 
-   Contextinformation Packet (CIP) is the datastructure to encapsulate
+   Contextinformation Packet (CIP) is the data structure to encapsulate
    encoded Contextinformation (CI).  A CIP is divided into three parts:
 
    Header Data
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 2]
+Stefan Hans              Expires October 7, 2017                [Page 2]
 
-Internet-Draft         CIP Specification for CRNs           January 2017
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
              The static part defines also the dynamic part's type and
@@ -134,7 +134,7 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
 
 
-   All information which has to be transfered inside CRNs has to be
+   All information which has to be transferred inside CRNs has to be
    encapsulated within CIPs.
 
 2.  Motivation
@@ -142,8 +142,8 @@ Internet-Draft         CIP Specification for CRNs           January 2017
    The motivation for this document is mainly the publication to prevent
    proprietary rights of third parties hindering the general
    availability of its described concepts.  Another additional
-   motivation is the exchange with interested experts.  This draft is a
-   first step towards a possible formal recognition as an Internet
+   motivation is the exchange with interested experts.  This draft is
+   the first step towards a possible formal recognition as an Internet
    Standard in the future.
 
 3.  Binary Representations of Elements
@@ -159,20 +159,20 @@ Internet-Draft         CIP Specification for CRNs           January 2017
                   The representations of ordered numbering and bitwise
                   flags can be combined freely within elements.
 
-   Well Known Representations
-                  These representations are well known as standards like
+   well-known Representations
+                  These representations are well-known as standards like
                   IP address, port number, UUID etc..
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 3]
+Stefan Hans              Expires October 7, 2017                [Page 3]
 
-Internet-Draft         CIP Specification for CRNs           January 2017
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
    Reserved Zero Value (RZV)
-                  Nearly all of the not well known representations have
-                  the so called Reserved Zero Value.  That means zero as
+                  Nearly all of the not well-known representations have
+                  the so-called Reserved Zero Value.  That means zero as
                   value is reserved for developing and testing purposes.
 
       Figure 1 shows bytes representing an ordered numbering example.
@@ -221,9 +221,9 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 4]
+Stefan Hans              Expires October 7, 2017                [Page 4]
 
-Internet-Draft         CIP Specification for CRNs           January 2017
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
             Figure 3 shows the structure of CIP's header data.
@@ -257,11 +257,11 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
    profile (RZV)
                   A number of the enumeration of Service Groups (Flags)
-                  shows the services available by the sender of the CIP.
+                  shows the available services of the CIP's sender.
 
    version (RZV)
                   The version of this specification.  It has a higher
-                  4-bit part which represents the major number and a
+                  4-bit part which represents the major number and the
                   lower 4-bit part which represents the minor number.
 
    channel (RZV)
@@ -277,9 +277,9 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 5]
+Stefan Hans              Expires October 7, 2017                [Page 5]
 
-Internet-Draft         CIP Specification for CRNs           January 2017
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
    IP port
@@ -333,9 +333,9 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 6]
+Stefan Hans              Expires October 7, 2017                [Page 6]
 
-Internet-Draft         CIP Specification for CRNs           January 2017
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
      Figure 4 shows the service groups and its defined first two bits.
@@ -377,7 +377,7 @@ Internet-Draft         CIP Specification for CRNs           January 2017
                   designs in the future.  The value for the core
                   functionality is 1 which has to be used at the moment.
                   The value 0 is reserved for testing and all other
-                  values has no meaning so far.
+                  values have no meaning so far.
 
    root-CIC (RZV)
                   The mask is the second part of a Context Brick (see
@@ -389,9 +389,9 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 7]
+Stefan Hans              Expires October 7, 2017                [Page 7]
 
-Internet-Draft         CIP Specification for CRNs           January 2017
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
                   The number of Context Bricks as additional data (up to
@@ -405,7 +405,7 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
 5.2.1.  Types
 
-   'type' describes the very main types of contextinformation in CRNs.
+   'type' describes the main type of contextinformation in CRNs.
 
 5.2.2.  Root-CIC
 
@@ -425,10 +425,10 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
    mask
                   The mask represents the relevance of the exactness of
-                  the content in a byte.  For that a 1 makes the
+                  the content in a byte.  For that, a '1' makes the
                   corresponding bit of the content irrelevant.  Two bits
-                  are corresponding, if they are at the same place in
-                  the byte.
+                  are corresponding if they are at the same place in the
+                  byte.
 
 6.  Application Data
 
@@ -445,9 +445,9 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 8]
+Stefan Hans              Expires October 7, 2017                [Page 8]
 
-Internet-Draft         CIP Specification for CRNs           January 2017
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
    The following figure shows the data section of the context CIP.  This
@@ -490,7 +490,7 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 6.3.  Types of Additional Application Data
 
    The application data contains as many bytes as specified by 'size'.
-   According to the 'type' the application data has to be interpreted
+   According to the 'type', the application data has to be interpreted
    appropriately.  This data is meant normally for applications outside
    the CRN.  By internal routing procedures the applications are the
    nodes of the CRN itself and therefore this data is used, in this
@@ -501,9 +501,9 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                  [Page 9]
+Stefan Hans              Expires October 7, 2017                [Page 9]
 
-Internet-Draft         CIP Specification for CRNs           January 2017
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
 6.3.1.  For External Applications
@@ -520,7 +520,7 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 7.  Core Services
 
    The application data contains as many bytes as specified by 'size'.
-   According to the 'type' the application data has to be interpreted
+   According to the 'type', the application data has to be interpreted
    appropriately.  This data is meant normally for applications outside
    the CRN.  By internal routing procedures the applications are the
    nodes of the CRN itself and therefore this data is used, in this
@@ -557,9 +557,9 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                 [Page 10]
+Stefan Hans              Expires October 7, 2017               [Page 10]
 
-Internet-Draft         CIP Specification for CRNs           January 2017
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
                            UDP Services are ...:
@@ -613,9 +613,9 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                 [Page 11]
+Stefan Hans              Expires October 7, 2017               [Page 11]
 
-Internet-Draft         CIP Specification for CRNs           January 2017
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
                            TCP Services are ...:
@@ -649,7 +649,7 @@ Internet-Draft         CIP Specification for CRNs           January 2017
                   designs in the future.  The value for the core
                   functionality is 1 which has to be used at the moment.
                   The value 0 is reserved for testing and all other
-                  values has no meaning so far.
+                  values have no meaning so far.
 
    HeartbeatService
                   The mask is the second part of a Context Brick (see
@@ -669,9 +669,9 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                 [Page 12]
+Stefan Hans              Expires October 7, 2017               [Page 12]
 
-Internet-Draft         CIP Specification for CRNs           January 2017
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
                   The additional data contains the number of Context
@@ -725,12 +725,26 @@ Internet-Draft         CIP Specification for CRNs           January 2017
 
 
 
-Stefan Hans               Expires July 5, 2017                 [Page 13]
+Stefan Hans              Expires October 7, 2017               [Page 13]
 
-Internet-Draft         CIP Specification for CRNs           January 2017
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
 Appendix A.  CRN's Glossary
+
+   Contextinformation (CI)
+                  Information within its described context.
+
+   Contextinformation Coding (CIC)
+                  The CIC-Ruleset for a particular type of CI and a
+                  concrete piece of encoded CI.
+
+   Contextinformation Packet (CIP)
+                  Data structure encapsulating encoded CI.
+
+   Contextinformation Routing (CIR)
+                  Overlay network routing using CIC-Content as an
+                  address.
 
    CIC-Brick
                   One byte of encoded CI consisting of CIC-Content and
@@ -743,57 +757,50 @@ Appendix A.  CRN's Glossary
                   The undefining part of encoded CI.
 
    CIC-Module
-
+                  A CIC, not containing other CICs.
 
    CIC-Number
-
+                  Linking CIC-Ruleset and all its encoded CI.
 
    CIC-Padding
-
+                  Filling a shorter as required encoded CI with CIC-
+                  Spam.
 
    CIC-Ruleset
-
+                  Set of CIC-Modules.
 
    CIC-Spam
-
+                  Bits of a CIC which have no meaning.
 
    CIR-Client
+                  Client aspects of CIR.
+
+   CIR-Index
+                  CIC-Content as an index of the CIR-Tree.
+
+
+
+
+Stefan Hans              Expires October 7, 2017               [Page 14]
+
+Internet-Draft         CIP Specification for CRNs             April 2017
 
 
    CIR-Node
-
+                  Routing responsibility of the lowest byte of the CRN-
+                  Address.
 
    CIR-Server
-
+                  Server aspects of CIR.
 
    CIR-Tree
+                  B-tree describing the CIR data structure.
 
-
-   Contextinformation (CI)
-
-
-   Contextinformation Coding (CIC)
-
-
-   CIP (Contextinformation Packet)
-
-
-
-
-
-Stefan Hans               Expires July 5, 2017                 [Page 14]
-
-Internet-Draft         CIP Specification for CRNs           January 2017
-
-
-   CIR (Contextinformation Routing)
-
-
-   Reserved Zero Value (RZV)
-
+   CRN-Address
+                  CIC-Content as overlay network address.
 
    Root-CIC
-
+                  The outermost CIC and the CIC-Brick identifying it.
 
 Appendix B.  CRN's Abbreviations
 
@@ -830,11 +837,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-Stefan Hans               Expires July 5, 2017                 [Page 15]
+Stefan Hans              Expires October 7, 2017               [Page 15]
