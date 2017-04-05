@@ -530,16 +530,14 @@ Internet-Draft     Contextinformation Routing Networks        April 2017
    [CIP_Spec]
               Hans, S., "Contextinformation Paket (CIP) Specification
               for Contextinformation Routing Networks (CRNs)", Januar
-              2016,
-              <https://github.com/stefanhans/ContextRouting/raw/master/
-              RFC/DraftRFC_CIP_Specification.txt>.
+              2016, <https://raw.githubusercontent.com/stefanhans/
+              golang-contexting/master/RFC/CIP_Specification.txt>.
 
    [CIR_Spec]
               Hans, S., "Contextinformation Routing (CIR) Specification
               for Contextinformation Routing Networks (CRNs)", Januar
-              2016,
-              <https://github.com/stefanhans/ContextRouting/raw/master/
-              RFC/DraftRFC_CIR_Specification.txt>.
+              2016, <https://raw.githubusercontent.com/stefanhans/
+              golang-contexting/master/RFC/CIR_Specification.txt>.
 
    [ReactiveManifesto]
               Boner, J., Farley, D., Kuhn, R., and M. Thompson, "The
@@ -555,6 +553,8 @@ Appendix A.  CRN's Glossary
                   The CIC-Ruleset for a particular type of CI and a
                   concrete piece of encoded CI.
 
+   Contextinformation Packet (CIP)
+
 
 
 Stefan Hans              Expires October 7, 2017               [Page 10]
@@ -562,7 +562,6 @@ Stefan Hans              Expires October 7, 2017               [Page 10]
 Internet-Draft     Contextinformation Routing Networks        April 2017
 
 
-   Contextinformation Packet (CIP)
                   Data structure encapsulating encoded CI.
 
    Contextinformation Routing (CIR)
@@ -610,6 +609,7 @@ Internet-Draft     Contextinformation Routing Networks        April 2017
 
    CIR-Tree
                   B-tree describing the CIR data structure.
+
 
 
 
