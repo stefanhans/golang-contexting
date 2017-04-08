@@ -17,9 +17,7 @@ ToDo: Finalize
 
 ****************************************** FILE COMMENT ******************************************/
 
-// Datastructure to fill the dynamic CIP parts of application
-//
-// CipAppArray has a first byte, which is the number of the next used bytes (0-255)
+// CipAppArray is the data structure to fill the dynamic CIP application data. It has a first byte, which is the number of the next used bytes (0-255)
 type CipAppArray [256]byte
 
 // CIP_APP_ARRAY_RZV (Reserved Zero Value) with 0 as first byte determine a quasi empty array for application data.
