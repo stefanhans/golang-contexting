@@ -62,7 +62,7 @@ func (cip *Cip) String() string {
 		fmt.Sprintf("%-16s: %v\n", "appDataArray", cip.appDataArray)
 }
 
-// Initial creation of CIP with UUID and null values
+// CreateCip creates the initial creation of CIP with UUID and null values
 func CreateCip() *Cip {
 	return &Cip{
 		version: VERSION,

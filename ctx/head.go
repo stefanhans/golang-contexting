@@ -67,7 +67,7 @@ func (cip *Cip) Uuid() string {
 
 // Datastructure to fill the dynamic CIP parts of header and application
 //
-// The first byte is the number of the next used bytes (0-255)
+// CipHeadArray contains a first byte, which is the number of the next used bytes (0-255)
 type CipHeadArray [256]byte
 
 // CIP_ARRAY_RZV (Reserved Zero Value) with 0 as first byte determine a quasi empty array for header or application data.
