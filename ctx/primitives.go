@@ -77,7 +77,7 @@ const (
 	PROFILE_REPORTER
 )
 
-// Type to link CIP's field profile with constants
+// CipProfile links CIP's field 'profile' with constants
 type CipProfile byte
 
 // Implements Stringer() to show profile of CIP
@@ -123,7 +123,7 @@ const (
 	VERSION CipVersion = MAJOR_RELEASE<<4 + MINOR_RELEASE
 )
 
-// Type to link CIP's field version with constants
+// CipVersion links CIP's field 'version' with constants
 type CipVersion byte
 
 // Implements Stringer() to show version of CIP
@@ -140,7 +140,7 @@ const (
 	CHANNEL_CONTENT
 )
 
-// Type to link field with constants
+// CipChannel links field 'channel' with constants
 type CipChannel byte
 
 // Implements Stringer() to show channel of CIP
@@ -166,7 +166,7 @@ const (
 	HEADER_TYPE_ERROR
 )
 
-// Type to link field with constants
+// CipHeaderType links header field 'type' with constants
 type CipHeaderType byte
 
 // Implements Stringer() to show header type of CIP
@@ -216,7 +216,7 @@ const (
 	CI_TYPE_SIMPLE_MATCH
 )
 
-// Type to link field with constants
+// CiType links CI's field 'type' with constants
 type CiType byte
 
 // Implements Stringer() to show ci type of CIP
@@ -238,7 +238,7 @@ const (
 	APP_DATA_TYPE_RZV = AppDataType(iota)
 )
 
-// Type to link field with constants
+// AppDataType links application data field 'type' with constants
 type AppDataType byte
 
 // Implements Stringer() to show application data type of CIP
