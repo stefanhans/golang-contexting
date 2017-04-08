@@ -51,7 +51,7 @@ func (ciBrickSlice CiBrickSlice) toCiBrickArray() CiBrickArray {
 
 // toCiBrickSlice converts from CiBrickArray (length data included) to CiBrickSlice (no length data included)
 func (ciBrickArray CiBrickArray) toCiBrickSlice() CiBrickSlice {
-	var ciBrickSlice CiBrickSlice = ciBrickArray[1:ciBrickArray[0].Content+1]
+	var ciBrickSlice CiBrickSlice = ciBrickArray[1 : ciBrickArray[0].Content+1]
 
 	//fmt.Printf("CIP_CI_RZV:\n%s\n", CIP_CI_RZV)
 	//ciBrickArray[0] = CiBrick{byte(len(ciBrickSlice)), 0}
@@ -60,7 +60,6 @@ func (ciBrickArray CiBrickArray) toCiBrickSlice() CiBrickSlice {
 	//fmt.Printf("ciBrickArray:\n%s\n", ciBrickArray)
 	return ciBrickSlice
 }
-
 
 // SetCi sets the Contextinformation part of CIP
 func (cip *Cip) SetCi(ciType CiType, rootCic CiBrick, ciBricks CiBrickArray) *Cip {

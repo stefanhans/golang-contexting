@@ -13,8 +13,6 @@ import (
 	"net"
 )
 
-
-
 // Cip is the struct for the Contextinformation Pakets (CIP)
 type Cip struct {
 
@@ -63,7 +61,6 @@ func (cip *Cip) String() string {
 		fmt.Sprintf("%-16s: %d\n", "appDataSize", cip.appDataSize) +
 		fmt.Sprintf("%-16s: %v\n", "appDataArray", cip.appDataArray)
 }
-
 
 // Initial creation of CIP with UUID and null values
 func CreateCip() *Cip {

@@ -1,27 +1,24 @@
 package ctx_test
 
 import (
-	. "github.com/stefanhans/golang-contexting/ctx"
 	"fmt"
+	. "github.com/stefanhans/golang-contexting/ctx"
 	"testing"
 )
 
-
 var appDataTestTable_1 = []struct {
-	appDataType         AppDataType
-	strAppDataType            string
+	appDataType    AppDataType
+	strAppDataType string
 }{
 	{APP_DATA_TYPE_RZV, "APP_DATA_TYPE_RZV"},
 	{AppDataType(255), "APP_DATA_TYPE_UNDEFINED"},
 }
 
-
 var appDataTestTable_2 = []struct {
-	appDataArray               []byte
+	appDataArray []byte
 }{
-	{[]byte{0, 1, 2, 3} },
+	{[]byte{0, 1, 2, 3}},
 }
-
 
 func TestApp(t *testing.T) {
 
@@ -40,7 +37,7 @@ func TestApp(t *testing.T) {
 
 		var ada CipAppArray = CIP_APP_ARRAY_RZV
 		ada[0] = byte(len(app.appDataArray))
-		for i:=1; i<=len(app.appDataArray); i++ {
+		for i := 1; i <= len(app.appDataArray); i++ {
 			ada[i] = app.appDataArray[i-1]
 		}
 		cip.SetAppData(APP_DATA_TYPE_RZV, ada)

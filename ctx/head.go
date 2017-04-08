@@ -76,7 +76,6 @@ var CIP_HEAD_ARRAY_RZV = CipHeadArray{RZV}
 // Helper construct
 type CipHeadArraySlice []byte
 
-
 // SetHeadData sets the dynamic data of CIP's header
 func (cip *Cip) SetHeadData(headDataType CipHeaderType, headData CipHeadArray) *Cip {
 	cip.headDataType = headDataType

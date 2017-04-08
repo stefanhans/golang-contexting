@@ -1,13 +1,13 @@
 package ctx_test
 
 import (
+	"fmt"
 	. "github.com/stefanhans/golang-contexting/ctx"
 	"testing"
-	"fmt"
 )
 
 var purposeHeadTestTable = []struct {
-	purpose   CipPurpose
+	purpose    CipPurpose
 	strPurpose string
 }{
 	{PURPOSE_RZV, "PURPOSE_RZV"},
@@ -18,22 +18,21 @@ var purposeHeadTestTable = []struct {
 	{CipPurpose(255), "PURPOSE_UNDEFINED"},
 }
 
-
 var profileHeadTestTable = []struct {
-	profile   CipProfile
+	profile    CipProfile
 	strProfile string
 }{
 	{PROFILE_RZV, "PROFILE_RZV"},
 	{PROFILE_GATEWAY, "PROFILE_GATEWAY"},
 	{PROFILE_ROUTER, "PROFILE_ROUTER"},
-	{PROFILE_STORAGE,  "PROFILE_STORAGE"},
+	{PROFILE_STORAGE, "PROFILE_STORAGE"},
 	{PROFILE_REPORTER, "PROFILE_REPORTER"},
 	{CipProfile(255), "PROFILE_GATEWAY | PROFILE_ROUTER | PROFILE_STORAGE | PROFILE_REPORTER"},
 	{CipProfile(128), "PROFILE_UNDEFINED"},
 }
 
 var channelHeadTestTable = []struct {
-	channel   CipChannel
+	channel    CipChannel
 	strChannel string
 }{
 	{CHANNEL_RZV, "CHANNEL_RZV"},
@@ -42,10 +41,9 @@ var channelHeadTestTable = []struct {
 	{CipChannel(255), "CHANNEL_UNDEFINED"},
 }
 
-
 var headDataTestTable_1 = []struct {
-	headDataType         CipHeaderType
-	strHeadDataType            string
+	headDataType    CipHeaderType
+	strHeadDataType string
 }{
 	{HEADER_TYPE_RZV, "HEADER_TYPE_RZV"},
 	{HEADER_TYPE_CONTENT, "HEADER_TYPE_CONTENT"},
@@ -53,11 +51,10 @@ var headDataTestTable_1 = []struct {
 	{CipHeaderType(255), "HEADER_TYPE_UNDEFINED"},
 }
 
-
 var headDataTestTable_2 = []struct {
-	headDataArray               []byte
+	headDataArray []byte
 }{
-	{[]byte{0, 1, 2, 3} },
+	{[]byte{0, 1, 2, 3}},
 }
 
 func TestHead(t *testing.T) {
@@ -104,7 +101,7 @@ func TestHead(t *testing.T) {
 
 		var hda CipHeadArray = CIP_HEAD_ARRAY_RZV
 		hda[0] = byte(len(head.headDataArray))
-		for i:=1; i<=len(head.headDataArray); i++ {
+		for i := 1; i <= len(head.headDataArray); i++ {
 			hda[i] = head.headDataArray[i-1]
 		}
 		cip.SetHeadData(HEADER_TYPE_RZV, hda)

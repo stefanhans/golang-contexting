@@ -17,8 +17,6 @@ ToDo: Finalize
 
 ****************************************** FILE COMMENT ******************************************/
 
-
-
 // Datastructure to fill the dynamic CIP parts of application
 //
 // The first byte is the number of the next used bytes (0-255)
