@@ -22,8 +22,8 @@ var convertToSliceTestTable = []struct {
 func TestConvert(t *testing.T) {
 
 	for i, ci := range convertToArrayTestTable {
-		s1 := fmt.Sprintf("%s", ci.ciBrickSlice.toCiBrickArray())
-		s2 := fmt.Sprintf("%s", ci.ciBrickArray)
+		s1 := fmt.Sprintf("%v", ci.ciBrickSlice.toCiBrickArray())
+		s2 := fmt.Sprintf("%v", ci.ciBrickArray)
 		if s1 != s2 {
 			//t.Errorf("%d: Value != Expected:\n%s%s\n", i, s1, s2)
 			t.Errorf("%d: ", i)
@@ -31,8 +31,8 @@ func TestConvert(t *testing.T) {
 	}
 
 	for i, ci := range convertToSliceTestTable {
-		s1 := fmt.Sprintf("%s", ci.ciBrickArray)
-		s2 := fmt.Sprintf("%s", ci.ciBrickSlice.toCiBrickArray())
+		s1 := fmt.Sprintf("%v", ci.ciBrickArray)
+		s2 := fmt.Sprintf("%v", ci.ciBrickSlice.toCiBrickArray())
 		if s1 != s2 {
 			//t.Errorf("%d: Value != Expected:\n%s%s\n", i, s1, s2)
 			t.Errorf("%d: ", i)
