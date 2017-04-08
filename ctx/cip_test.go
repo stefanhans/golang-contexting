@@ -33,13 +33,13 @@ var cipTestTable = []struct {
 }
 
 var ciMatchTestTable = []struct {
-	ci_1_Type   CiType
-	ci_1_rootBrick   CiBrick
-	ci_1_Bricks CiBrickSlice
-	ci_2_Type   CiType
-	ci_2_rootBrick   CiBrick
-	ci_2_Bricks CiBrickSlice
-	match bool
+	ci_1_Type      CiType
+	ci_1_rootBrick CiBrick
+	ci_1_Bricks    CiBrickSlice
+	ci_2_Type      CiType
+	ci_2_rootBrick CiBrick
+	ci_2_Bricks    CiBrickSlice
+	match          bool
 }{
 	{CI_TYPE_RZV, CI_BRICK_RZV, CiBrickSlice{},
 		CI_TYPE_RZV, CI_BRICK_RZV, CiBrickSlice{}, true},
