@@ -20,12 +20,13 @@ ToDo: Functions for routing etc.
 
 import "fmt"
 
-// The encoded Contextinformation, i.e. 0 - 255 CiBrickArray
+// CiBrickArray is the encoded Contextinformation, i.e. 0 - 255 CiBrickArray
 type CiBrickArray [256]CiBrick
 
 // CIP_CI_RZV (Reserved Zero Value) with CiBrick.Content 0 determine a quasi empty array for Ci data
 var CIP_CI_RZV = CiBrickArray{CI_BRICK_RZV}
 
+// CiBrickSlice is a slice of CiBricks
 type CiBrickSlice []CiBrick
 
 func (ciBricks CiBrickSlice) String() string {
@@ -38,12 +39,12 @@ func (ciBricks CiBrickSlice) String() string {
 }
 
 // toCiBrickArray converts from CiBrickSlice (no length data included) to CiBrickArray (length data included)
-func (ciBrickSlice CiBrickSlice) toCiBrickArray() CiBrickArray {
+func (ciBricks CiBrickSlice) toCiBrickArray() CiBrickArray {
 	var ciBrickArray CiBrickArray = CIP_CI_RZV
 
 	//fmt.Printf("CIP_CI_RZV:\n%s\n", CIP_CI_RZV)
-	ciBrickArray[0] = CiBrick{byte(len(ciBrickSlice)), 0}
-	copy(ciBrickArray[1:byte(len(ciBrickSlice))+1], ciBrickSlice[:])
+	ciBrickArray[0] = CiBrick{byte(len(ciBricks)), 0}
+	copy(ciBrickArray[1:byte(len(ciBricks))+1], ciBricks[:])
 
 	//fmt.Printf("ciBrickArray:\n%s\n", ciBrickArray)
 	return ciBrickArray
