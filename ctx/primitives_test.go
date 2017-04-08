@@ -86,9 +86,6 @@ func TestConstants(t *testing.T) {
 			t.Errorf("Type Value: %T %s != %s %s\n", purpose.constant, purpose.constant, purpose.constType, purpose.constValue)
 		}
 	}
-	if s := CipPurpose(255).String(); s != "PURPOSE_UNDEFINED" {
-		t.Errorf("CipPurpose(255).String(): %s != %s\n", s, "PURPOSE_UNDEFINED")
-	}
 
 	for _, profile := range profileTestTable {
 		s := fmt.Sprintf("%T %s", profile.constant, profile.constant)
@@ -111,18 +108,12 @@ func TestConstants(t *testing.T) {
 			t.Errorf("Type Value: %T %s != %s %s\n", channel.constant, channel.constant, channel.constType, channel.constValue)
 		}
 	}
-	if s := CipChannel(255).String(); s != "CHANNEL_UNDEFINED" {
-		t.Errorf("CipChannel(255).String(): %s != %s\n", s, "CHANNEL_UNDEFINED")
-	}
 
 	for _, headerType := range headerTypeTestTable {
 		s := fmt.Sprintf("%T %s", headerType.constant, headerType.constant)
 		if s != headerType.constType+" "+headerType.constValue {
 			t.Errorf("Type Value: %T %s != %s %s\n", headerType.constant, headerType.constant, headerType.constType, headerType.constValue)
 		}
-	}
-	if s := CipHeaderType(255).String(); s != "HEADER_TYPE_UNDEFINED" {
-		t.Errorf("CipHeaderType(255).String(): %s != %s\n", s, "HEADER_TYPE_UNDEFINED")
 	}
 
 	for _, ciType := range ciTypeTestTable {
@@ -131,9 +122,6 @@ func TestConstants(t *testing.T) {
 			t.Errorf("Type Value: %T %s != %s %s\n", ciType.constant, ciType.constant, ciType.constType, ciType.constValue)
 		}
 	}
-	if s := CiType(255).String(); s != "CI_TYPE_UNDEFINED" {
-		t.Errorf("CiType(255).String(): %s != %s\n", s, "CI_TYPE_UNDEFINED")
-	}
 
 	for _, appDataType := range appDataTypeTestTable {
 		s := fmt.Sprintf("%T %s", appDataType.constant, appDataType.constant)
@@ -141,6 +129,27 @@ func TestConstants(t *testing.T) {
 			t.Errorf("Type Value: %T %s != %s %s\n", appDataType.constant, appDataType.constant, appDataType.constType, appDataType.constValue)
 		}
 	}
+}
+
+
+func TestUndefinedConstants(t *testing.T) {
+
+	if s := CipPurpose(255).String(); s != "PURPOSE_UNDEFINED" {
+		t.Errorf("CipPurpose(255).String(): %s != %s\n", s, "PURPOSE_UNDEFINED")
+	}
+
+	if s := CipChannel(255).String(); s != "CHANNEL_UNDEFINED" {
+		t.Errorf("CipChannel(255).String(): %s != %s\n", s, "CHANNEL_UNDEFINED")
+	}
+
+	if s := CipHeaderType(255).String(); s != "HEADER_TYPE_UNDEFINED" {
+		t.Errorf("CipHeaderType(255).String(): %s != %s\n", s, "HEADER_TYPE_UNDEFINED")
+	}
+
+	if s := CiType(255).String(); s != "CI_TYPE_UNDEFINED" {
+		t.Errorf("CiType(255).String(): %s != %s\n", s, "CI_TYPE_UNDEFINED")
+	}
+
 	if s := AppDataType(255).String(); s != "APP_DATA_TYPE_UNDEFINED" {
 		t.Errorf("AppDataType(255).String(): %s != %s\n", s, "APP_DATA_TYPE_UNDEFINED")
 	}
