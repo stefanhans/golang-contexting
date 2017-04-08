@@ -25,7 +25,7 @@ type CipAppArray [256]byte
 // CIP_ARRAY_RZV (Reserved Zero Value) with 0 as first byte determine a quasi empty array for application data.
 var CIP_APP_ARRAY_RZV = CipAppArray{RZV}
 
-// Helper construct
+// CipAppArraySlice is a helper construct
 type CipAppArraySlice []byte
 
 //  SetAppData sets the application data of CIP
