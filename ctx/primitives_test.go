@@ -131,7 +131,6 @@ func TestConstants(t *testing.T) {
 	}
 }
 
-
 func TestUndefinedConstants(t *testing.T) {
 
 	if s := CipPurpose(255).String(); s != "PURPOSE_UNDEFINED" {
