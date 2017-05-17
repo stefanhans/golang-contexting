@@ -61,7 +61,6 @@ func (cip *Cip) MarshalBinary() (data []byte, err error) {
 	out = append(out, byte(cip.appDataType))
 	out = append(out, byte(cip.appDataSize))
 
-
 	return out, nil
 }
 
