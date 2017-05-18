@@ -1,6 +1,9 @@
 package ctx
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 //// ci_head
 //purpose       CipPurpose
@@ -48,14 +51,30 @@ func (cip *Cip) MarshalBinary() (data []byte, err error) {
 	out = append(out, byte(cip.profile))
 	out = append(out, byte(cip.version))
 	out = append(out, byte(cip.channel))
-	//out = append(out, byte(cip.uuid))
-	//out = append(out, byte(cip.ipAddress))
-	//out = append(out, byte(cip.time))
+	// TODO: More concise operation to append array
+	for b := range cip.uuid {
+		out = append(out, cip.uuid[b])
+	}
+	//out = append(out, byte(cip.ipAddress.Network()))
+	//fmt.Println(byte(cip.ipAddress))
+	if cip.time == 0 {
+		btime, err := time.Now().MarshalBinary()
+		if err != nil {
+			return nil, err
+		}
+		for b := range btime {
+			out = append(out, btime[b])
+		}
+
+		fmt.Printf("%t\n", btime)
+	}
+	// out = append(out, byte(cip.time))
 	out = append(out, byte(cip.headDataType))
 	out = append(out, byte(cip.headDataSize))
 
 	out = append(out, byte(cip.ciType))
-	//out = append(out, byte(cip.rootCic))
+	out = append(out, byte(cip.rootCic.Content))
+	out = append(out, byte(cip.rootCic.Mask))
 	out = append(out, byte(cip.ciSize))
 
 	out = append(out, byte(cip.appDataType))
