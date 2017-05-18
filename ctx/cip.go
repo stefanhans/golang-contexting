@@ -22,7 +22,8 @@ type Cip struct {
 	version       CipVersion
 	channel       CipChannel
 	uuid          _UUID
-	ipAddress     net.Addr
+	ipAddress     net.IP
+	ipPort	      int16
 	time          int64
 	headDataType  CipHeaderType
 	headDataSize  byte
@@ -48,6 +49,7 @@ func (cip *Cip) String() string {
 		fmt.Sprintf("%-16s: %s\n", "channel", cip.channel) +
 		fmt.Sprintf("%-16s: %v\n", "uuid", cip.uuid) +
 		fmt.Sprintf("%-16s: %v\n", "ipAddress", cip.ipAddress) +
+		fmt.Sprintf("%-16s: %v\n", "ipPort", cip.ipPort) +
 		fmt.Sprintf("%-16s: %v\n", "time", cip.time) +
 		fmt.Sprintf("%-16s: %s\n", "headDataType", cip.headDataType) +
 		fmt.Sprintf("%-16s: %d\n", "headDataSize", cip.headDataSize) +

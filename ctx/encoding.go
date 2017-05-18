@@ -1,7 +1,9 @@
 package ctx
 
 import (
+	"encoding/binary"
 	"fmt"
+	"net"
 	"time"
 )
 
@@ -39,6 +41,10 @@ func (cip *Cip) validate(data []byte) error {
 		return fmt.Errorf("%v bytes is less than %v, i.e. the size of the static values of CIP\n", len(data), size)
 	}
 
+	size += int(cip.headDataSize)
+	size += int(cip.ciSize*2)
+	size += int(cip.appDataSize)
+
 	return nil
 }
 
@@ -51,34 +57,45 @@ func (cip *Cip) MarshalBinary() (data []byte, err error) {
 	out = append(out, byte(cip.profile))
 	out = append(out, byte(cip.version))
 	out = append(out, byte(cip.channel))
+
 	// TODO: More concise operation to append array
 	for b := range cip.uuid {
 		out = append(out, cip.uuid[b])
 	}
-	//out = append(out, byte(cip.ipAddress.Network()))
-	//fmt.Println(byte(cip.ipAddress))
-	if cip.time == 0 {
-		btime, err := time.Now().MarshalBinary()
-		if err != nil {
-			return nil, err
-		}
-		for b := range btime {
-			out = append(out, btime[b])
-		}
 
-		fmt.Printf("%t\n", btime)
+	cip.ipAddress = net.IPv4(127, 0, 0, 1)
+	out = append(out, cip.ipAddress[:4]...)
+	fmt.Println(cip.ipAddress)
+
+	bytes2 := make([]byte, 2)
+	binary.LittleEndian.PutUint16(bytes2, uint16(int16(cip.ipPort)))
+	out = append(out, bytes2...)
+
+	bytes8 := make([]byte, 8)
+	if cip.time == 0 {
+		cip.time = time.Now().Unix()
+		cip.time = int64(binary.LittleEndian.Uint64(bytes8))
+	} else {
+		binary.LittleEndian.PutUint64(bytes8, uint64(int64(cip.time)))
 	}
-	// out = append(out, byte(cip.time))
+	out = append(out, bytes8...)
+
 	out = append(out, byte(cip.headDataType))
 	out = append(out, byte(cip.headDataSize))
+	out = append(out, cip.headDataArray[:cip.headDataSize]...)
 
 	out = append(out, byte(cip.ciType))
 	out = append(out, byte(cip.rootCic.Content))
 	out = append(out, byte(cip.rootCic.Mask))
 	out = append(out, byte(cip.ciSize))
+	for i:=byte(0); i<cip.ciSize; i++ {
+		out = append(out, byte(cip.ciBrickArray[i].Content))
+		out = append(out, byte(cip.ciBrickArray[i].Mask))
+	}
 
 	out = append(out, byte(cip.appDataType))
 	out = append(out, byte(cip.appDataSize))
+	out = append(out, cip.appDataArray[:cip.appDataSize]...)
 
 	return out, nil
 }
