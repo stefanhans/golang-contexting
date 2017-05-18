@@ -23,7 +23,7 @@ type Cip struct {
 	channel       CipChannel
 	uuid          _UUID
 	ipAddress     net.IP
-	ipPort	      int16
+	ipPort        int16
 	time          int64
 	headDataType  CipHeaderType
 	headDataSize  byte

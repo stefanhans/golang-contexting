@@ -42,7 +42,7 @@ func (cip *Cip) validate(data []byte) error {
 	}
 
 	size += int(cip.headDataSize)
-	size += int(cip.ciSize*2)
+	size += int(cip.ciSize * 2)
 	size += int(cip.appDataSize)
 
 	return nil
@@ -88,7 +88,7 @@ func (cip *Cip) MarshalBinary() (data []byte, err error) {
 	out = append(out, byte(cip.rootCic.Content))
 	out = append(out, byte(cip.rootCic.Mask))
 	out = append(out, byte(cip.ciSize))
-	for i:=byte(0); i<cip.ciSize; i++ {
+	for i := byte(0); i < cip.ciSize; i++ {
 		out = append(out, byte(cip.ciBrickArray[i].Content))
 		out = append(out, byte(cip.ciBrickArray[i].Mask))
 	}
