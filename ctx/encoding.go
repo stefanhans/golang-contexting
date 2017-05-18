@@ -45,12 +45,21 @@ func (cip *Cip) validate(data []byte) error {
 	size += int(cip.ciSize * 2)
 	size += int(cip.appDataSize)
 
+	if len(data) != size {
+		return fmt.Errorf("%v bytes does not match %v, i.e. the size of the static and the dynamic values of CIP\n", len(data), size)
+	}
+
 	return nil
 }
 
 // MarshalBinary implements the encoding.BinaryMarshaler interface.
 // It encodes the CIP into a binary form and returns the result.
 func (cip *Cip) MarshalBinary() (data []byte, err error) {
+	// TODO: Debug validate()
+	//if err := cip.validate(data); err != nil {
+	//	return nil, err
+	//}
+
 	var out []byte
 
 	out = append(out, byte(cip.purpose))
