@@ -19,7 +19,7 @@ var cipTestTable = []struct {
 		"channel         : CHANNEL_RZV\n" +
 		"uuid            : " + aCip.Uuid() + "\n" +
 		"ipAddress       : <nil>\n" +
-		"ipPort		 : 0\n" +
+		"ipPort          : 0\n" +
 		"time            : 0\n" +
 		"headDataType    : HEADER_TYPE_RZV\n" +
 		"headDataSize    : 0\n" +
