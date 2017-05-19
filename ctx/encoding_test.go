@@ -13,7 +13,7 @@ func TestEncoding(t *testing.T) {
 	binaryData, err := cip.MarshalBinary()
 
 	if err != nil {
-		t.Errorf("%v", err)
+		t.Errorf("binaryData: \n%v", err)
 	} else {
 		if err := cip.UnmarshalBinary(binaryData); err != nil {
 			t.Errorf("%v", err)
