@@ -11,6 +11,7 @@ ToDo: Design services, API and source files structure
 import (
 	"fmt"
 	"net"
+	"time"
 )
 
 // Cip is the struct for the Contextinformation Pakets (CIP)
@@ -35,11 +36,23 @@ type Cip struct {
 	ciSize       byte
 	ciBrickArray CiBrickSlice
 
-	// ci_data
+	// app_data
 	appDataType  AppDataType
 	appDataSize  byte
 	appDataArray []byte
 }
+
+func (cip *Cip) Init() {
+	fmt.Println("Init()")
+	cip.ipAddress = net.IPv4(127, 0, 0, 1)
+	cip.ipPort = int16(22365)
+	cip.Timestamp(time.Now().Unix())
+}
+
+func (cip *Cip) Timestamp(time int64) {
+	cip.time = time
+}
+
 
 func (cip *Cip) String() string {
 
