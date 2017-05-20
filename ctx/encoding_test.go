@@ -75,6 +75,9 @@ func TestEncoding(t *testing.T) {
 
 	// validate() != size
 	binaryData, err = cip.MarshalBinary()
+	if err != nil {
+		t.Errorf("%v", err)
+	}
 	binaryData = make([]byte, len(binaryData)-2)
 
 	if err := cip.UnmarshalBinary(binaryData); err != nil {

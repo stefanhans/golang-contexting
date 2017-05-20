@@ -42,6 +42,7 @@ type Cip struct {
 	appDataArray []byte
 }
 
+// Init sets some default values. TODO: Can probably be removed in a final version.
 func (cip *Cip) Init() {
 	fmt.Println("Init()")
 	cip.ipAddress = net.IPv4(127, 0, 0, 1)
@@ -49,6 +50,7 @@ func (cip *Cip) Init() {
 	cip.Timestamp(time.Now().Unix())
 }
 
+// Timestamp sets the CIP time value. TODO: Can probably be removed in a final version.
 func (cip *Cip) Timestamp(time int64) {
 	cip.time = time
 }
