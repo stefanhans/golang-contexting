@@ -53,7 +53,6 @@ func (cip *Cip) Timestamp(time int64) {
 	cip.time = time
 }
 
-
 func (cip *Cip) String() string {
 
 	return fmt.Sprintf("%-16s: %s\n", "purpose", cip.purpose) +

@@ -4,8 +4,8 @@ import (
 	"encoding/binary"
 	"fmt"
 	//"net"
-	"time"
 	"net"
+	"time"
 )
 
 //// ci_head
@@ -48,7 +48,6 @@ func (cip *Cip) MarshalBinary() (data []byte, err error) {
 
 	data = append(data, byte(cip.channel))
 	fmt.Printf("channel 1: len(data): %v\n", len(data))
-
 
 	// TODO: More concise operation to append array
 	for b := range cip.uuid {
@@ -165,7 +164,7 @@ func (cip *Cip) UnmarshalBinary(data []byte) error {
 	i++
 
 	//uuid          _UUID // 4:20
-	j = i+16
+	j = i + 16
 	fmt.Printf("uuid 16: data[%v:%v]\n", i, j)
 	var uuid _UUID
 	uuid.unmarshalBinary(data[i:j])
@@ -173,19 +172,19 @@ func (cip *Cip) UnmarshalBinary(data []byte) error {
 	i = j
 
 	//ipAddress     net.IP // 22:26
-	j = i+4
+	j = i + 4
 	fmt.Printf("ipAddress 4: data[%v:%v] %v\n", i, j, data[i:j])
 	cip.ipAddress = net.IPv4(data[i], data[i+1], data[i+2], data[i+3])
 	i += 4
 
 	//ipPort        int16 // 27:29
-	j = i+2
+	j = i + 2
 	fmt.Printf("ipPort 2: data[%v:%v]\n", i, j)
 	cip.ipPort = int16(binary.LittleEndian.Uint16(data[i:j]))
 	i = j
 
 	//time          int64 // 30:38
-	j = i+8
+	j = i + 8
 	fmt.Printf("time 8: data[%v:%v]\n", i, j)
 	cip.time = int64(binary.LittleEndian.Uint64(data[i:j]))
 	i = j
@@ -206,7 +205,6 @@ func (cip *Cip) UnmarshalBinary(data []byte) error {
 	cip.headDataArray = data[i:j]
 	i = j
 
-
 	//ciType       CiType
 	fmt.Printf("ciType 1: data[%v:%v]\n", i, i+1)
 	cip.ciType = CiType(data[i])
@@ -226,10 +224,9 @@ func (cip *Cip) UnmarshalBinary(data []byte) error {
 
 	//ciBrickArray CiBrickSlice
 	fmt.Printf("ciBrickArray %v: data[%v:%v]\n", cip.ciSize, i, i+int(cip.ciSize)*2)
-	for ciBrickNum := byte(0); ciBrickNum<cip.ciSize*2; ciBrickNum += 2 {
+	for ciBrickNum := byte(0); ciBrickNum < cip.ciSize*2; ciBrickNum += 2 {
 		cip.ciBrickArray[ciBrickNum] = CiBrick{data[i], data[i+1]}
 	}
-
 
 	//appDataType  AppDataType
 	fmt.Printf("appDataType 1: data[%v:%v]\n", i, i+1)
@@ -245,9 +242,6 @@ func (cip *Cip) UnmarshalBinary(data []byte) error {
 	j = i + int(cip.appDataSize)
 	fmt.Printf("appDataArray %v: data[%v:%v]\n", cip.appDataSize, i, j)
 	cip.appDataArray = data[i:j]
-
-
-
 
 	//
 	//// ci_head
@@ -273,7 +267,6 @@ func (cip *Cip) UnmarshalBinary(data []byte) error {
 	//appDataType  AppDataType
 	//appDataSize  byte
 	//appDataArray []byte
-
 
 	return nil
 }
